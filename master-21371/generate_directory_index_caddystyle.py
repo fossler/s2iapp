@@ -62,7 +62,7 @@ def process_dir(top_dir, opts):
     body {
         font-family: sans-serif;
         text-rendering: optimizespeed;
-        background-color: #ffffff;
+        background-color: #000000;
     }
 
     a {
