@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>How to put PHP in HTML- Date Example</title>
-</head>
-<body>
+
 <?php
 echo "Here are our files";
 $path = ".";
@@ -17,5 +12,4 @@ while (($file = readdir($dh)) !== false) {
 }
 closedir($dh);
 ?> 
-</body>
-</html>
+
