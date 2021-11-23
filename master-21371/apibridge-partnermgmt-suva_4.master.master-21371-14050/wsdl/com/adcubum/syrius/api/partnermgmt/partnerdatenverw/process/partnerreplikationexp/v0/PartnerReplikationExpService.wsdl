@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PartnerReplikationExpService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partnerreplikationexp:v0"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partnerreplikationexp:v0"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partnerreplikationexp:v0:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 0.16.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partnerreplikationexp:v0:schema" schemaLocation="schema/PartnerReplikationExpService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ReplicateFullPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:replicateFullPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateFullPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:replicateFullPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereNatPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereNatPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereNatPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereNatPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereJurPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereJurPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereJurPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereJurPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDomiziladresseRequestMessage"> 
+        <wsdl:part name="Request" element="pa:repliziereDomiziladresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDomiziladresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDomiziladresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereZusatzadresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereZusatzadresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereZusatzadresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereZusatzadresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereKontaktpersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereKontaktpersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereKontaktpersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereKontaktpersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReplizierePartnerrolleRequestMessage">
+        <wsdl:part name="Request" element="pa:replizierePartnerrolleRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReplizierePartnerrolleResponseMessage">
+        <wsdl:part name="Response" element="pa:replizierePartnerrolleResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereEmailRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereEmailRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereEmailResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereEmailResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereEmailForAdresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereEmailForAdresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereEmailForAdresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereEmailForAdresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereEmailForKontaktpersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereEmailForKontaktpersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereEmailForKontaktpersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereEmailForKontaktpersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereTelefonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereTelefonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereTelefonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereTelefonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereTelefonForAdresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereTelefonForAdresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereTelefonForAdresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereTelefonForAdresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereTelefonForKontaktpersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereTelefonForKontaktpersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereTelefonForKontaktpersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereTelefonForKontaktpersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereWebRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereWebRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereWebResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereWebResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereWebForAdresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereWebForAdresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereWebForAdresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereWebForAdresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereWebForKontaktpersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereWebForKontaktpersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereWebForKontaktpersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereWebForKontaktpersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDublettenRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDublettenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDublettenResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDublettenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereZahlungsverbindungRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereZahlungsverbindungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereZahlungsverbindungResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereZahlungsverbindungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereBeziehungRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereBeziehungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereBeziehungResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereBeziehungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateDocRoutingRequestMessage">
+        <wsdl:part name="Request" element="pa:replicateDocRoutingRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateDocRoutingResponseMessage">
+        <wsdl:part name="Response" element="pa:replicateDocRoutingResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteNatPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteNatPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteNatPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteNatPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteJurPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteJurPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteJurPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteJurPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeletePartnerrolleRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeletePartnerrolleRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeletePartnerrolleResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeletePartnerrolleResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteDomiziladresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteDomiziladresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteDomiziladresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteDomiziladresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteZusatzadresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteZusatzadresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteZusatzadresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteZusatzadresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKontaktpersonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteKontaktpersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKontaktpersonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteKontaktpersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteEmailRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteEmailRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteEmailResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteEmailResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteTelefonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteTelefonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteTelefonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteTelefonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteWebRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteWebRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteWebResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteWebResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteKommVerbVerwendungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteKommVerbVerwendungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForAdresseRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteKommVerbVerwendungForAdresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForAdresseResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteKommVerbVerwendungForAdresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForEmailRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteKommVerbVerwendungForEmailRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForEmailResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteKommVerbVerwendungForEmailResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForTelefonRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteKommVerbVerwendungForTelefonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForTelefonResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteKommVerbVerwendungForTelefonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForWebRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteKommVerbVerwendungForWebRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteKommVerbVerwendungForWebResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteKommVerbVerwendungForWebResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeletePartneridentifikatorRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeletePartneridentifikatorRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeletePartneridentifikatorResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeletePartneridentifikatorResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteZahlungsverbindungRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteZahlungsverbindungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteZahlungsverbindungResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteZahlungsverbindungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteBeziehungRequestMessage">
+        <wsdl:part name="Request" element="pa:repliziereDeleteBeziehungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RepliziereDeleteBeziehungResponseMessage">
+        <wsdl:part name="Response" element="pa:repliziereDeleteBeziehungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateDeleteDocRoutingRequestMessage">
+        <wsdl:part name="Request" element="pa:replicateDeleteDocRoutingRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateDeleteDocRoutingResponseMessage">
+        <wsdl:part name="Response" element="pa:replicateDeleteDocRoutingResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateDeleteNoteRequestMessage">
+        <wsdl:part name="Request" element="pa:replicateDeleteNoteRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReplicateDeleteNoteResponseMessage">
+        <wsdl:part name="Response" element="pa:replicateDeleteNoteResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="PartnerReplikationExpServicePortType">
+        <wsdl:operation name="replicateFullPartner">
+            <wsdl:documentation>
+                Repliziert einen kompletten Partner (nat. oder jur.) inkl. allen partnernahen Objekten. Es wird immer ein vollständiger Partner mit allen seinen Daten erwartet, alle im Request nicht vorhandenen Daten gelten als gelöscht.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="replicateFullPartnerRequest" message="tns:ReplicateFullPartnerRequestMessage"/>
+            <wsdl:output name="replicateFullPartnerResponse" message="tns:ReplicateFullPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereNatPerson">
+            <wsdl:documentation>
+                Repliziert eine natürliche Person inkl. OeZuteilungen und Partneridentifikatoren.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereNatPersonRequest" message="tns:RepliziereNatPersonRequestMessage"/>
+            <wsdl:output name="repliziereNatPersonResponse" message="tns:RepliziereNatPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereJurPerson">
+            <wsdl:documentation>
+                Repliziert eine juristische Person inkl. OeZuteilungen und Partneridentifikatoren.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereJurPersonRequest" message="tns:RepliziereJurPersonRequestMessage"/>
+            <wsdl:output name="repliziereJurPersonResponse" message="tns:RepliziereJurPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDomiziladresse">
+            <wsdl:documentation>
+                Repliziert eine Domiziladresse inkl. Adressrollen und Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDomiziladresseRequest" message="tns:RepliziereDomiziladresseRequestMessage"/>
+            <wsdl:output name="repliziereDomiziladresseResponse" message="tns:RepliziereDomiziladresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereZusatzadresse">
+            <wsdl:documentation>
+                Repliziert eine Zusatzadresse inkl. Adressrollen und Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereZusatzadresseRequest" message="tns:RepliziereZusatzadresseRequestMessage"/>
+            <wsdl:output name="repliziereZusatzadresseResponse" message="tns:RepliziereZusatzadresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereKontaktperson">
+            <wsdl:documentation>
+                Repliziert eine Kontaktperson inkl. Adresse mit Adressrollen und Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereKontaktpersonRequest" message="tns:RepliziereKontaktpersonRequestMessage"/>
+            <wsdl:output name="repliziereKontaktpersonResponse" message="tns:RepliziereKontaktpersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="replizierePartnerrolle">
+            <wsdl:documentation>
+                Repliziert eine Partnerrolle.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="replizierePartnerrolleRequest" message="tns:ReplizierePartnerrolleRequestMessage"/>
+            <wsdl:output name="replizierePartnerrolleResponse" message="tns:ReplizierePartnerrolleResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereEmail">
+            <wsdl:documentation>
+                Repliziert eine Email-Adresse inkl. Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereEmailRequest" message="tns:RepliziereEmailRequestMessage"/>
+            <wsdl:output name="repliziereEmailResponse" message="tns:RepliziereEmailResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereEmailForAdresse">
+            <wsdl:documentation>
+                Repliziert eine Email-Adresse inkl. Kommunikationsverbindungsverwendung für eine Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereEmailForAdresseRequest" message="tns:RepliziereEmailForAdresseRequestMessage"/>
+            <wsdl:output name="repliziereEmailForAdresseResponse" message="tns:RepliziereEmailForAdresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereEmailForKontaktperson">
+            <wsdl:documentation>
+                Repliziert eine Email-Adresse inkl. Kommunikationsverbindungsverwendung für eine Kontaktperson.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereEmailForKontaktpersonRequest" message="tns:RepliziereEmailForKontaktpersonRequestMessage"/>
+            <wsdl:output name="repliziereEmailForKontaktpersonResponse" message="tns:RepliziereEmailForKontaktpersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereTelefon">
+            <wsdl:documentation>
+                Repliziert eine Telefon-Nummer inkl. Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereTelefonRequest" message="tns:RepliziereTelefonRequestMessage"/>
+            <wsdl:output name="repliziereTelefonResponse" message="tns:RepliziereTelefonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereTelefonForAdresse">
+            <wsdl:documentation>
+                Repliziert eine Telefon-Nummer inkl. Kommunikationsverbindungsverwendung für eine Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereTelefonForAdresseRequest" message="tns:RepliziereTelefonForAdresseRequestMessage"/>
+            <wsdl:output name="repliziereTelefonForAdresseResponse" message="tns:RepliziereTelefonForAdresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereTelefonForKontaktperson">
+            <wsdl:documentation>
+                Repliziert eine Telefon-Nummer inkl. Kommunikationsverbindungsverwendung für eine Kontaktperson.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereTelefonForKontaktpersonRequest" message="tns:RepliziereTelefonForKontaktpersonRequestMessage"/>
+            <wsdl:output name="repliziereTelefonForKontaktpersonResponse" message="tns:RepliziereTelefonForKontaktpersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereWeb">
+            <wsdl:documentation>
+                Repliziert eine Web-Adresse inkl. Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereWebRequest" message="tns:RepliziereWebRequestMessage"/>
+            <wsdl:output name="repliziereWebResponse" message="tns:RepliziereWebResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereWebForAdresse">
+            <wsdl:documentation>
+                Repliziert eine Web-Adresse inkl. Kommunikationsverbindungsverwendung für eine Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereWebForAdresseRequest" message="tns:RepliziereWebForAdresseRequestMessage"/>
+            <wsdl:output name="repliziereWebForAdresseResponse" message="tns:RepliziereWebForAdresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereWebForKontaktperson">
+            <wsdl:documentation>
+                Repliziert eine Web-Adresse inkl. Kommunikationsverbindungsverwendung für eine Kontaktperson.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereWebForKontaktpersonRequest" message="tns:RepliziereWebForKontaktpersonRequestMessage"/>
+            <wsdl:output name="repliziereWebForKontaktpersonResponse" message="tns:RepliziereWebForKontaktpersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDubletten">
+            <wsdl:documentation>
+                Repliziert eine oder mehrere Dubletten zu einem Partner.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Es können zu einer Dublette drei verschiedene Informationen repliziert werden:
+                <xhtml:ul>
+                    <xhtml:li>Dublette: Der Partner wird als Dublette verknüpft.</xhtml:li>
+                    <xhtml:li>Keine Dublette: Falls der Partner als Dublette verknüpft ist wird diese Zuweisung aufgehoben und der Partner als keine Dublette vermerkt.</xhtml:li>
+                    <xhtml:li>Unbekannt: Falls der Partner als Dublette oder keine Dublette verknüpft ist, wird diese Zuweisung aufgehoben.</xhtml:li>
+                </xhtml:ul>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDublettenRequest" message="tns:RepliziereDublettenRequestMessage"/>
+            <wsdl:output name="repliziereDublettenResponse" message="tns:RepliziereDublettenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereZahlungsverbindung">
+            <wsdl:documentation>
+                Repliziert eine Zahlungsverbindung zu einem Partner.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereZahlungsverbindungRequest" message="tns:RepliziereZahlungsverbindungRequestMessage"/>
+            <wsdl:output name="repliziereZahlungsverbindungResponse" message="tns:RepliziereZahlungsverbindungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereBeziehung">
+            <wsdl:documentation>
+                Repliziert Beziehungen zu einem Partner.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="repliziereBeziehungRequest" message="tns:RepliziereBeziehungRequestMessage"/>
+            <wsdl:output name="repliziereBeziehungResponse" message="tns:RepliziereBeziehungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="replicateDocRouting">
+            <wsdl:documentation>
+                Repliziert Dokumentversand zu einem Partner.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+                Bei einer Neuanlage des Objekts sollten alle bekannten Daten übergeben werden, zwingende Felder beachten!<xhtml:br/>
+                Beim Aktualisieren von bestehenden Daten sind auch einzelne Attribute möglich, solange das oder die Objekte eindeutig identifizierbar sind.
+            </wsdl:documentation>
+            <wsdl:input name="replicateDocRoutingRequest" message="tns:ReplicateDocRoutingRequestMessage"/>
+            <wsdl:output name="replicateDocRoutingResponse" message="tns:ReplicateDocRoutingResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteNatPerson">
+            <wsdl:documentation>
+                Repliziert die Löschung einer natürliche Person.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteNatPersonRequest" message="tns:RepliziereDeleteNatPersonRequestMessage"/>
+            <wsdl:output name="repliziereDeleteNatPersonResponse" message="tns:RepliziereDeleteNatPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteJurPerson">
+            <wsdl:documentation>
+                Repliziert die Löschung einer juristischen Person.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteJurPersonRequest" message="tns:RepliziereDeleteJurPersonRequestMessage"/>
+            <wsdl:output name="repliziereDeleteJurPersonResponse" message="tns:RepliziereDeleteJurPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeletePartnerrolle">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Partnerrolle.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeletePartnerrolleRequest" message="tns:RepliziereDeletePartnerrolleRequestMessage"/>
+            <wsdl:output name="repliziereDeletePartnerrolleResponse" message="tns:RepliziereDeletePartnerrolleResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteDomiziladresse">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Domiziladresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteDomiziladresseRequest" message="tns:RepliziereDeleteDomiziladresseRequestMessage"/>
+            <wsdl:output name="repliziereDeleteDomiziladresseResponse" message="tns:RepliziereDeleteDomiziladresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteZusatzadresse">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Zusatzadresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteZusatzadresseRequest" message="tns:RepliziereDeleteZusatzadresseRequestMessage"/>
+            <wsdl:output name="repliziereDeleteZusatzadresseResponse" message="tns:RepliziereDeleteZusatzadresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKontaktperson">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Kontaktperson.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteKontaktpersonRequest" message="tns:RepliziereDeleteKontaktpersonRequestMessage"/>
+            <wsdl:output name="repliziereDeleteKontaktpersonResponse" message="tns:RepliziereDeleteKontaktpersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteEmail">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Email-Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteEmailRequest" message="tns:RepliziereDeleteEmailRequestMessage"/>
+            <wsdl:output name="repliziereDeleteEmailResponse" message="tns:RepliziereDeleteEmailResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteTelefon">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Telefon-Nummer.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteTelefonRequest" message="tns:RepliziereDeleteTelefonRequestMessage"/>
+            <wsdl:output name="repliziereDeleteTelefonResponse" message="tns:RepliziereDeleteTelefonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteWeb">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Web-Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteWebRequest" message="tns:RepliziereDeleteWebRequestMessage"/>
+            <wsdl:output name="repliziereDeleteWebResponse" message="tns:RepliziereDeleteWebResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendung">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Kommunikationsverbindungsverwendung für einen Partner anhand des Typs der Kommunikationsverbindungsverwendung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungRequest" message="tns:RepliziereDeleteKommVerbVerwendungRequestMessage"/>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungResponse" message="tns:RepliziereDeleteKommVerbVerwendungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForAdresse">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Kommunikationsverbindungsverwendung für eine Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForAdresseRequest" message="tns:RepliziereDeleteKommVerbVerwendungForAdresseRequestMessage"/>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForAdresseResponse" message="tns:RepliziereDeleteKommVerbVerwendungForAdresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForEmail">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Kommunikationsverbindungsverwendung für eine Email-Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForEmailRequest" message="tns:RepliziereDeleteKommVerbVerwendungForEmailRequestMessage"/>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForEmailResponse" message="tns:RepliziereDeleteKommVerbVerwendungForEmailResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForTelefon">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Kommunikationsverbindungsverwendung für eine Telefon-Nummer.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForTelefonRequest" message="tns:RepliziereDeleteKommVerbVerwendungForTelefonRequestMessage"/>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForTelefonResponse" message="tns:RepliziereDeleteKommVerbVerwendungForTelefonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForWeb">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Kommunikationsverbindungsverwendung für eine Web-Adresse.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForWebRequest" message="tns:RepliziereDeleteKommVerbVerwendungForWebRequestMessage"/>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForWebResponse" message="tns:RepliziereDeleteKommVerbVerwendungForWebResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeletePartneridentifikator">
+            <wsdl:documentation>
+                Repliziert die Löschung eines Partneridentifikators.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeletePartneridentifikatorRequest" message="tns:RepliziereDeletePartneridentifikatorRequestMessage"/>
+            <wsdl:output name="repliziereDeletePartneridentifikatorResponse" message="tns:RepliziereDeletePartneridentifikatorResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteZahlungsverbindung">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Zahlungsverbindung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteZahlungsverbindungRequest" message="tns:RepliziereDeleteZahlungsverbindungRequestMessage"/>
+            <wsdl:output name="repliziereDeleteZahlungsverbindungResponse" message="tns:RepliziereDeleteZahlungsverbindungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteBeziehung">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Beziehung.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="repliziereDeleteBeziehungRequest" message="tns:RepliziereDeleteBeziehungRequestMessage"/>
+            <wsdl:output name="repliziereDeleteBeziehungResponse" message="tns:RepliziereDeleteBeziehungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="replicateDeleteDocRouting">
+            <wsdl:documentation>
+                Repliziert die Löschung eines Dokumentversands.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="replicateDeleteDocRoutingRequest" message="tns:ReplicateDeleteDocRoutingRequestMessage"/>
+            <wsdl:output name="replicateDeleteDocRoutingResponse" message="tns:ReplicateDeleteDocRoutingResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="replicateDeleteNote">
+            <wsdl:documentation>
+                Repliziert die Löschung einer Notiz.<xhtml:br/>
+                Die Replizierung erfolgt via StagingArea, womit keine fachliche, sondern nur eine technische Validierung durchgeführt wird. Eine fachliche Validierung wird erst in der StagingArea durchgeführt. Im Falle eines technischen Validierungsfehlers schlägt der komplette Request fehl.<xhtml:br/>
+            </wsdl:documentation>
+            <wsdl:input name="replicateDeleteNoteRequest" message="tns:ReplicateDeleteNoteRequestMessage"/>
+            <wsdl:output name="replicateDeleteNoteResponse" message="tns:ReplicateDeleteNoteResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PartnerReplikationExpServiceBinding" type="tns:PartnerReplikationExpServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="replicateFullPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="replicateFullPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="replicateFullPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereNatPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereNatPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereNatPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereJurPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereJurPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereJurPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDomiziladresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDomiziladresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDomiziladresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereZusatzadresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereZusatzadresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereZusatzadresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereKontaktperson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereKontaktpersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereKontaktpersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="replizierePartnerrolle">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="replizierePartnerrolleRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="replizierePartnerrolleResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereEmail">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereEmailRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereEmailResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereEmailForAdresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereEmailForAdresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereEmailForAdresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereEmailForKontaktperson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereEmailForKontaktpersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereEmailForKontaktpersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereTelefon">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereTelefonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereTelefonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereTelefonForAdresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereTelefonForAdresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereTelefonForAdresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereTelefonForKontaktperson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereTelefonForKontaktpersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereTelefonForKontaktpersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereWeb">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereWebRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereWebResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereWebForAdresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereWebForAdresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereWebForAdresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereWebForKontaktperson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereWebForKontaktpersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereWebForKontaktpersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDubletten">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDublettenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDublettenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereZahlungsverbindung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereZahlungsverbindungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereZahlungsverbindungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereBeziehung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereBeziehungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereBeziehungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="replicateDocRouting">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="replicateDocRoutingRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="replicateDocRoutingResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteNatPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteNatPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteNatPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteJurPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteJurPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteJurPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeletePartnerrolle">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeletePartnerrolleRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeletePartnerrolleResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteDomiziladresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteDomiziladresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteDomiziladresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteZusatzadresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteZusatzadresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteZusatzadresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKontaktperson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteKontaktpersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteKontaktpersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteEmail">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteEmailRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteEmailResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteTelefon">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteTelefonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteTelefonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteWeb">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteWebRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteWebResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForAdresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForAdresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForAdresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForEmail">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForEmailRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForEmailResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForTelefon">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForTelefonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForTelefonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteKommVerbVerwendungForWeb">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteKommVerbVerwendungForWebRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteKommVerbVerwendungForWebResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeletePartneridentifikator">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeletePartneridentifikatorRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeletePartneridentifikatorResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteZahlungsverbindung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteZahlungsverbindungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteZahlungsverbindungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="repliziereDeleteBeziehung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="repliziereDeleteBeziehungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="repliziereDeleteBeziehungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="replicateDeleteDocRouting">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="replicateDeleteDocRoutingRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="replicateDeleteDocRoutingResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="replicateDeleteNote">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="replicateDeleteNoteRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="replicateDeleteNoteResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PartnerReplikationExpService_v0">
+        <wsdl:port name="PartnerReplikationExpService_v0" binding="tns:PartnerReplikationExpServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/PartnerReplikationExpService_v0"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

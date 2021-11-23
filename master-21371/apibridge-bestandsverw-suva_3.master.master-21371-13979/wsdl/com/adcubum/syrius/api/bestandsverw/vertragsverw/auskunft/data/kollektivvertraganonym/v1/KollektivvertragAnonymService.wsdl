@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="KollektivvertragAnonymService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:kollektivvertraganonym:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:kollektivvertraganonym:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:kollektivvertraganonym:v1:schema">
+
+    <wsdl:documentation>
+        Version: 1.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:kollektivvertraganonym:v1:schema" schemaLocation="schema/KollektivvertragAnonymService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GetKollektivvertragAnonymRequestMessage">
+        <wsdl:part name="Request" element="pa:getKollektivvertragAnonymRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetKollektivvertragAnonymResponseMessage">
+        <wsdl:part name="Response" element="pa:getKollektivvertragAnonymResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="SearchKollektivvertragAnonymRequestMessage">
+        <wsdl:part name="Request" element="pa:searchKollektivvertragAnonymRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchKollektivvertragAnonymResponseMessage">
+        <wsdl:part name="Response" element="pa:searchKollektivvertragAnonymResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="KollektivvertragAnonymServicePortType">
+        <wsdl:operation name="getKollektivvertragAnonym">
+            <wsdl:documentation>Liefert einen State eines Kollektivvertrag Anonym anhand des Schlüssels und des Suchdatums</wsdl:documentation>
+            <wsdl:input name="getKollektivvertragAnonymRequest" message="tns:GetKollektivvertragAnonymRequestMessage"/>
+            <wsdl:output name="getKollektivvertragAnonymResponse" message="tns:GetKollektivvertragAnonymResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchKollektivvertragAnonym">
+            <wsdl:documentation>Liefert eine Liste von technischen Schlüssel gemäss den gesetzten Suchkriterien. Die Schlüssel beziehen sich dabei auf Kollektivverträge Anonym.</wsdl:documentation>
+            <wsdl:input name="searchKollektivvertragAnonymRequest" message="tns:SearchKollektivvertragAnonymRequestMessage"/>
+            <wsdl:output name="searchKollektivvertragAnonymResponse" message="tns:SearchKollektivvertragAnonymResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="KollektivvertragAnonymServiceBinding" type="tns:KollektivvertragAnonymServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getKollektivvertragAnonym">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getKollektivvertragAnonymRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getKollektivvertragAnonymResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchKollektivvertragAnonym">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchKollektivvertragAnonymRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchKollektivvertragAnonymResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="KollektivvertragAnonymService_v1">
+        <wsdl:port name="KollektivvertragAnonymService_v1" binding="tns:KollektivvertragAnonymServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/KollektivvertragAnonymService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

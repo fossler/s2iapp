@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:objektverw:process:liegenschaftprocess:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:objektverw:process:liegenschaftprocess:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            version="1.0.0"
+            elementFormDefault="qualified">
+
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+
+    <xsd:element name="getLiegenschaftVorlageRequest" type="tns:GetLiegenschaftVorlageRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request zur Ermittlung einer Liegenschaft-Vorlage zu der übergebenen VersichertesObjektDefinitionID</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="getLiegenschaftVorlageResponse" type="tns:GetLiegenschaftVorlageResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response zur Ermittlung einer Liegenschaft-Vorlage zu der übergebenen VersichertesObjektDefinitionID</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+
+	<xsd:complexType name="GetLiegenschaftVorlageRequestType">
+	    <xsd:annotation>
+	       <xsd:documentation>Request zur Ermittlung einer Liegenschaft-Vorlage</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="versichertesObjektDefinitionId" type="pi:WsVersichertesObjektDefinitionIdType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel der VersichertesObjektDefinition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="stichtag" type="st:DateType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Stichtag, zu dem die Liegenschaft-Vorlage ermittelt werden soll. Wird kein Datum übergeben, wird das Tagesdatum herangezogen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="GetLiegenschaftVorlageResponseType">
+	   <xsd:annotation>
+	       <xsd:documentation>Response zur Ermittlung einer Liegenschaft-Vorlage.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="liegenschaft" type="tns:WsLiegenschaftType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+    				<xsd:documentation>Liegenschaft</xsd:documentation>
+    			</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="createLiegenschaftRequest" type="tns:CreateLiegenschaftRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request für das Erstellen einer Liegenschaft.</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="createLiegenschaftResponse" type="tns:CreateLiegenschaftResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response für das Erstellen einer Liegenschaft.</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+
+	<xsd:complexType name="CreateLiegenschaftRequestType">
+	    <xsd:annotation>
+	       <xsd:documentation>Request für das Erstellen einer Liegenschaft.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="liegenschaft" type="tns:WsLiegenschaftType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Enthält die Daten der neuen Liegenschaft.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CreateLiegenschaftResponseType">
+	   <xsd:annotation>
+	       <xsd:documentation>Response für das Erstellen einer Liegenschaft.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="liegenschaftId" type="pi:WsVersicherbaresObjektIdType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+    				<xsd:documentation>Technische Id der erstellten Liegenschaft.</xsd:documentation>
+    			</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="changeLiegenschaftRequest" type="tns:ChangeLiegenschaftRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request für das Ändern einer Liegenschaft.</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="changeLiegenschaftResponse" type="tns:ChangeLiegenschaftResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response für das Ändern einer Liegenschaft.</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+	
+	<xsd:complexType name="ChangeLiegenschaftRequestType">
+	    <xsd:annotation>
+	       <xsd:documentation>Request für das Ändern einer Liegenschaft.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="liegenschaft" type="tns:WsLiegenschaftType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Enthält die geänderten Daten der bestehenden Liegenschaft.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ChangeLiegenschaftResponseType">
+	   <xsd:annotation>
+	       <xsd:documentation>Response für das Ändern einer Liegenschaft.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="liegenschaftId" type="pi:WsVersicherbaresObjektIdType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+    				<xsd:documentation>Technische Id der geänderten Liegenschaft.</xsd:documentation>
+    			</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="WsLiegenschaftType">
+    	<xsd:annotation>
+    		<xsd:documentation>Liegenschaft</xsd:documentation>
+    	</xsd:annotation>
+    	<xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+        		<xsd:sequence>
+        			<xsd:element name="id" type="pi:WsVersicherbaresObjektIdType" minOccurs="1" maxOccurs="1">
+                   		<xsd:annotation>
+    						<xsd:documentation>Versicherbares-Objekt-Id</xsd:documentation>
+    					</xsd:annotation>
+                   	</xsd:element>
+                   	<xsd:element name="versichertesObjektDefinitionId" type="pi:WsVersichertesObjektDefinitionIdType" minOccurs="1" maxOccurs="1">
+                   		<xsd:annotation>
+    						<xsd:documentation>Versicherbares-Objekt-Definition-Id</xsd:documentation>
+    					</xsd:annotation>
+                   	</xsd:element>
+                   	<xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="1" maxOccurs="1">
+                   		<xsd:annotation>
+    						<xsd:documentation>Mutationsgrund-Id</xsd:documentation>
+    					</xsd:annotation>
+                   	</xsd:element>
+                   	<xsd:element name="austrittsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                   		<xsd:annotation>
+    						<xsd:documentation>Austrittsgrund-Id</xsd:documentation>
+    					</xsd:annotation>
+                   	</xsd:element>
+            		<xsd:element name="bemerkungen" type="st:StringType" minOccurs="0" maxOccurs="1">
+                		<xsd:annotation>
+                			<xsd:documentation>Bemerkungen zur Liegenschaft.</xsd:documentation>
+                		</xsd:annotation>
+            		</xsd:element>
+            		<xsd:element name="strasse" type="st:StringType" minOccurs="1" maxOccurs="1">
+            			<xsd:annotation>
+                			<xsd:documentation>Strasse der Liegenschaft.</xsd:documentation>
+                		</xsd:annotation>
+            		</xsd:element>
+                    <xsd:element name="hausnummer" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Hausnummer der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="hausnummerZusatz" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Zusatz zur Hausnummer der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="plz" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Postleitzahl der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="plzZusatz" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Zusatz zur Postleitzahl der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ort" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Ort der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="land" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Land der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kantonId" type="pi:WsKantonIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Id des Kantons der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="gNrKantonId" type="pi:WsKantonIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Id der Gemeinde des Kantons der Liegenschaft.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+    			</xsd:sequence>
+    		</xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

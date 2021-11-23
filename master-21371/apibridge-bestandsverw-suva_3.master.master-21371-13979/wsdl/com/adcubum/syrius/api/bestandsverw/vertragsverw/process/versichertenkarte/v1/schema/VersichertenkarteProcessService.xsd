@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:versichertenkarte:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:versichertenkarte:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            version="1.0.0"
+            elementFormDefault="qualified">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    
+    <xsd:element name="orderNewVersichertenkarteRequest" type="tns:OrderNewVersichertenkarteRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen neu Versichertenkarte zu bestellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="orderNewVersichertenkarteResponse" type="tns:OrderNewVersichertenkarteResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um einen neu Versichertenkarte zu bestellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="OrderNewVersichertenkarteRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Parameter zur Bestellung einer neuen Versichertenkarte.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:annotation>
+                <xsd:documentation>Referenz auf Partner welcher einen neue Versichertenkarte bestellt.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Enthält den technischen Schlüssel des Partners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OrderNewVersichertenkarteResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Information, ob die Versichertenkarten-Bestellung erfolgreich erstellt wurde.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="bestellungErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

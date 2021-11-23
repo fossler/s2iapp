@@ -1,0 +1,1355 @@
+<xsd:schema
+		targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistung:v2:schema"
+		xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistung:v2:schema"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+		xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+		xmlns:xt="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+		xmlns:slc="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:common:codes:v1"
+		xmlns:lai="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:common:identifier:v1"
+		xmlns:lei="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:leistung:identifier:v1"
+		xmlns:lf="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+		xmlns:lci="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:common:identifier:v1"
+		xmlns:ci="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:vertrag:identifier:v1"
+		xmlns:pi="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+		xmlns:or="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:operativesrechnungswesen:identifier:v1"
+		elementFormDefault="qualified"
+		version="2.2.0">
+
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+				schemaLocation="../../../../../../../../../../../../com/adcubum/syrius/api/common/simpleTypes/v1/simpleTypes.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+				schemaLocation="../../../../../../../../../../../../com/adcubum/syrius/api/common/types/v1/types.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+				schemaLocation="../../../../../../../../../../../../com/adcubum/syrius/api/common/externalTypes/v1/externalTypes.xsd"/>
+	<xsd:import
+			namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:common:codes:v1"
+			schemaLocation="../../../../../../leistungserbringung/leistungsabrechnung/common/codes/v1/codes.xsd"/>
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:common:identifier:v1"
+		schemaLocation="../../../../../../leistungserbringung/leistungsabrechnung/common/identifier/v1/identifier.xsd" />
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:leistung:identifier:v1"
+		schemaLocation="../../../../../../leistungserbringung/leistungsabrechnung/leistung/identifier/v1/identifier.xsd" />
+	<xsd:import
+			namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+			schemaLocation="../../../../../../common/identifier/v1/identifier.xsd" />
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:common:identifier:v1"
+		schemaLocation="../../../../../common/identifier/v1/identifier.xsd" />
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:vertrag:identifier:v1"
+		schemaLocation="../../../../../../extern/vertrag/identifier/v1/identifier.xsd" />
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+		schemaLocation="../../../../../../extern/partner/identifier/v1/identifier.xsd" />
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:operativesrechnungswesen:identifier:v1"
+		schemaLocation="../../../../../../extern/operativesrechnungswesen/identifier/v1/identifier.xsd" />
+
+	<!-- Leistungen fuer eine Liste von IDs -->
+	<xsd:element name="readLeistungenRequest" type="tns:ReadLeistungenRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu
+				Leistungen gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadLeistungenRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu
+				Leistungen gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungIds" type="lai:WsLeistungIdType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel einer Leistung
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="readLeistungenResponse" type="tns:ReadLeistungenResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu Leistungen geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadLeistungenResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu Leistungen
+				geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungen" type="tns:WsLeistungType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält die
+						Informationen zu einer Leistung
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Leistungen fuer eine Liste von Partner -->
+	<xsd:element name="readLeistungenForPartnerRequest" type="tns:ReadLeistungenForPartnerRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu den Leistungen zu einer Liste von Partnern gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadLeistungenForPartnerRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu den
+				Leistungen
+				eines Partners
+				gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="partnerIds" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel eines Partners
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="datumVon" type="st:LocalDateType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Von-Datum der
+						Periode
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="datumBis" type="st:LocalDateType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Bis-Datum der
+						Periode
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="readLeistungenForPartnerResponse"
+		type="tns:ReadLeistungenForPartnerResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu den Leistung
+				eines Partners geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadLeistungenForPartnerResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu den
+				Leistungen eines Partners geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistung" type="tns:WsLeistungType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält die
+						Informationen zu einer Leistung
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- abgerechnete Leistungen fuer eine Liste von Partner -->
+	<xsd:element name="readAbgerechneteLeistungenForPartnerRequest" type="tns:ReadAbgerechneteLeistungenForPartnerRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu den abgerechneten Leistungen zu einer Liste von Partnern gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadAbgerechneteLeistungenForPartnerRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu den
+				abgerechneten Leistungen
+				eines Partners
+				gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="partnerIds" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel eines Partners
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="abgerechnetAmVon" type="st:LocalDateType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Von-Abgerechnet-Datum der
+						Periode
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="abgerechnetAmBis" type="st:LocalDateType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Bis-Abgerechnet-Datum der
+						Periode
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="readAbgerechneteLeistungenForPartnerResponse"
+		type="tns:ReadAbgerechneteLeistungenForPartnerResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu den abgerechneten Leistung
+				eines Partners geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadAbgerechneteLeistungenForPartnerResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu den
+				abgerechneten Leistungen eines Partners geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistung" type="tns:WsLeistungType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält die
+						Informationen zu einer abgerechneten Leistung
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Leistungen fuer eine Liste von Abrechnungspositionen -->
+	<xsd:element name="readLeistungForAbrechnungspositionRequest" type="tns:ReadLeistungForAbrechnungspositionRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu den Leistungen zu einer Liste von Abrechnungspositionen gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadLeistungForAbrechnungspositionRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu der	Leistung einer Abrechnungsposition gelesen wird
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="abrechnungspositionIds" type="or:WsAbrechnungspositionIdType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel einer Abrechnungsposition
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="readLeistungForAbrechnungspositionResponse"
+		type="tns:ReadLeistungForAbrechnungspositionResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu der Leistung einer Abrechnungsposition geliefert wird
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadLeistungForAbrechnungspositionResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu der	Leistung einer Abrechnungsposition geliefert wird
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungForAbrechnungsposition" type="tns:WsLeistungForAbrechnungspositionType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält eine die Zuweisungen von einer Abrechnungsposition zur Leistung.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Abrechnungspositionen Liste fuer eine Liste von LeistungIds -->
+	<xsd:element name="readAbrechnungspositionenForLeistungRequest" type="tns:ReadAbrechnungspositionenForLeistungRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit die Informationen zu den Abrechnungspositionen zu einer Liste von LeistungId gelesen werden.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadAbrechnungspositionenForLeistungRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die Informationen zu der	Leistung einer Abrechnungsposition gelesen wird
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungIds" type="lai:WsLeistungIdType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel einer Leistung.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="readAbrechnungspositionenForLeistungResponse" type="tns:ReadAbrechnungspositionenForLeistungResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu der Leistung einer Abrechnungsposition geliefert wird.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadAbrechnungspositionenForLeistungResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response in dem die Informationen zu der	Leistung einer Abrechnungsposition geliefert wird.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungIdForAbrechnungspositionen" type="tns:WsLeistungIdForAbrechnungspositionenType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält eine Liste der Abrechnungspositionen für die entsprechende LeistungId.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WsLeistungForAbrechnungspositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Zuweisung der Leistung zur Abrechnungsposition.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="abrechnungspositionId" type="or:WsAbrechnungspositionIdType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel einer Abrechnungsposition.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="leistung" type="tns:WsLeistungType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält die Informationen zu der Leistung.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<!-- Objektdefinitionen -->
+	<xsd:complexType name="WsLeistungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Leistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="id" type="lai:WsLeistungIdType">
+						<xsd:annotation>
+							<xsd:documentation>Technischer Schlüssel einer Leistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungsabrechnungsNummer" type="st:StringType">
+						<xsd:annotation>
+							<xsd:documentation>Der fachliche Schlüssel einer
+								Leistungsabrechnung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="versicherterId" type="pi:WsPartnerIdType">
+						<xsd:annotation>
+							<xsd:documentation>Versicherter
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungStatusCode" type="slc:WsLeistungStatusCodeType">
+						<xsd:annotation>
+							<xsd:documentation>Status der Leistungsabrechung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungStornoCode" type="slc:WsLeistungStornoCodeType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Storno Code der Leistungsabrechung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schadenartId" type="lf:WsSchadenartIdType">
+						<xsd:annotation>
+							<xsd:documentation>Schadenart
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungsfallId" type="lf:WsLeistungsfallIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Leistungsfall der Leistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungAnteile" type="tns:WsLeistungAnteilType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Leistungsanteil
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="korrekturTextVersicherterId" type="lei:WsLeistungTextIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Text für den Versicherten bei einem Storno
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="korrekturTextLeistungserbringerId" type="lei:WsLeistungTextIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Text für den Leistungserbringer bei einem Storno
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- Objektdefinitionen -->
+	<xsd:complexType name="WsLeistungIdForAbrechnungspositionenType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält eine Liste der Abrechnungspositionen für die entsprechende LeistungId.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungId" type="lai:WsLeistungIdType">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel einer Leistung.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="abrechnungspositionId" type="or:WsAbrechnungspositionIdType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel einer Abrechnungsposition.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsHeilungskostenType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu den Heilungskosten
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungType">
+				<xsd:sequence>
+					<xsd:element name="behandlungBeginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Behandlungsbeginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="behandlungEnde" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Behandlungsende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungserbringerId" type="pi:WsPartnerIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>ausführender Arzt
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="rechnungNummer" type="st:StringType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Rechnungsnummer
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="rechnungDatum" type="st:LocalDateType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Ausstellungsdatum der Rechnung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="rechnungTotal" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Bruttobetrag der Rechnung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsStationaerType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu den stationären
+				Heilungskosten
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsHeilungskostenType">
+				<xsd:sequence>
+					<xsd:element name="spitalAbteilungCode" type="slc:WsSpitalAbteilungCodeType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Spitalabteilung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:sequence>
+						<xsd:element name="position" type="tns:WsStationaerPositionType" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Position
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsAmbulantType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu den ambulanten
+				Heilungskosten
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsHeilungskostenType">
+				<xsd:sequence>
+					<xsd:element name="position" type="tns:WsAmbulantPositionType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Position
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsTaggeldType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Taggeldleistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungType">
+				<xsd:sequence>
+					<xsd:element name="beginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Beginn der Taggeldleistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ende" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Ende der Taggeldleistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="tage" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Tage der Taggeldleistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="position" type="tns:WsTaggeldPositionType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Position
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsRenteType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Rentenleistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungType">
+				<xsd:sequence>
+					<xsd:element name="beginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Beginn der Rentenleistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ende" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Ende der Rentenleistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="hauptbeguenstigterId" type="pi:WsPartnerIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hauptbegünstigter
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kostenartId" type="lci:WsKostenartIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kostenart der Leistungsposition
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="position" type="tns:WsRentePositionType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Position
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKapitalType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Kapitalleistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungType">
+				<xsd:sequence>
+					<xsd:element name="position" type="tns:WsKapitalPositionType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Position
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsLeistungPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer
+				Leistungsposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="kostenartId" type="lci:WsKostenartIdType">
+						<xsd:annotation>
+							<xsd:documentation>Kostenart der Leistungsposition
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungTextId" type="lei:WsLeistungTextIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Text zur Leistungsposition
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungBrutto" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Summierte Bruttobetraege
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungNetto" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Summierte Nettobetraege
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsHeilungskostenPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer
+				Heilungskostenposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungPositionType">
+				<xsd:sequence>
+					<xsd:element name="behandlungBeginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Behandlungsbeginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="behandlungEnde" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Behandlungsende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="besuche" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Besuche
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="konsultationen" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Konsultationen
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="stunden" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Stunden
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="tage" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Tage
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="positionBetrag" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Rechnungsbetrag der in dieser Position
+								verteilt wird
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="nichtPflichtig" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nichtpflichtiger Betrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="nichtVersichert" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Summierte nicht versicherten Betraege
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kostenanteil" type="tns:WsKostenanteilType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Kostenanteile (Franchise, Selbstbehalt,
+								Spitalbeitrag, Nichtversicherte Kostenbeteiligung)
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:sequence>
+						<xsd:element name="deckung" type="tns:WsHeilungskostenDeckungType" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Deckung
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsStationaerPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer stationären
+				Heilungskostenposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsHeilungskostenPositionType">
+				<xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsAmbulantPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer ambulanten
+				Heilungskostenposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsHeilungskostenPositionType">
+				<xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsTaggeldPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Taggeldposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungPositionType">
+				<xsd:sequence>
+					<xsd:element name="beginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Taggeld Beginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ende" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Taggeld Ende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="arbeitsunfhaehigkeit" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Arbeitsunfhaehigkeit in Prozent
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="deckung" type="tns:WsTaggeldDeckungType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Deckung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsRentePositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Renteposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungPositionType">
+				<xsd:sequence>
+					<xsd:element name="beginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Rentenbeginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ende" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Rentenende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="renteBerechtigterId" type="pi:WsPartnerIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>RentenBerechtigter
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="deckung" type="tns:WsRenteDeckungType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Deckung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKapitalPositionType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Kapitalposition
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsLeistungPositionType">
+				<xsd:sequence>
+					<xsd:element name="kapitalisierung" type="st:LocalDateType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Wann wurde die Kapitalleistung kapitalisiert
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="deckung" type="tns:WsKapitalDeckungType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Deckung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsDeckungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zur Deckung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="vertragsproduktId" type="ci:WsVertragsproduktIdType">
+						<xsd:annotation>
+							<xsd:documentation>Vertragsprodukt
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kollektivVertragProduktId" type="ci:WsKollektivVertragProduktIdType">
+						<xsd:annotation>
+							<xsd:documentation>KollektivVertragProduktId
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungBrutto" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bruttobetrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungNetto" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nettobetrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kuerzung" type="tns:WsKuerzungType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Kuerzung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsHeilungskostenDeckungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zur Deckung der
+				Heilungskosten
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsDeckungType">
+				<xsd:sequence>
+					<xsd:element name="behandlungBeginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Behandlungsbeginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="behandlungEnde" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Behandlungsende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kostenanteil" type="tns:WsKostenanteilType" minOccurs="0" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Kostenanteile (Franchise, Selbstbehalt,
+								Spitalbeitrag, Nichtversicherte Kostenbeteiligung)
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsTaggeldDeckungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zur Deckung einer
+				Taggeldleistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsDeckungType">
+				<xsd:sequence>
+					<xsd:element name="beginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Taggeldbeginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ende" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Taggeldende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="tage" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Tage der Taggeldleistung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="taggeldAnsatz" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Taggeldansatz
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="wartefristTage" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Wartefristtage
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="arbeitsunfaehigkeit" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Arbeitsunfaehigkeit in Prozent
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsRenteDeckungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zur Deckung einer
+				Rentenleistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsDeckungType">
+				<xsd:sequence>
+					<xsd:element name="beginn" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Rentenbeginn
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ende" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Rentenende
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="monate" type="st:IntegerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anzahl Monate Leistungsdauer
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="renteAnsatz" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Rentenansatz
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKapitalDeckungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zur Deckung einer
+				Kapitalleistung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsDeckungType">
+				<xsd:sequence>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKuerzungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Kürzung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="kuerzungBetrag" type="xt:WsMoneyType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kuerzungsbetrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="prozent" type="st:DecimalType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Reduktions Prozentsatz
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsLeistungAnteilType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zum Leistungsanteil
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="habenBetrag" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Haben-Betrag in Referenzwährung, aus Sicht
+								des
+								Versicherers
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="sollBetrag" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Soll-Betrag in Referenzwährung, aus Sicht des
+								Versicherers
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungBeteiligter" type="tns:WsLeistungBeteiligterType">
+						<xsd:annotation>
+							<xsd:documentation>Leistungsbeteiligter
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsLeistungBeteiligterType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zum Leistungsbeteiligten
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="zahlerId" type="pi:WsZahlerIdType">
+						<xsd:annotation>
+							<xsd:documentation>Zahler
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="partnerId" type="pi:WsPartnerIdType">
+						<xsd:annotation>
+							<xsd:documentation>Partner (Mitbegünstigter)
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="abrechnungDatum" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>Abrechnungsdatum
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="abgerechnetAm" type="st:LocalDateType">
+						<xsd:annotation>
+							<xsd:documentation>AbgerechnetAm
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="papierCode" type="slc:WsPapierCodeType">
+						<xsd:annotation>
+							<xsd:documentation>PapierCode
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="beguenstigterTypId" type="lf:WsBeguenstigterTypIdType">
+						<xsd:annotation>
+							<xsd:documentation>ID des BeguenstigterTyp
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKostenanteilType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einem Kostenanteil
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsFranchiseType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einer Franchise
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsKostenanteilType">
+				<xsd:sequence>
+					<xsd:element name="franchiseBetrag" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Aktueller Stand der Franchise.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsSelbstbehaltType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einem Selbstbehalt
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsKostenanteilType">
+				<xsd:sequence>
+					<xsd:element name="selbstbehaltBetrag" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Aktueller Stand des Selbstbehalts.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsNichtVersicherteKostenbeteiligungType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zur nichtversicherten Kostenbeteiligung
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsKostenanteilType">
+				<xsd:sequence>
+					<xsd:element name="nichtVersicherteKostenbeteiligungBetrag" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Aktueller Stand der nichtversicherten Kostenbeteiligung.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsSpitalkostenbeitragType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Informationen zu einem
+				Spitalkostenbeitrag
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="tns:WsKostenanteilType">
+				<xsd:sequence>
+					<xsd:element name="spitalBeitrag" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Aktueller Stand der Spitalbeiträge.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="spitalTage" type="st:DecimalType">
+						<xsd:annotation>
+							<xsd:documentation>Aktueller Stand der Spitaltage.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+
+
+
+
+
+
+
+
+
+
+
+	<xsd:element name="readL10nAttributesLeistungTextRequest"
+		type="tns:ReadL10nAttributesLeistungTextRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die lokalisierten Attribute zu den
+				Leistungstexten gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="ReadL10nAttributesLeistungTextRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request mit dem die lokalisierten Attribute zu
+				Leistungtexten gelesen werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="leistungTextId" type="lei:WsLeistungTextIdType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel des LeistungText
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="locale" type="xsd:language">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Local mit welcher die
+						korrekte Sprache ermittelt wird.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="stichtag" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Fachlicher
+						Zeitpunkt.
+						Der Parameter ist optional. Wird er nicht gesetzt,
+						wird der
+						aktuelle Zeitpunkt verwendet.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="readL10nAttributesLeistungTextResponse" type="tns:ReadL10nAttributesLeistungTextResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response mit dem die lokalisierten Attribute zu einem
+				Leistungtext geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ReadL10nAttributesLeistungTextResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response mit dem die lokalisierten Attribute zu einem
+				Leistungtext geliefert werden
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="l10nAttributesLeistungText" type="tns:WsL10nAttributesLeistungTextType" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Enthält die
+						lokalisierten Attribute zu einem Leistungtext
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsL10nAttributesLeistungTextType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die lokalisierten Attribute zu einem
+				Leistungtext
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="id" type="lei:WsLeistungTextIdType">
+						<xsd:annotation>
+							<xsd:documentation>Technischer Schlüssel einem Leistungtext
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leistungText" type="ct:WsLocalizedTextType">
+						<xsd:annotation>
+							<xsd:documentation>Leistungtext
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+</xsd:schema>

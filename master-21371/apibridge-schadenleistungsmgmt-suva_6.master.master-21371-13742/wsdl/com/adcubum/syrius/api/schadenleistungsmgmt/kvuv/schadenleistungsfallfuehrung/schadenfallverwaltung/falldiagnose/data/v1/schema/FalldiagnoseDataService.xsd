@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:falldiagnose:data:v1:schema"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:falldiagnose:data:v1:schema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+        xmlns:lcot="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:codes:v1"
+        xmlns:li="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        elementFormDefault="qualified"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:types:v1"
+                schemaLocation="../../../../types/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:codes:v1"
+                schemaLocation="../../../../codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+                schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:types:v1"
+                schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+                schemaLocation="../../../../../../../../../../../../com/adcubum/syrius/api/common/types/v1/types.xsd"/>
+
+    <!-- READ -->
+    <xsd:complexType name="WsReadFalldiagnoseRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request mit dem Informationen zu Falldiagnosen gelesen werden
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-ID des Schadenfalls zu dem die Falldiagnosen gelesen werden
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsReadFalldiagnoseResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit dem die Informationen zu einer Falldiagnose geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="falldiagnose" type="tns:WsFalldiagnoseType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Informationen zur Falldiagnose</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsFalldiagnoseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Informationen zu einer Falldiagnose</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="falldiagnoseId" type="li:WsFalldiagnoseIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-ID einer Falldiagnose
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-ID eines Schadenfalls
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="diagnoseId" type="li:WsDiagnoseIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-ID einer Diagnose
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="diagnoseTypId" type="li:WsDiagnoseTypIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-ID eines Diagnose Typs
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="diagnoseText" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Diagnosetext als Freitextfeld</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zusatzinformationen" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zusatzinformationen zu einer Falldiagnose</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="diagnoseart" type="lcot:WsDiagnoseArtCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Art der Diagnose (Hauptdiagnose / Nebendiagnose)</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="koerperregion" type="lcot:WsKoerperregionCodeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Betroffene Körperregion</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="koerperseite" type="lcot:WsKoerperseiteCodeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Betroffene Körperseite</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schaedigung" type="lcot:WsSchaedigungCodeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Schädigung</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bleibenderSchaden" type="lcot:WsBleibenderSchadenCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ist Falldiagnose bleibender Schaden</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="readFalldiagnoseRequest" type="tns:WsReadFalldiagnoseRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Schadenfälle gelesen werden</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="readFalldiagnoseResponse" type="tns:WsReadFalldiagnoseResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Response mit dem die Informationen zu einer Falldiagnose geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+</xsd:schema>

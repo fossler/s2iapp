@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PartnerService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partner:v4"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partner:v4"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partner:v4:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 4.1.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partner:v4:schema" schemaLocation="schema/PartnerService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerOderLeistungserbringerRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerOderLeistungserbringerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerOderLeistungserbringerResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerOderLeistungserbringerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetFamilieRequestMessage">
+        <wsdl:part name="Request" element="pa:getFamilieRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetFamilieResponseMessage">
+        <wsdl:part name="Response" element="pa:getFamilieResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchPartnerRequestMessage">
+        <wsdl:part name="request" element="pa:searchPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchPartnerResponseMessage">
+        <wsdl:part name="response" element="pa:searchPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchPartnerOnlineIdRequestMessage">
+        <wsdl:part name="request" element="pa:searchPartnerOnlineIdRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchPartnerOnlineIdResponseMessage">
+        <wsdl:part name="response" element="pa:searchPartnerOnlineIdResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchNatPersonRequestMessage">
+        <wsdl:part name="request" element="pa:searchNatPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchNatPersonResponseMessage">
+        <wsdl:part name="response" element="pa:searchNatPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchJurPersonRequestMessage">
+        <wsdl:part name="request" element="pa:searchJurPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchJurPersonResponseMessage">
+        <wsdl:part name="response" element="pa:searchJurPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetHauptpartnerRequestMessage">
+        <wsdl:part name="request" element="pa:getHauptpartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetHauptpartnerResponseMessage">
+        <wsdl:part name="response" element="pa:getHauptpartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="PartnerServicePortType">
+        <wsdl:operation name="getPartner">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Stammdaten des zugehörigen Partners (juristische oder natürliche Person).
+
+Hinweis:
+Für folgende Nummern sind die Partneridentifikatoren vordefiniert, auch wenn keine konkreten Definitionen in adcubum Syrius existieren:
+* Partnernummer: &apos;SYR_Partner_PartnerNr&apos;
+* Sozialversicherungsnummer: &apos;SYR_Partner_SozialVersNr&apos;
+* Unternehmens-Identifikationsnummer: &apos;SYR_Partner_UidNr&apos;
+* Externe Partner-Id: &apos;SYR_Partner_ExtPartnerId&apos; (Format: &apos;&lt;ExtPartnerId&gt;&apos; (falls keine Quellen verwendet werden) oder &apos;&lt;ExtPartnerId&gt;|&lt;ExtQuelle&gt;&apos;)
+
+Diese sind so im PartnerServiceResponse enthalten.</wsdl:documentation>
+            <wsdl:input name="getPartnerRequest" message="tns:GetPartnerRequestMessage"/>
+            <wsdl:output name="getPartnerResponse" message="tns:GetPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerOderLeistungserbringer">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Stammdaten des zugehörigen Partners (juristische oder natürliche Person) oder Leistungserbringer</wsdl:documentation>
+            <wsdl:input name="getPartnerOderLeistungserbringerRequest" message="tns:GetPartnerOderLeistungserbringerRequestMessage"/>
+            <wsdl:output name="getPartnerOderLeistungserbringerResponse" message="tns:GetPartnerOderLeistungserbringerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getFamilie">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Familie, diese Besteht aus einem Vorstand und Mitgliedern.
+								Diese sind so im PartnerServiceResponse enthalten.</wsdl:documentation>
+            <wsdl:input name="getFamilieRequest" message="tns:GetFamilieRequestMessage"/>
+            <wsdl:output name="getFamilieResponse" message="tns:GetFamilieResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchPartner">
+            <wsdl:documentation>Liefert eine Liste von technischen Schlüssel gemäss den gesetzten Suchkriterien. Die Schlüssel beziehen sich dabei auf Partner und Adresse. Die Suche erfolgt per Stichdatum.</wsdl:documentation>
+            <wsdl:input name="searchPartnerRequest" message="tns:SearchPartnerRequestMessage"/>
+            <wsdl:output name="searchPartnerResponse" message="tns:SearchPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchPartnerOnlineId">
+            <wsdl:documentation>Liefert den technischen Schlüssel des Partners, dem diese Online Id zugewiesen ist. Die Suche erfolgt immer per Tagesdatum.</wsdl:documentation>
+            <wsdl:input name="searchPartnerOnlineIdRequest" message="tns:SearchPartnerOnlineIdRequestMessage"/>
+            <wsdl:output name="searchPartnerOnlineIdResponse" message="tns:SearchPartnerOnlineIdResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchNatPerson">
+            <wsdl:documentation>Liefert eine Liste von technischen Schlüssel gemäss den gesetzten Suchkriterien. Die Schlüssel beziehen sich dabei auf Partner und Adresse. Die Suche erfolgt per Stichdatum.</wsdl:documentation>
+            <wsdl:input name="searchNatPersonRequest" message="tns:SearchNatPersonRequestMessage"/>
+            <wsdl:output name="searchNatPersonResponse" message="tns:SearchNatPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchJurPerson">
+            <wsdl:documentation>Liefert eine Liste von technischen Schlüssel gemäss den gesetzten Suchkriterien. Die Schlüssel beziehen sich dabei auf Partner und Adresse. Die Suche erfolgt per Stichdatum.</wsdl:documentation>
+            <wsdl:input name="searchJurPersonRequest" message="tns:SearchJurPersonRequestMessage"/>
+            <wsdl:output name="searchJurPersonResponse" message="tns:SearchJurPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getHauptpartner">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel den dazugehörenden Hauptpartner. Die Suche erfolgt per Stichdatum.</wsdl:documentation>
+            <wsdl:input name="getHauptpartnerRequest" message="tns:GetHauptpartnerRequestMessage"/>
+            <wsdl:output name="getHauptpartnerResponse" message="tns:GetHauptpartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PartnerServiceBinding" type="tns:PartnerServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerOderLeistungserbringer">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerOderLeistungserbringerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerOderLeistungserbringerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getFamilie">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getFamilieRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getFamilieResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchPartnerOnlineId">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchPartnerOnlineIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchPartnerOnlineIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchNatPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchNatPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchNatPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchJurPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchJurPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchJurPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getHauptpartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getHauptpartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getHauptpartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PartnerService_v4">
+        <wsdl:port name="PartnerService_v4" binding="tns:PartnerServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/PartnerService_v4"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

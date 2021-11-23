@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="DokumentversandProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:dokumentversand:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:dokumentversand:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:dokumentversand:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>
+       Version: 1.0.0
+    </wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:dokumentversand:v1:schema" schemaLocation="schema/DokumentversandProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="CreateDokumentversandForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:createDokumentversandForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateDokumentversandForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:createDokumentversandForPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeDokumentversandRequestMessage">
+        <wsdl:part name="Request" element="pa:changeDokumentversandRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeDokumentversandResponseMessage">
+        <wsdl:part name="Response" element="pa:changeDokumentversandResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeDokumentversandGueltigkeitRequestMessage">
+        <wsdl:part name="Request" element="pa:changeDokumentversandGueltigkeitRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeDokumentversandGueltigkeitResponseMessage">
+        <wsdl:part name="Response" element="pa:changeDokumentversandGueltigkeitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="DokumentversandProcessServicePortType">
+        <wsdl:operation name="createDokumentversandForPartner">
+            <wsdl:documentation>Erstellt einen neuen Dokumentversand zu einem Partner.</wsdl:documentation>
+            <wsdl:input name="createDokumentversandForPartnerRequest" message="tns:CreateDokumentversandForPartnerRequestMessage"/>
+            <wsdl:output name="createDokumentversandForPartnerResponse" message="tns:CreateDokumentversandForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeDokumentversand">
+            <wsdl:documentation>Ändert einen Dokumentversand.</wsdl:documentation>
+            <wsdl:input name="changeDokumentversandRequest" message="tns:ChangeDokumentversandRequestMessage"/>
+            <wsdl:output name="changeDokumentversandResponse" message="tns:ChangeDokumentversandResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeDokumentversandGueltigkeit">
+            <wsdl:documentation>Ändert die Gültigkeit eines bestehenden Dokumentversands.</wsdl:documentation>
+            <wsdl:input name="changeDokumentversandGueltigkeitRequest" message="tns:ChangeDokumentversandGueltigkeitRequestMessage"/>
+            <wsdl:output name="changeDokumentversandGueltigkeitResponse" message="tns:ChangeDokumentversandGueltigkeitResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DokumentversandProcessServiceBinding" type="tns:DokumentversandProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createDokumentversandForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createDokumentversandForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createDokumentversandForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeDokumentversand">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeDokumentversandRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeDokumentversandResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeDokumentversandGueltigkeit">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeDokumentversandGueltigkeitRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeDokumentversandGueltigkeitResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DokumentversandProcessService_v1">
+        <wsdl:port name="DokumentversandProcessService_v1" binding="tns:DokumentversandProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/DokumentversandProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

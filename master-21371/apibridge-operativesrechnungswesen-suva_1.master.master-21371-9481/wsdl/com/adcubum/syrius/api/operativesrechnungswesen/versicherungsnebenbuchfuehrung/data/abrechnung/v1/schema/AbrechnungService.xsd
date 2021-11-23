@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:oi="urn:com:adcubum:syrius:api:operativesrechnungswesen:common:identifier:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnung:v1:schema"
+            xmlns:et="urn:com:adcubum:syrius:api:common:extendedTypes:v1"
+            xmlns:ext="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+            xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+            targetNamespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnung:v1:schema"
+            elementFormDefault="qualified"
+            version="1.1.0">
+ <xsd:import namespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:extendedTypes:v1" schemaLocation="../../../../../../common/extendedTypes/v1/extendedTypes.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1" schemaLocation="../../../../../../common/externalTypes/v1/externalTypes.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v1" schemaLocation="../../../../../../common/searchTypes/v1/searchTypes.xsd"/>
+ <xsd:element name="getAbrechnungRequest" type="tns:GetAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getAbrechnungResponse" type="tns:GetAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Abrechnungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+     <xsd:complexType name="GetAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungId" type="oi:WsAbrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Abrechnungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnung" type="tns:WsAbrechnungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+     <xsd:element name="getAbrechnungMitPositionenRequest" type="tns:GetAbrechnungMitPositionenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen mitsamt den Positionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getAbrechnungMitPositionenResponse" type="tns:GetAbrechnungMitPositionenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen mitsamt Positionen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+     <xsd:complexType name="GetAbrechnungMitPositionenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen mitsamt Positionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungId" type="oi:WsAbrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung, von welchem die Abrechnung und Positionen geladen werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetAbrechnungMitPositionenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Abrechnungen mitsamt Positionen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungMitPositionen" type="tns:WsAbrechnungMitPositionenType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Abrechnung mitsamt den Positionen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="readL10nAttributesAbrechnungRequest" type="tns:ReadL10nAttributesAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer Abrechnung zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesAbrechnungResponse" type="tns:ReadL10nAttributesAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ReadL10nAttributesAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer Abrechnung zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungId" type="oi:WsAbrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadL10nAttributesAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesAbrechnungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text einer Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="searchAbrechnungRequest" type="tns:SearchAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchAbrechnungResponse" type="tns:SearchAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die gefundnen Abrechnungen enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="SearchAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="suchbedingungen" type="search:WsSearchConditionType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Technische Suchbedingungen für den Suchrequest.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="nummer" type="search:WsStringSearchType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Nummer der Abrechnung.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="zahlerId" type="oi:WsZahlerIdType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Zahler der Abrechnung.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+            <xsd:element name="versicherterId" type="oi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Partner der Faktura.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="datum" type="et:WsLocalDateRangeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Datum der Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="referenzbetrag" type="search:WsDecimalSearchType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Referenzbetrag der Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="originalbetrag" type="search:WsDecimalSearchType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Originalbetrag der Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die gefundenen Abrechnungen enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnung" type="tns:WsAbrechnungSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefundnen Abrechnungen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsAbrechnungspositionType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eigenschaften einer Abrechnungsposition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="oi:WsAbrechnungspositionIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="datum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum zu einer Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="periode" type="et:WsDateRangeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Periode der Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalsaldo der Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalbetrag der Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzsaldo der Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzbetrag der Abrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="versicherter" type="oi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel auf den Versicherten.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="gesetzesgrund" type="oi:WsGesetzesgrundIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel auf den Gesetzesgrund.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAbrechnungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eigenschaften einer Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="oi:WsAbrechnungIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahler" type="oi:WsZahlerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel auf den Zahler.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nummer" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Nummer zu einer Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="datum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum zu einer Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="periode" type="et:WsDateRangeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Periode der Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalsaldo der Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalbetrag der Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzsaldo der Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzbetrag der Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAbrechnungMitPositionenType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eigenschaften einer Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsAbrechnungType">
+                <xsd:sequence>
+                    <xsd:element name="abrechnungspositionen" type="tns:WsAbrechnungspositionType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsL10nAttributesAbrechnungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Lokalisierte Informationen der Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungId" type="oi:WsAbrechnungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="herkunft" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der Herkunft der Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsAbrechnungSearchType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Eine gefundene Abrechnung (Ids).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="oi:WsAbrechnungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="nummer" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Abrechnungsnummer.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="originalbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Originalbetrag der gefundenen Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="datum" type="st:LocalDateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Erstelldatum der gefundenen Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

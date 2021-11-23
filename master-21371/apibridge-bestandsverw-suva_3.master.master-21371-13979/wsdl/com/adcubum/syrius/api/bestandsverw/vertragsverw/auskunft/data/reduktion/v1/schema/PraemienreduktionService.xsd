@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:reduktion:v1:schema"
+            targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:reduktion:v1:schema"
+            version="1.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../common/types/v1/types.xsd"/>
+    
+    <xsd:element name="readL10nAttributesPraemienreduktionRequest" type="tns:ReadL10nAttributesPraemienreduktionRequestType">
+        <xsd:annotation>
+	    	<xsd:documentation>Request zur Ermittlung der lokalisierten Attribute der Praemienreduktionen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesPraemienreduktionRequestType">
+    	<xsd:annotation>
+    		<xsd:documentation>Request zum Lesen lokalisierter Attribute der Praemienreduktion.</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:sequence>
+        	<xsd:element name="praemienreduktionDefId" type="pi:WsPraemienreduktionDefIdType" minOccurs="1" maxOccurs="unbounded">
+            	<xsd:annotation>
+                	<xsd:documentation>Mehrere Technische Schlüssel von Praemienreduktionsdefinitionen.</xsd:documentation>
+             	</xsd:annotation>
+         	</xsd:element>
+         <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+             <xsd:annotation>
+                 <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+             <xsd:annotation>
+                 <xsd:documentation xml:lang="de">Optionale Angabe des Stichtags zur Datenermittlung, ohne Angabe wird das Tagesdatum verwendet.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="readL10nAttributesPraemienreduktionResponse" type="tns:ReadL10nAttributesPraemienreduktionResponseType">
+        <xsd:annotation>
+	    	<xsd:documentation>Response zur Ermittlung der lokalisierten Attribute der Praemienreduktion.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesPraemienreduktionResponseType">
+    	<xsd:annotation>
+    		<xsd:documentation>Response zum Lesen lokalisierter Attribute der Praemienreduktion.</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesPraemienreduktionType" minOccurs="1" maxOccurs="unbounded">
+             <xsd:annotation>
+                 <xsd:documentation xml:lang="de">Übersetzte Texte einer Praemienreduktion.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsL10nAttributesPraemienreduktionType">
+    	<xsd:annotation>
+    		<xsd:documentation>Praemienreduktion</xsd:documentation>
+    	</xsd:annotation>
+          <xsd:sequence>
+            <xsd:element name="praemienreduktionDefId" type="pi:WsPraemienreduktionDefIdType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+                	<xsd:documentation>Technischer Schlüssel der Praemienreduktionsdefinition.</xsd:documentation>
+				</xsd:annotation>
+            </xsd:element>
+			<xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+                	<xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der Praemienreduktion.</xsd:documentation>
+              	</xsd:annotation>
+        	</xsd:element>
+		</xsd:sequence>
+    </xsd:complexType>
+    
+</xsd:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="AbrechnungEnvironmentService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnungenvironment:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnungenvironment:v1"
+                  xmlns:as="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnungenvironment:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.1.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnungenvironment:v1:schema" schemaLocation="schema/AbrechnungEnvironmentService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAbrechnungEnvironmentRequestMessage">
+        <wsdl:part name="Request" element="as:getAbrechnungEnvironmentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAbrechnungEnvironmentResponseMessage">
+        <wsdl:part name="Response" element="as:getAbrechnungEnvironmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="AbrechnungEnvironmentServicePortType">
+        <wsdl:operation name="getAbrechnungEnvironment">
+            <wsdl:documentation>Liefert für einen technischen Abrechnungschlüssel die Environmentdaten der zugehörigen Abrechnung zurück.</wsdl:documentation>
+            <wsdl:input name="getAbrechnungEnvironmentRequest" message="tns:GetAbrechnungEnvironmentRequestMessage"/>
+            <wsdl:output name="getAbrechnungEnvironmentResponse" message="tns:GetAbrechnungEnvironmentResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AbrechnungEnvironmentServiceBinding" type="tns:AbrechnungEnvironmentServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAbrechnungEnvironment">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAbrechnungEnvironmentRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAbrechnungEnvironmentResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AbrechnungEnvironmentService_v1">
+        <wsdl:port name="AbrechnungEnvironmentService_v1" binding="tns:AbrechnungEnvironmentServiceBinding">
+            <soap:address location="https://example.com/apibridge-operativesrechnungswesen/AbrechnungEnvironmentService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="LeistungService"
+				  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistung:v2"
+				  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistung:v2"
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+				  xmlns:pa="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistung:v2:schema">
+
+	<wsdl:documentation>Version: 2.2.0</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+					namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistung:v2:schema"
+					schemaLocation="schema/LeistungService.xsd"/>
+			<xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+						schemaLocation="../../../../../../../common/faults/v1/faults.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ApiFaultMessage">
+		<wsdl:part name="fault" element="flt:apiFaultInfo"/>
+	</wsdl:message>
+
+	<!-- Leistungen fuer IDs -->
+	<wsdl:message name="ReadLeistungenRequestMessage">
+		<wsdl:part name="request" element="pa:readLeistungenRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ReadLeistungenResponseMessage">
+		<wsdl:part name="response" element="pa:readLeistungenResponse" />
+	</wsdl:message>
+
+	<!-- Leistungen fuer eine Liste von Partner -->
+	<wsdl:message name="ReadLeistungenForPartnerRequestMessage">
+		<wsdl:part name="request" element="pa:readLeistungenForPartnerRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReadLeistungenForPartnerResponseMessage">
+		<wsdl:part name="response" element="pa:readLeistungenForPartnerResponse" />
+	</wsdl:message>
+	
+	<!-- abgerechnete Leistungen fuer eine Liste von Partner -->
+	<wsdl:message name="ReadAbgerechneteLeistungenForPartnerRequestMessage">
+		<wsdl:part name="request" element="pa:readAbgerechneteLeistungenForPartnerRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReadAbgerechneteLeistungenForPartnerResponseMessage">
+		<wsdl:part name="response" element="pa:readAbgerechneteLeistungenForPartnerResponse" />
+	</wsdl:message>
+	
+	<!-- I10nAttribute fuer Leistungstexte-->
+	<wsdl:message name="ReadL10nAttributesLeistungTextRequestMessage">
+		<wsdl:part name="request" element="pa:readL10nAttributesLeistungTextRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="ReadL10nAttributesLeistungTextResponseMessage">
+		<wsdl:part name="response" element="pa:readL10nAttributesLeistungTextResponse" />
+	</wsdl:message>
+	
+	<!-- Leistungen fuer eine Liste von Abrechnungspositionen -->
+	<wsdl:message name="ReadLeistungForAbrechnungspositionRequestMessage">
+		<wsdl:part name="request" element="pa:readLeistungForAbrechnungspositionRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReadLeistungForAbrechnungspositionResponseMessage">
+		<wsdl:part name="response" element="pa:readLeistungForAbrechnungspositionResponse" />
+	</wsdl:message>
+
+	<!-- Abrechnungspositionen fuer die Leistungen -->
+	<wsdl:message name="ReadAbrechnungspositionenForLeistungRequestMessage">
+		<wsdl:part name="request" element="pa:readAbrechnungspositionenForLeistungRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReadAbrechnungspositionenForLeistungResponseMessage">
+		<wsdl:part name="response" element="pa:readAbrechnungspositionenForLeistungResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="LeistungServicePortType">
+		<!-- Leistungen fuer IDs -->
+		<wsdl:operation name="readLeistungen">
+			<wsdl:documentation>Liefert für eine Liste von technischen Schlüsseln die Daten
+				der zugehörigen Leistungen
+			</wsdl:documentation>
+			<wsdl:input name="readLeistungenRequest" message="tns:ReadLeistungenRequestMessage" />
+			<wsdl:output name="readLeistungenResponse" message="tns:ReadLeistungenResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- Leistungen fuer einen Partner -->
+		<wsdl:operation name="readLeistungenForPartner">
+			<wsdl:documentation>Liefert eine Liste von Leistungen für
+				einen
+				Partner
+			</wsdl:documentation>
+			<wsdl:input name="readLeistungenForPartnerRequest"
+				message="tns:ReadLeistungenForPartnerRequestMessage" />
+			<wsdl:output name="readLeistungenForPartnerResponse"
+				message="tns:ReadLeistungenForPartnerResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- abgerechnete Leistungen fuer einen Partner -->
+		<wsdl:operation name="readAbgerechneteLeistungenForPartner">
+			<wsdl:documentation>@since v1.1 Liefert eine Liste von abgerechneten Leistungen für
+				einen
+				Partner
+			</wsdl:documentation>
+			<wsdl:input name="readAbgerechneteLeistungenForPartnerRequest"
+				message="tns:ReadAbgerechneteLeistungenForPartnerRequestMessage" />
+			<wsdl:output name="readAbgerechneteLeistungenForPartnerResponse"
+				message="tns:ReadAbgerechneteLeistungenForPartnerResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- I10nAttribute fuer Leistungstexte -->
+		<wsdl:operation name="readL10nAttributesLeistungText">
+			<wsdl:documentation>Liefert für die technischen Schlüssel die
+				lokalisierten Attribute der Leistungtexte
+			</wsdl:documentation>
+			<wsdl:input name="readL10nAttributesLeistungTextRequest" message="tns:ReadL10nAttributesLeistungTextRequestMessage" />
+			<wsdl:output name="readL10nAttributesLeistungTextResponse" message="tns:ReadL10nAttributesLeistungTextResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- Leistungen fuer einen Abrechnungsposition -->
+		<wsdl:operation name="readLeistungForAbrechnungsposition">
+			<wsdl:documentation>Liefert eine Leistungen für eine Abrechnungsposition.
+			</wsdl:documentation>
+			<wsdl:input name="readLeistungForAbrechnungspositionRequest"
+				message="tns:ReadLeistungForAbrechnungspositionRequestMessage" />
+			<wsdl:output name="readLeistungForAbrechnungspositionResponse"
+				message="tns:ReadLeistungForAbrechnungspositionResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- Abrechnungspositionen fuer die Leistungen -->
+		<wsdl:operation name="readAbrechnungspositionenForLeistung">
+			<wsdl:documentation>Liefert eine Liste von Abrechnungspositionen für einen Leistungen
+			</wsdl:documentation>
+			<wsdl:input name="readAbrechnungspositionenForLeistungRequest"
+						message="tns:ReadAbrechnungspositionenForLeistungRequestMessage" />
+			<wsdl:output name="readAbrechnungspositionenForLeistungResponse"
+						 message="tns:ReadAbrechnungspositionenForLeistungResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="LeistungServiceBinding" type="tns:LeistungServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<!-- Leistungen fuer IDs-->
+		<wsdl:operation name="readLeistungen">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readLeistungenRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readLeistungenResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Leistungen fuer einen Partner -->
+		<wsdl:operation name="readLeistungenForPartner">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readLeistungenForPartnerRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readLeistungenForPartnerResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- abgerechnete Leistungen fuer einen Partner -->
+		<wsdl:operation name="readAbgerechneteLeistungenForPartner">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readAbgerechneteLeistungenForPartnerRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readAbgerechneteLeistungenForPartnerResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- I10nAttribute fuer Leistungstexte -->
+		<wsdl:operation name="readL10nAttributesLeistungText">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="readL10nAttributesLeistungTextRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="readL10nAttributesLeistungTextResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Leistungen fuer eine Abrechnungsposition -->
+		<wsdl:operation name="readLeistungForAbrechnungsposition">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readLeistungForAbrechnungspositionRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readLeistungForAbrechnungspositionResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Abrechnungspositionen fuer die Leistungen -->
+		<wsdl:operation name="readAbrechnungspositionenForLeistung">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readAbrechnungspositionenForLeistungRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readAbrechnungspositionenForLeistungResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="LeistungService_v2">
+		<wsdl:port name="LeistungService_v2" binding="tns:LeistungServiceBinding">
+			<soap:address
+					location="https://example.com/apibridge-schadenleistungsmgmt/LeistungService_v2"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:web:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:web:v1:schema"
+            version="1.3.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:element name="createWebForPartnerResponse" type="tns:CreateWebForPartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um eine neue Web-Adresse zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createWebForPartnerRequest" type="tns:CreateWebForPartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request der Web-Adresse Create.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeWebResponse" type="tns:ChangeWebResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um eine Web-Adresse zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeWebRequest" type="tns:ChangeWebRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request der Web-Adresse Change.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeWebGueltigkeitRequest" type="tns:ChangeWebGueltigkeitRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die Gültigkeit einer Web-Adresse zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeWebGueltigkeitResponse" type="tns:ChangeWebGueltigkeitResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um die Gültigkeit einer Web-Adresse zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="terminateWebRequest" type="tns:TerminateWebRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine Web-Adresse zu terminieren.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="terminateWebResponse" type="tns:TerminateWebResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um eine Web-Adresse zu terminieren.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateWebForPartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine neue Web-Adresse zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="web" type="tns:WsWebType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten der neuen Web-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, für welchen die Web-Adresse erstellt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die Web-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="gueltigBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann die Web-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateWebForPartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Web-Adresse Create.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="webId" type="pi:WsWebIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id der erstellen Web-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeWebRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine neue Web-Adresse zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="web" type="tns:WsWebType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten der geänderten Web-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="id" type="pi:WsWebIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der zu ändernden Webadresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aenderungAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die geänderte Web-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="aenderungBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann die geänderte Web-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeWebResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Web-Adresse Change.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="webId" type="pi:WsWebIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id der erstellen Web-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeWebGueltigkeitRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die Gültigkeit einer Web-Adresse zu ändern.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="webId" type="pi:WsWebIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id der erstellten Web-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des verwendeten Mutationsgrunds.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die neue Gültigkeit ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="gueltigBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann die neue Gültigkeit ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeWebGueltigkeitResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Ändern der Gültigkeit einer bestimmten Web-Adresse.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="aendernErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TerminateWebRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine Web-Adresse zu terminieren.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="webId" type="pi:WsWebIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id der zu terminierenden Web-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des verwendeten Mutationsgrunds.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="beendigungsdatum" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt per welchem Datum die Web-Adresse terminiert wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TerminateWebResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das terminieren einer bestimmten Web-Adresse.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="terminierenErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsWebType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer neuen Web-Adresse.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="webDefId" type="pi:WsWebDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der Web-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Mutationsgrund der Änderung, z.B Neuerfassung, Adressänderung, Mutation, usw.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="isDefStandard" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Standard-Web der Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="isStandard" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Standard-Web, unabhängig von der Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="url" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die URL der Webadresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="benutzerName" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Der Benutzername der Webadresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

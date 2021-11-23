@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1" 
+    xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1" 
+    xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+    xmlns:ucc="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" 
+    xmlns:uci="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1"
+    xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1" 
+    elementFormDefault="qualified" 
+    targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1"
+    version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../common/simpleTypes/v1/simpleTypes.xsd" />
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" schemaLocation="../../codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" schemaLocation="../../identifier/v1/identifier.xsd"/>
+
+    <xsd:complexType name="WsReferenzType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Das Fachobjekt (Businessobjekt).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="objektId" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Objektes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="objektTypCode" type="ucc:WsObjektTypCodeType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Typ des Objektes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

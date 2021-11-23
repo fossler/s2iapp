@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="AdresseDefService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adressedef:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adressedef:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adressedef:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adressedef:v1:schema" schemaLocation="schema/AdresseDefService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAdresseDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getAdresseDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAdresseDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getAdresseDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllAdresseDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getAllAdresseDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllAdresseDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getAllAdresseDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesAdresseDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesAdresseDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesAdresseDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesAdresseDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesAdresseDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readAllL10nAttributesAdresseDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesAdresseDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readAllL10nAttributesAdresseDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="AdresseDefServicePortType">
+        <wsdl:operation name="getAdresseDef">
+            <wsdl:documentation>Liefert für einen technischen Adressedefschlüssel die Daten der zugehörigen Adresse-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="getAdresseDefRequest" message="tns:GetAdresseDefRequestMessage"/>
+            <wsdl:output name="getAdresseDefResponse" message="tns:GetAdresseDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllAdresseDef">
+            <wsdl:documentation>Liefert für ein Datum alle Adresse-Definitionen zurück.</wsdl:documentation>
+            <wsdl:input name="getAllAdresseDefRequest" message="tns:GetAllAdresseDefRequestMessage"/>
+            <wsdl:output name="getAllAdresseDefResponse" message="tns:GetAllAdresseDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesAdresseDef">
+            <wsdl:documentation>Liefert für einen technischen Adressedefschlüssel die Bezeichnung der zugehörigen Adresse-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesAdresseDefRequest" message="tns:ReadL10nAttributesAdresseDefRequestMessage"/>
+            <wsdl:output name="readL10nAttributesAdresseDefResponse" message="tns:ReadL10nAttributesAdresseDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesAdresseDef">
+            <wsdl:documentation>Liefert alle Bezeichnungen von Adresse-Definitionen zurück.</wsdl:documentation>
+            <wsdl:input name="readAllL10nAttributesAdresseDefRequest" message="tns:ReadAllL10nAttributesAdresseDefRequestMessage"/>
+            <wsdl:output name="readAllL10nAttributesAdresseDefResponse" message="tns:ReadAllL10nAttributesAdresseDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AdresseDefServiceBinding" type="tns:AdresseDefServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAdresseDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAdresseDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAdresseDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAllAdresseDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAllAdresseDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAllAdresseDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesAdresseDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesAdresseDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesAdresseDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesAdresseDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readAllL10nAttributesAdresseDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readAllL10nAttributesAdresseDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AdresseDefService_v1">
+        <wsdl:port name="AdresseDefService_v1" binding="tns:AdresseDefServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/AdresseDefService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

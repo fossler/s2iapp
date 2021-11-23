@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="RechnungsstellerTypService"
+	targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:data:rechnungsstellertyp:v2"
+	xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:data:rechnungsstellertyp:v2"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+	xmlns:pa="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:data:rechnungsstellertyp:v2:schema">
+
+	<wsdl:documentation>Version: 2.0.0</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:data:rechnungsstellertyp:v2:schema"
+				schemaLocation="schema/RechnungsstellerTypService.xsd" />
+			<xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+				schemaLocation="../../../../../common/faults/v1/faults.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="ApiFaultMessage">
+		<wsdl:part name="fault" element="flt:apiFaultInfo" />
+	</wsdl:message>
+
+	<wsdl:message name="ReadL10nAttributesRechnungsstellerTypRequestMessage">
+		<wsdl:part name="request" element="pa:readL10nAttributesRechnungsstellerTypRequest" />
+	</wsdl:message>
+	
+	<wsdl:message name="ReadL10nAttributesRechnungsstellerTypResponseMessage">
+		<wsdl:part name="response" element="pa:readL10nAttributesRechnungsstellerTypResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="RechnungsstellerTypServicePortType">
+		<wsdl:operation name="readL10nAttributesRechnungsstellerTyp">
+			<wsdl:documentation>Liefert für die technischen Schlüssel die lokalisierten Attribute der RechnungsstellerTypen
+			</wsdl:documentation>
+			<wsdl:input name="readL10nAttributesRechnungsstellerTypRequest" message="tns:ReadL10nAttributesRechnungsstellerTypRequestMessage" />
+			<wsdl:output name="readL10nAttributesRechnungsstellerTypResponse" message="tns:ReadL10nAttributesRechnungsstellerTypResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="RechnungsstellerTypServiceBinding" type="tns:RechnungsstellerTypServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="readL10nAttributesRechnungsstellerTyp">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readL10nAttributesRechnungsstellerTypRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readL10nAttributesRechnungsstellerTypResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="RechnungsstellerTypService_v2">
+		<wsdl:port name="RechnungsstellerTypService_v2" binding="tns:RechnungsstellerTypServiceBinding">
+			<soap:address
+				location="https://example.com/apibridge-schadenleistungsmgmt/RechnungsstellerTypService_v2" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

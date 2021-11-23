@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:mvi="urn:com:adcubum:syrius:api:marketingvertrieb:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+            xmlns:mvc="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:marketingvertrieb:vertriebsmgmt:data:tariffcommunity:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:marketingvertrieb:vertriebsmgmt:data:tariffcommunity:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+                schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:identifier:v1"
+                schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+                schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+                schemaLocation="../../../../../../common/searchTypes/v1/searchTypes.xsd"/>
+                
+    
+    <xsd:element name="getTariffCommunityOfDistributionEmployeeRequest" type="tns:GetTariffCommunityOfDistributionEmployeeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die berechtigten Tarifgemeinschaften von bestimmten Vertriebspartnern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getTariffCommunityOfDistributionEmployeeResponse" type="tns:GetTariffCommunityOfDistributionEmployeeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Tarifgemeinschaft-Id je Vertriebspartner enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GetTariffCommunityOfDistributionEmployeeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die berechtigten Tarifgemeinschaft-Id von bestimmten Vrtriebspartnern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Vertriebspartner, von welchem die Tarifgemeinschaften geladen werden sollen, für die dieser berechtigt ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="xsd:date" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht
+                        gesetzt wird der aktuelle Zeitpunkt verwendet.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetTariffCommunityOfDistributionEmployeeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die berechtigten Tarifgemeinschaft-Ids je Vertriebspartner enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerTarifgemeinschaft" type="tns:WsVertriebspartnerTarifgemeinschaftType" minOccurs="1" maxOccurs="unbounded">
+               <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Tarifgemeinschaft-Ids für die der Vertriebspartner berechtigt ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsVertriebspartnerTarifgemeinschaftType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Enthält die berechtigten Tarifgemeinschaft-Ids eines Vertriebspartners.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Vertriebspartners, von welchem die berechtigten Tarifgemeinschaft-Ids geladen wurden.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="tarifgemeinschaftId" type="mvi:WsTarifgemeinschaftIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Ids der berechtigten Tarifgemeinschaften.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+</xsd:schema>

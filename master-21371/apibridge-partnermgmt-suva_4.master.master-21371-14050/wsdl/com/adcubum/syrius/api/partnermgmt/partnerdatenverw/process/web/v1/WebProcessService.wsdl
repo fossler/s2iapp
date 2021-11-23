@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="WebProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:web:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:web:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:web:v1:schema"
+                  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.3.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:web:v1:schema" schemaLocation="schema/WebProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="CreateWebForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:createWebForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateWebForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:createWebForPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeWebRequestMessage">
+        <wsdl:part name="Request" element="pa:changeWebRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeWebResponseMessage">
+        <wsdl:part name="Response" element="pa:changeWebResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeWebGueltigkeitRequestMessage">
+        <wsdl:part name="Request" element="pa:changeWebGueltigkeitRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeWebGueltigkeitResponseMessage">
+        <wsdl:part name="Response" element="pa:changeWebGueltigkeitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateWebRequestMessage">
+        <wsdl:part name="Request" element="pa:terminateWebRequest"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateWebResponseMessage">
+        <wsdl:part name="Response" element="pa:terminateWebResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="WebProcessServicePortType">
+        <wsdl:operation name="createWebForPartner">
+            <wsdl:documentation>Erstellt eine neue Web-Adresse zu einem Partner.</wsdl:documentation>
+            <wsdl:input name="createWebForPartnerRequest" message="tns:CreateWebForPartnerRequestMessage"/>
+            <wsdl:output name="createWebForPartnerResponse" message="tns:CreateWebForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeWeb">
+            <wsdl:documentation>Ändert eine Web-Adresse.</wsdl:documentation>
+            <wsdl:input name="changeWebRequest" message="tns:ChangeWebRequestMessage"/>
+            <wsdl:output name="changeWebResponse" message="tns:ChangeWebResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeWebGueltigkeit">
+            <wsdl:documentation>
+               <xhtml:ul>
+            		<xhtml:li>Ändert die Gültigkeit einer bestehenden Web-Adresse.</xhtml:li>
+            		<xhtml:li>Deprecation: Wird durch den fachlich getriebene Methode terminateWeb ersetzt.</xhtml:li>
+            	</xhtml:ul>
+            </wsdl:documentation>
+            <wsdl:input name="changeWebGueltigkeitRequest" message="tns:ChangeWebGueltigkeitRequestMessage"/>
+            <wsdl:output name="changeWebGueltigkeitResponse" message="tns:ChangeWebGueltigkeitResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="terminateWeb">
+            <wsdl:documentation>Terminiert eine bestehende Web-Adresse.
+            Setzt die Gültigkeit der Web-Adresse auf bis gestern.
+            Falls die Web-Adresse dadurch eine negative Gültigkeit bekommt, wird sie gelöscht.</wsdl:documentation>
+            <wsdl:input name="terminateWebRequest" message="tns:TerminateWebRequestMessage"/>
+            <wsdl:output name="terminateWebResponse" message="tns:TerminateWebResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WebProcessServiceBinding" type="tns:WebProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createWebForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createWebForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createWebForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeWeb">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeWebRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeWebResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeWebGueltigkeit">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeWebGueltigkeitRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeWebGueltigkeitResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="terminateWeb">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="terminateWebRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="terminateWebResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WebProcessService_v1">
+        <wsdl:port name="WebProcessService_v1" binding="tns:WebProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/WebProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:verkaufsproduktprocess:v0:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:verkaufsproduktprocess:v0:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:cp="urn:com:adcubum:syrius:api:common:process:v0"
+            xmlns:bi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            version="0.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:process:v0" schemaLocation="../../../../../../common/process/v0/process.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+                schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+
+    <xsd:element name="verkaufsproduktwechselRequest" type="tns:VerkaufsproduktwechselRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um Verkaufsproduktwechsel für ein VersichertesObjekt durchzuführen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="verkaufsproduktwechselResponse" type="tns:VerkaufsproduktwechselResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für einen Verkaufsproduktwechsel.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="VerkaufsproduktwechselRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request für einen Verkaufsproduktwechsel</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="verkaufsproduktwechsel" type="tns:WsVerkaufsproduktwechselType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Parameter für einen Verkaufsproduktwechsel.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="VerkaufsproduktwechselResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response für das Wechseln eines Verkaufsproduktes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="verkaufsproduktwechselId" type="bi:WsVerkaufsproduktwechselIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Prozess Id des Camunda Prozesses</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsVerkaufsproduktwechselType">
+        <xsd:annotation>
+            <xsd:documentation>Request für das Wechseln eines Verkaufsproduktes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:annotation>
+                <xsd:documentation>Enthält die Kriterien für die Anfrage.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:element name="versichertesObjektId" type="bi:WsVersichertesObjektIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technische Id des versicherten Objektes auf dem das Verkaufsprodukt gewechselt werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="verkaufsproduktIdToAdd" type="bi:WsVerkaufsproduktIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Technische Ids der Verkaufsprodukte die zum versicherten Objekt hinzugefügt werden müssen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="verkaufsproduktIdToRemove" type="bi:WsVerkaufsproduktIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Technische Ids der Verkaufsprodukte die vom versicherten Objekt entfernt werden müssen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mutationsgrundId" type="bi:WsMutationsgrundIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Mutationsgrund-Id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="austrittsgrundId" type="bi:WsMutationsgrundIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Austrittsgrund-Id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aenderungAb" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Stichtag zu dem die Änderung vorgenommen werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

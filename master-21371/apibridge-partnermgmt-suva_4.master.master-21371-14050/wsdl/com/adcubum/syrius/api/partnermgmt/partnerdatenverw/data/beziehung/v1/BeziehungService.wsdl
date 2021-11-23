@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="BeziehungService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:beziehung:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:beziehung:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:beziehung:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:beziehung:v1:schema" schemaLocation="schema/BeziehungService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetBeziehungRequestMessage">
+        <wsdl:part name="Request" element="pa:getBeziehungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetBeziehungResponseMessage">
+        <wsdl:part name="Response" element="pa:getBeziehungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerBeziehungRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerBeziehungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerBeziehungResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerBeziehungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="BeziehungServicePortType">
+        <wsdl:operation name="getBeziehung">
+            <wsdl:documentation>Liefert für einen technischen Beziehungsschlüssel die Stammdaten der zugehörigen Beziehung.</wsdl:documentation>
+            <wsdl:input name="getBeziehungRequest" message="tns:GetBeziehungRequestMessage"/>
+            <wsdl:output name="getBeziehungResponse" message="tns:GetBeziehungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerBeziehung">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Stammdaten der zugehörigen Beziehungen.</wsdl:documentation>
+            <wsdl:input name="getPartnerBeziehungRequest" message="tns:GetPartnerBeziehungRequestMessage"/>
+            <wsdl:output name="getPartnerBeziehungResponse" message="tns:GetPartnerBeziehungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BeziehungServiceBinding" type="tns:BeziehungServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getBeziehung">
+          	<soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getBeziehungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getBeziehungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerBeziehung">
+          	<soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerBeziehungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerBeziehungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BeziehungService_v1">
+        <wsdl:port name="BeziehungService_v1" binding="tns:BeziehungServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/BeziehungService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

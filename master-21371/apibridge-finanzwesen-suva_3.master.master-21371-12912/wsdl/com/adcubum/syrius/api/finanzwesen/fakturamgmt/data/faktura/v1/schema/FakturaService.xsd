@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:fi="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1"
+            xmlns:fc="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1"
+            xmlns:xt="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+            xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+            xmlns:ext="urn:com:adcubum:syrius:api:common:extendedTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:faktura:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:faktura:v1:schema"
+            version="1.3.1">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1" schemaLocation="../../../../../../common/externalTypes/v1/externalTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:extendedTypes:v1" schemaLocation="../../../../../../common/extendedTypes/v1/extendedTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v1" schemaLocation="../../../../../../common/searchTypes/v1/searchTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:element name="getFakturaRequest" type="tns:GetFakturaRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getFakturaResponse" type="tns:GetFakturaResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen Fakturen enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readFakturaForZahlerRequest" type="tns:ReadFakturaForZahlerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen-Id von bestimmten Zahlern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readFakturaForZahlerResponse" type="tns:ReadFakturaForZahlerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Fakturen-Id der angegebenen Zahler enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchFakturaRequest" type="tns:SearchFakturaRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchFakturaResponse" type="tns:SearchFakturaResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die gefundnen Fakturen enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getFakturaForAbrechnungRequest" type="tns:GetFakturaForAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Faktura von einer bestimmten Abrechnung geladen wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getFakturaForAbrechnungResponse" type="tns:GetFakturaForAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladene Faktura der angegebenen Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GetFakturaRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fakturaId" type="fi:WsFakturaIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetFakturaResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen Fakturen enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="faktura" type="tns:WsFakturaType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den geladenen Fakturen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadFakturaForZahlerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen-Id von bestimmten Zahlern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlerId" type="fi:WsZahlerIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Zahlers, von welchem die Fakturen geladen werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="erstelltAm" type="ext:WsDateRangeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Periode in welcher die Faktura erstellt worden ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadFakturaForZahlerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Fakturen-Id der angegebenen Zahler enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlerFaktura" type="tns:WsZahlerFakturaType" minOccurs="1" maxOccurs="unbounded">
+               <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die geladenen Fakturen-Id eines Zahlers.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchFakturaRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="suchbedingungen" type="search:WsSearchConditionType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Technische Suchbedingungen für den Suchrequest.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="nummer" type="search:WsStringSearchType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Nummer der Faktura.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="faelligkeit" type="search:WsDateSearchType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Faelligkeit der Faktura.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="zahlerId" type="fi:WsZahlerIdType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Zahler der Faktura.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="erstelltAm" type="ext:WsDateRangeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Periode in welcher die Faktura erstellt worden ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="versicherterId" type="fi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+        		<xsd:annotation>
+        			<xsd:documentation xml:lang="de">Partner der Faktura.</xsd:documentation>
+        		</xsd:annotation>
+        	</xsd:element>
+        	<xsd:element name="datum" type="ext:WsDateRangeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Datum der Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="referenzbetrag" type="search:WsDecimalSearchType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Referenzbetrag der Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="originalbetrag" type="search:WsDecimalSearchType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Originalbetrag der Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchFakturaResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die gefundenen Fakturen enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="faktura" type="tns:WsFakturaSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefundnen Fakturen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetFakturaForAbrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Fakturen von bestimmten Abrechnungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungId" type="fi:WsAbrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechung, von welchem die Faktura geladen werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetFakturaForAbrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Fakturen der angegebenen Abrechnungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungFaktura" type="tns:WsAbrechnungFakturaType" minOccurs="1" maxOccurs="unbounded">
+               <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die geladene Faktura einer Abrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsFakturaType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer Faktura.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="fi:WsFakturaIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nummer" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fakturanummer.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="datum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fälligkeit der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="faelligkeit" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fakturadatum.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="periode" type="ext:WsDateRangeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum, von wann bis wann die Fakturaperiode dauert.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzbetrag" type="xt:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Referenzbetrag der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalbetrag" type="xt:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Originalbetrag der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahler" type="fi:WsZahlerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Zahler der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="abrechnungen" type="fi:WsAbrechnungIdType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Enthält Referenzen auf Abrechnungen, aus welchen die Faktura zusammengesetzt ist.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="inkassoStatus" type="fi:WsInkassoStatusIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Status des Inkassos.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="druckdatum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>1. Druckdatum der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzsaldo" type="xt:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Referenzsaldo der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalsaldo" type="xt:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Originalsaldo der Faktura.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlerFakturaType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Enthält die geladenen Fakturen-Id eines Zahlers.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlerId" type="fi:WsZahlerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Zahlers, von welchem die Fakturen-Id geladen wurden.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="fakturaId" type="fi:WsFakturaIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden Fakuren-Id.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+        <xsd:complexType name="WsFakturaSearchType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Eine gefundene Faktura (Ids).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="fi:WsFakturaIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="nummer" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fakturanummer.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="originalbetrag" type="xt:WsMoneyType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Originalbetrag der gefundenen Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="faelligkeit" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fakturadatum der gefundenen Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsAbrechnungFakturaType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Enthält die geladene Faktura einer Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="abrechnungId" type="fi:WsAbrechnungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung, von welchem die Faktura geladen wurde.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="faktura" type="tns:WsFakturaType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die geladene Faktura.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

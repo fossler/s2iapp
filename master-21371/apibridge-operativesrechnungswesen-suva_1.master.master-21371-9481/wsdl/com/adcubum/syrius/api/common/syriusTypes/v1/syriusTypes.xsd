@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:com:adcubum:syrius:api:common:syriusTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:common:syriusTypes:v1"
+            elementFormDefault="qualified"
+            version="1.0.0">
+            
+    <xsd:simpleType name="BusinessDateType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Stichtag. Ein Datum zwischen 1000-01-01 und 3000-01-01. Keine Spezialwerte.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:date">
+            <xsd:maxInclusive value="3000-01-01"/>
+            <xsd:minInclusive value="1000-01-01"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType abstract="true" name="WsBusinessDateHandlingType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Abstrakter Typ zur Angabe der Strategie im Umgang mit der Gültigkeit von Objekten in Bezug auf den Stichtag.
+                Dieser Typ ist nur für die Verwendung in Request Parametern vorgesehen,
+                also insbesondere nicht für Attribute im Kanonischen Datenmodell.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessDate" type="tns:BusinessDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Stichtag.
+                        Es muss ein Datum zwischen 1000-01-01 und 3000-01-01 angegeben werden.
+                        Keine Spezialwerte, keine leeren Werte.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsBusinessDateStrictType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Gibt an, dass nur Objekte berücksichtigt werden sollen, die zum Stichtag gültig sind.
+                Dieser Typ ist nur für die Verwendung in Request Parametern vorgesehen,
+                also insbesondere nicht für Attribute im Kanonischen Datenmodell.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsBusinessDateHandlingType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsBusinessDateNextBestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Gibt an, dass neben den zum Stichtag gültigen Objekten auch solche berücksichtigt werden sollen,
+                die zum Stichtag nicht gültig sind. In letzterem Fall wird der zum Stichtag nächstgelegene gültige
+                Zustand des Objekts in der Zukunft oder Vergangenheit berücksichtigt.
+                Dieser Typ ist nur für die Verwendung in Request Parametern vorgesehen,
+                also insbesondere nicht für Attribute im Kanonischen Datenmodell.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsBusinessDateHandlingType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="stichtagStrictOrNextBest" type="tns:WsBusinessDateHandlingType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Auswahl der Strategie im Umgang mit der Gültigkeit von Objekten in Bezug auf den Stichtag.
+                Zentral definiertes Element zum Referenzieren aus Service Request Typen.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="stichtagStrict" type="tns:WsBusinessDateStrictType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Es sollen nur Objekte berücksichtigt werden, die zum Stichtag gültig sind.
+                Zentral definiertes Element zum Referenzieren aus Service Request Typen.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="stichtagNextBest" type="tns:WsBusinessDateNextBestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Neben den zum Stichtag gültigen Objekten sollen auch solche berücksichtigt werden,
+                die zum Stichtag nicht gültig sind. In letzterem Fall wird der zum Stichtag nächstgelegene gültige
+                Zustand des Objekts in der Zukunft oder Vergangenheit berücksichtigt.
+                Zentral definiertes Element zum Referenzieren aus Service Request Typen.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+</xsd:schema>

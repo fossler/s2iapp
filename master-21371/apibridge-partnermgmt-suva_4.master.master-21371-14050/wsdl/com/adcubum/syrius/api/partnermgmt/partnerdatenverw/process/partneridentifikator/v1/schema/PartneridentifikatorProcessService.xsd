@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partneridentifikator:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partneridentifikator:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:element name="createPartneridentifikatorRequest" type="tns:CreatePartneridentifikatorRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request für das Erstellen eines neuen Partneridentifikators.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createPartneridentifikatorResponse" type="tns:CreatePartneridentifikatorResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um einen neuen Partneridentifikator zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createOnlineIdRequest" type="tns:CreateOnlineIdRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen neuen Online-ID-Partneridentifikator zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createOnlineIdResponse" type="tns:CreateOnlineIdResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um einen neuen Online-ID-Partneridentifikator zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="deletePartneridentifikatorRequest" type="tns:DeletePartneridentifikatorRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen konkreten Partneridentifikator zu löschen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="deletePartneridentifikatorResponse" type="tns:DeletePartneridentifikatorResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um einen konkreten Partneridentifikator zu löschen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changePartneridentifikatorGueltigkeitRequest" type="tns:ChangePartneridentifikatorGueltigkeitRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die Gültigkeit eines konkreten Partneridentifikators zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changePartneridentifikatorGueltigkeitResponse" type="tns:ChangePartneridentifikatorGueltigkeitResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, um die Gültigkeit eines konkreten Partneridentifikators zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreatePartneridentifikatorRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen neuen Partneridentifikator zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partneridentifikator" type="tns:WsPartneridentifikatorType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten des neuen Partneridentifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, für den der Identifikator erstellt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann der Identifikator gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigBis" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann der Identifikator gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreatePartneridentifikatorResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Erstellen eines neuen Partneridentifikators.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partneridentifikatorId" type="pi:WsPartneridentifikatorIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des erstellten Identifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateOnlineIdRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen neuen Online-ID-Partneridentifikator zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, für den der Identifikator erstellt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="wert" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Wert des Identifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateOnlineIdResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Erstellen eines neuen Online-ID-Partneridentifikators.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partneridentifikatorId" type="pi:WsPartneridentifikatorIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des erstellten Identifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DeletePartneridentifikatorRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen konkreten Partneridentifikator zu löschen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partneridentifikatorId" type="pi:WsPartneridentifikatorIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des erstellten Identifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DeletePartneridentifikatorResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Löschen eines bestimmten Partneridentifikators.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="loeschenErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+        <xsd:complexType name="ChangePartneridentifikatorGueltigkeitRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die Gültigkeit eines Partneridentifikators zu ändern.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partneridentifikatorId" type="pi:WsPartneridentifikatorIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des zu ändernden Partneridentifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann der Partneridentifikator gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="gueltigBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann der Partneridentifikator gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangePartneridentifikatorGueltigkeitResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Ändern der Gültigkeit eines bestimmten Partneridentifikators.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="aendernErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsPartneridentifikatorType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten eines Partneridentifikators.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partneridentifikatorDefId" type="pi:WsPartneridentifikatorDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der Partneridentifikator-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="wert" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Wert des Identifikators.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="customAttribute" type="ct:WsCustomAttributeType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Auflistung der im Objekt enthaltenen kundenspezifischen Attribute.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

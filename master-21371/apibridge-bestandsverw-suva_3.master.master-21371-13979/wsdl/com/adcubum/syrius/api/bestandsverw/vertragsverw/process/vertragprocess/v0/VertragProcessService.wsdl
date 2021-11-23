@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="VertragProcessService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:vertragprocess:v0"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:vertragprocess:v0"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:wsdlsi="urn:com:adcubum:syrius:api:common:serviceinfo:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:vertragprocess:v0:schema">
+
+    <wsdl:documentation>
+        Version: 0.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:serviceinfo:v1" schemaLocation="../../../../../common/serviceinfo/v1/serviceinfo.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:vertragprocess:v0:schema"
+                        schemaLocation="schema/VertragProcessService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ChangeVertragParamAttributesRequestMessage">
+        <wsdl:part name="Request" element="pa:changeVertragParamAttributesRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeVertragParamAttributesResponseMessage">
+        <wsdl:part name="Response" element="pa:changeVertragParamAttributesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="VertragProcessServicePortType">
+        <wsdl:operation name="changeVertragParamAttributes">
+            <wsdl:documentation>Ändert die Parametrierbaren Attribute eines Vertrags entsprechend der übergebenen Liste.</wsdl:documentation>
+            <wsdl:input name="changeVertragParamAttributesRequest" message="tns:ChangeVertragParamAttributesRequestMessage"/>
+            <wsdl:output name="changeVertragParamAttributesResponse" message="tns:ChangeVertragParamAttributesResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="VertragProcessServiceBinding" type="tns:VertragProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="changeVertragParamAttributes">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeVertragParamAttributesRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeVertragParamAttributesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="VertragProcessService_v0">
+        <wsdl:port name="VertragProcessService_v0" binding="tns:VertragProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/VertragProcessService_v0"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

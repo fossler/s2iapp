@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:tns="urn:com:adcubum:syrius:api:common:serviceinfo:v1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:com:adcubum:syrius:api:common:serviceinfo:v1"
+            elementFormDefault="qualified"
+            version="1.0.0">
+
+    <!--Versioning elements -->
+    <xsd:element name="serviceInfo" type="tns:ServiceInfoType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Serviceinformationen, welche die bestehenden Angaben im WSDL ergänzen.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <!--ServiceInfo Type -->
+    <xsd:complexType name="ServiceInfoType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Serviceinformationen, welche die bestehenden Angaben im WSDL ergänzen.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deprecation" type="tns:DeprecationType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Optionales Element, welches den Service als deprecated markiert.
+                        Beinhaltet zugehörige Detailinformationen zur Deprecation.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!--Deprecation Types-->
+    <xsd:complexType name="DeprecationType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Typ, der die Deprecation eines Service abbildet.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deprecationReason" type="tns:DeprecationReasonType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Grund, warum der Service deprecated gesetzt wurde.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="replacedBy" type="tns:DeprecationReplacementType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Ein oder mehrere Services, welche den als deprecated markierten Service ablösen.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ticketReference" type="tns:DeprecationTicketReferenceType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Ein oder mehrere Ticket-Referenzen, welche zusätzliche Hintergrundinformationen zur Deprecation liefern.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="DeprecationTicketReferenceType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Typ, der die Ticket-Referenz des externen Systems für Anforderungen und Fehlerverwaltung (z.B. Jira) abbildet.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="DeprecationReasonType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Beschreibt den Grund bzw. den Auslöser der Deprecation.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BreakingChange">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Aufgrund eines Breaking Change in der Schnittstelle wird eine neue Major-Version eingeführt.
+                        Weitere Informationen sind den Releasenotes zu entnehmen.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Replaced">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Die Funktionalität des bestehenden Service wurde durch ein oder mehrere Nachfolge-Services abgelöst.
+                        Betroffene Services werden über das replacedBy-Konstrukt abgebildet.
+                        Weitere Informationen sind den Releasenotes zu entnehmen.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Discontinued">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Der Service wird nicht mehr weiter unterstützt.
+                        Weitere Informationen sind den Releasenotes zu entnehmen.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="DeprecationReplacementType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Link auf den Service, der einen deprecated markierten Service (oder eine Teilfunktionalität davon) ablöst.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="serviceName" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Service Name in der Form "MyService_v1".
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="targetNamespace" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        TargetNamespace in der Form "urn:com:adcubum:syrius:api:domain:service:v1".
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+

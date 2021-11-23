@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:dokumentversand:v1:schema" 
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:dokumentversand:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:element name="createDokumentversandForPartnerRequest" type="tns:CreateDokumentversandForPartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um einen neuen Dokumentversand zu erstellten.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createDokumentversandForPartnerResponse" type="tns:CreateDokumentversandForPartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, des neu erstellten Dokumentversand.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeDokumentversandRequest" type="tns:ChangeDokumentversandRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um ein Dokumentversand zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeDokumentversandResponse" type="tns:ChangeDokumentversandResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, des geänderten Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeDokumentversandGueltigkeitRequest" type="tns:ChangeDokumentversandGueltigkeitRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die Gültigkeit eines Dokumentversands zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeDokumentversandGueltigkeitResponse" type="tns:ChangeDokumentversandGueltigkeitResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für die geänderte Gültigkeit eines Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateDokumentversandForPartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen neuen Dokumentversand zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dokumentversand" type="tns:WsStdDokumentversandType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten des neuen Dokumentversands.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, für welcher der Dokumentversand erstellt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann der Dokumentversand gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="gueltigBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann der Dokumentversand gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+        <xsd:complexType name="ChangeDokumentversandRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen Dokumentversand zu ändern.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dokumentversand" type="tns:WsStdDokumentversandType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die neuen Daten des Dokumentversands.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="id" type="pi:WsDokumentversandIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des zu ändernden Dokumentversands.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aenderungAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann der Dokumentversand geändert werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="aenderungBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann der Dokumentversand geändert werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateDokumentversandForPartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response vom neu erstellten Dokumentversand.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dokumentversandId" type="pi:WsDokumentversandIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des erstellen Dokumentversand.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+        <xsd:complexType name="ChangeDokumentversandResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response des geänderten Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dokumentversandId" type="pi:WsDokumentversandIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des geänderten Dokumentversands.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeDokumentversandGueltigkeitRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die Gültigkeit eines Dokumentversands zu ändern.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dokumentversandId" type="pi:WsDokumentversandIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des Dokumentversands.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die neue Gültigkeit ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+            <xsd:element name="gueltigBis" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt bis wann die neue Gültigkeit ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element> 
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeDokumentversandGueltigkeitResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Ändern der Gültigkeit eines bestimmten Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="aendernErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsStdDokumentversandType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten eines Standard-Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="dokumenttypId" type="pi:WsDokumenttypIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Dokumenttyp des Dokumentversands.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aussteuernAnBenutzerId" type="pi:WsBenutzerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Sachbearbeiter, an den das Dokument übergeben wird.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aussteuernAnOeId" type="pi:WsOrganisationseinheitIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Organisationseinheit, an die das Dokument übergeben wird.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="empfaengerAdresseId" type="pi:WsAdresseIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Adresse der Person, an die das Dokument umgeleitet wird.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="falldossierId" type="pi:WsFalldossierIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Falldossier, für das diese Definition ausschliesslich gilt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Vertrag, für den diese Definition ausschliesslich gilt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:choice>
+                        <xsd:element name="zustellAdresseId" type="pi:WsAdresseIdType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Adresse, an die das Dokument versendet wird.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="zustellEmailId" type="pi:WsEmailIdType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Email, an die das Dokument versendet wird.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="zustellTelefonId" type="pi:WsTelefonIdType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Telefon, an die das Dokument versendet wird.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="zustellWebId" type="pi:WsWebIdType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Web, an die das Dokument versendet wird.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:choice>
+                </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsAusgDokumentversandType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten eines ausgehenden Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsStdDokumentversandType">
+                <xsd:sequence>
+                    <xsd:element name="empfaengerPartnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Partner, an den die Dokumente umgeleitet werden.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsEingDokumentversandType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer eingehenden Dokumentversands.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsStdDokumentversandType">
+                <xsd:sequence>
+                    <xsd:element name="absenderPartnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Partner, dessen Dokumente umgeleitet werden.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

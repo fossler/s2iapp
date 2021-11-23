@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+    xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1" 
+    xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:syruserrepresentation:data:syruser:v1:schema"
+    xmlns:uci="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1"
+    targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:syruserrepresentation:data:syruser:v1:schema"
+    elementFormDefault="qualified"
+    version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd" />
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd" />
+
+    <xsd:element name="getSyrUserRepresentationRequest" type="tns:GetSyrUserRepresentationRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem eine SyrUser Representation geladen wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getSyrUserRepresentationResponse" type="tns:GetSyrUserRepresentationResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladene SyrUser Representation enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GetSyrUserRepresentationRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Banken enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="syrUserId" type="uci:WsSyrUserIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>SyrUser fachliche Schlüssel.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="representation" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Representation Muster.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetSyrUserRepresentationResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Banken enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="syrUserRepresentation" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>SyrUser fachliche Schlüssel.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

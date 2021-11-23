@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:hausarztaenderung:v0:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:hausarztaenderung:v0:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:cp="urn:com:adcubum:syrius:api:common:process:v0"
+            xmlns:pc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            version="0.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:process:v0" schemaLocation="../../../../../../common/process/v0/process.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    
+    <xsd:element name="hausarztAenderungAnreicherungRequest" type="tns:HausarztAenderungAnreicherungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen Hausarzt für einen Partner zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="hausarztAenderungAnreicherungResponse" type="tns:HausarztAenderungAnreicherungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für einen geänderten Hausarzt.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+        <xsd:element name="hausarztAenderungRequest" type="tns:HausarztAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um einen Hausarzt im Experten-Modus zu ändern.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="hausarztAenderungResponse" type="tns:HausarztAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für einen geänderten Hausarzt.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+
+    <xsd:complexType name="HausarztAenderungAnreicherungRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request Hausarzt änderung</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="hausarztAenderungAnreicherung" type="tns:WsHausarztAenderungAnreicherungType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Parameter für eine Hausarztänderung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="HausarztAenderungAnreicherungResponseType">
+        <xsd:annotation>
+	        <xsd:documentation>Response Hausarztänderung Anreicherung</xsd:documentation>
+	    </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="hausarztAenderungAnreicherungId" type="pi:WsHausarztAenderungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Prozess Id des Camunda Prozesses</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+	
+	    <xsd:complexType name="HausarztAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request Hausarzt änderung</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="hausarztAenderung" type="tns:WsHausarztAenderungType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Parameter für eine Hausarztänderung (im Expertenmodus).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="HausarztAenderungResponseType">
+        <xsd:annotation>
+	        <xsd:documentation>Response Hausarztänderung </xsd:documentation>
+	    </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="hausarztAenderungId" type="pi:WsHausarztAenderungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Prozess Id des Camunda Prozesses</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+     <xsd:complexType name="WsHausarztAenderungAnreicherungType">
+           <xsd:annotation>
+               <xsd:documentation>Parameter für die Hausarztänderung-Anreicherung</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:annotation>
+                   <xsd:documentation>Liste der Daten für einen Hausarztänderung.</xsd:documentation>
+               </xsd:annotation>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                     <xsd:documentation>technische Id des Partners</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="produktStichwort" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Stichwort zu änderndes Produkt als Zeichenkette</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>      
+            <xsd:element name="hausarztStichwort" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Stichwort des neuen Hausarztes (Fuzzy-Input)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>      
+            <xsd:element name="aenderungAb" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Änderung-Ab Datum</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType> 
+	
+	     <xsd:complexType name="WsHausarztAenderungType">
+           <xsd:annotation>
+               <xsd:documentation>Parameter für die Hausarztänderung im Expertenmodus</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:annotation>
+                   <xsd:documentation>Liste der Daten für einen Hausarztänderung.</xsd:documentation>
+               </xsd:annotation>
+			 <xsd:element name="aenderungAb" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Änderung-Ab Datum</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+			<xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technische Referenz auf den betreffenden Vertrag.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+			<xsd:element name="vertragsproduktId" type="pi:WsVertragsproduktIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technische Referenz auf das Vertragsproduktes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+			<xsd:element name="hausarztId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                     <xsd:documentation>Technische Referenz auf den Hausarzt</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+		    <xsd:element name="hausarztUebersteuerung" type="pc:WsHausarztUebersteuerungCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Optional kann der Hausarzt-Übersteuern-Code gesetzt werden. Abhaengig davon ob
+                    gemaess parametrierter AVM-Definition auf dem Produkt notwendig.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>		   
+           </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

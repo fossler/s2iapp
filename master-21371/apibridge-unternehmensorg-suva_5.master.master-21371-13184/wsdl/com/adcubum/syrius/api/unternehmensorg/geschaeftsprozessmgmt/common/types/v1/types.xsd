@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1" 
+    xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1" 
+    xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+    xmlns:ucc="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" 
+    xmlns:uci="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1"
+    xmlns:uct="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1"
+    xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:common:types:v1" 
+    elementFormDefault="qualified" 
+    targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:common:types:v1"
+    version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" schemaLocation="../../../../common/identifier/v1/identifier.xsd" />
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../common/simpleTypes/v1/simpleTypes.xsd" />
+
+    <xsd:complexType name="WsAufgabeBaseType" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Basis-Typ fuer Aufgabe. </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="uci:WsAufgabeIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aufgabeNr" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Nummer der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="externerAbsprung" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Externer Absprung der Aufgabe (z. B. URL).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aufgabenDefinitionId" type="uci:WsAufgabeDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Aufgabe-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ausfuehrenderId" type="uci:WsBenutzerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Benutzers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="postkorbId" type="uci:WsPostkorbIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Postkorbes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betroffenerPartnerId" type="uci:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des betroffenenen Partners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="geschaeftsObjekt" type="uct:WsReferenzType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz zum betroffenen Objekt der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="beschreibung" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Beschreibung der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="abschlussDatum" type="st:DateTimeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Abschlussdatum.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="faelligkeitsDatum" type="st:DateTimeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fälligkeitsdatum.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sichtbarkeitsDatum" type="st:DateTimeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Sichtbarkeitsdatum.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="titel" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Titel der Aufgabe</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="status" type="ucc:WsStatusCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Status Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kategorie" type="ucc:WsWorkflowElementKategorieCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Kategorie Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="prioritaet" type="ucc:WsWorkflowElementPrioritaetCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Priorität Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kommunikationssprache" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Kommunikationssprache des betroffenen Partners</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="dokumentReferenzen" type="tns:WsAbstrakteDokumentReferenzType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Liste mit allen Dokumentreferenzen der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kommentare" type="tns:WsCommentType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Liste mit allen Kommentaren der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAufgabeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eine Aufgabe</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsAufgabeBaseType">
+                <xsd:sequence>
+                    <xsd:element name="workflowId" type="uci:WsWorkflowIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Workflow-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aufgabenschritte" type="uci:WsAufgabeIdType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Liste mit allen Aufgabenschritten der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAufgabenschrittType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Aufgabenschritt einer Aufgabe.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsAufgabeBaseType">
+                <xsd:sequence>
+                    <xsd:element name="uebergeordneteAufgabeId" type="uci:WsAufgabeIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Übergeordnete Aufgabe</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWorkflowZusatzAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Die parametrierbaren Zusatzattribute zum Workflow.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="zusatzAttributId" type="uci:WsZusatzAttributIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zusatzAttributDefId" type="uci:WsZusatzAttributDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Definition des parametrierbaren Attributs.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:choice>
+                        <xsd:element name="bigText" type="st:StringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Text-Wert (CLOB) des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="referenz" type="uct:WsReferenzType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Referenz-Wert des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="code" type="cc:WsCodeType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Code-Wert des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="date" type="st:DateType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Datum-Wert des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="decimal" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Decimal-Wert des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="integer" type="st:IntegerType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Integer-Wert des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="text" type="st:StringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Text-Wert des parametrierbaren Attributes.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsBetroffenesObjektZusatzAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Die parametrierbaren Zusatzattribute zu den betroffenen Objekten des Workflows.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="zusatzAttributDefId" type="uci:WsZusatzAttributDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Definition des parametrierbaren Attributs.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:choice>
+                        <xsd:element name="bigText" type="st:StringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Text-Wert (CLOB) des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="referenz" type="uct:WsReferenzType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Referenz-Wert des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="code" type="cc:WsCodeType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Code-Wert des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="date" type="st:DateType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Datum-Wert des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="decimal" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Decimal-Wert des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="integer" type="st:IntegerType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Integer-Wert des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="text" type="st:StringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="de">Text-Wert des parametrierbaren Attributes.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWorkflowZusatzAttributChangeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Daten fuer die Aenderung parametrierbaren Attributes</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="internalName" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Interner Name des parametrierbaren Attributes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="wert" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Neuer Wert des parametrierbaren Attributes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="attributName" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Name des parametrierbaren Attributes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAbstrakteDokumentReferenzType" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Die abstrakte Referenz auf ein Dokument oder eine URL.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="dokRefErstellDatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum wann die Referenz an Dokument erstellt wurde.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsArchivDokumentReferenzType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Die abstrakte Referenz auf ein Dokument.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsAbstrakteDokumentReferenzType">
+                <xsd:sequence>
+                    <xsd:element name="dokumentId" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Dokument-ID</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsURLArchivDokumentReferenzType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Die abstrakte Referenz auf eine URL.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsAbstrakteDokumentReferenzType">
+                <xsd:sequence>
+                    <xsd:element name="dokumentUrl" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">URL</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsDokumentReferenzErfassenType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Die abstrakte Referenz auf ein Dokument oder eine URL.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dokRefErstellDatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Datum wann die Referenz an Dokument erstellt wurde.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:choice>
+                <xsd:element name="dokumentId" type="st:StringType" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="de">Dokument-ID</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="dokumentUrl" type="st:StringType" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="de">URL</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCommentType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Der Kommentar zum Workflow-Element.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="uci:WsKommentarIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Kommentares</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ersteller" type="uci:WsBenutzerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ersteller des Kommentars</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="text" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Text des Kommentars</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="WsWorkflowObjectReferenceType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Das Fachobjekt (Businessobjekt) mit den potentiellen Zusatzattributen. Falls auf
+                dem Workflow mehrfache betroffene Objekte möglich sind, so können die Fachobjekte auch Zusatzattribute beinhalten.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="betroffenesObjekt" type="uct:WsReferenzType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Betroffenes Objekt</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="workflowZusatzAttribut" type="tns:WsBetroffenesObjektZusatzAttributType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zusätzliches Attribut</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

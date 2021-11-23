@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="DokumentbestellungProcessService"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:dokumentbestellung:process:docbest:v1" 
+        xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:dokumentbestellung:process:docbest:v1" 
+        xmlns:pa="urn:com:adcubum:syrius:api:unternehmensorg:dokumentbestellung:process:docbest:v1:schema" 
+        xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>		
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:dokumentbestellung:process:docbest:v1:schema" schemaLocation="schema/DokumentbestellungProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="CreateDokumentbestellungRequestMessage">
+        <wsdl:part name="request" element="pa:createDokumentbestellungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateDokumentbestellungResponseMessage">
+        <wsdl:part name="response" element="pa:createDokumentbestellungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteDokumentbestellungRequestMessage">
+        <wsdl:part name="request" element="pa:deleteDokumentbestellungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="DeleteDokumentbestellungResponseMessage">
+        <wsdl:part name="response" element="pa:deleteDokumentbestellungResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="DokumentbestellungProcessServicePortType">
+        <wsdl:operation name="createDokumentbestellung">
+            <wsdl:documentation>Erstellt eine Dokumentbestellung.</wsdl:documentation>
+            <wsdl:input name="createDokumentbestellungRequest" message="tns:CreateDokumentbestellungRequestMessage"/>
+            <wsdl:output name="createDokumentbestellungResponse" message="tns:CreateDokumentbestellungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="deleteDokumentbestellung">
+            <wsdl:documentation>Löscht eine Dokumentbestellung.</wsdl:documentation>
+            <wsdl:input name="deleteDokumentbestellungRequest" message="tns:DeleteDokumentbestellungRequestMessage"/>
+            <wsdl:output name="deleteDokumentbestellungResponse" message="tns:DeleteDokumentbestellungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="DokumentbestellungProcessServiceBinding" type="tns:DokumentbestellungProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createDokumentbestellung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createDokumentbestellungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createDokumentbestellungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+       <wsdl:operation name="deleteDokumentbestellung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="deleteDokumentbestellungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="deleteDokumentbestellungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+     <wsdl:service name="DokumentbestellungProcessService_v1">
+        <wsdl:port name="DokumentbestellungProcessService_v1" binding="tns:DokumentbestellungProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-unternehmensorg/DokumentbestellungProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

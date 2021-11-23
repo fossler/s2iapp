@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ci="urn:com:adcubum:syrius:api:common:identifier:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:identifier:v1" schemaLocation="../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:complexType name="WsFakturaIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Faktura.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlertypIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Zahlertyps.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlerIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Zahlers.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsPartnerIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsMutationsgrundIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Mutationsgrundes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungsmittelIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Zahlungsmittels.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungsmittelDefIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Zahlungsmitteldefinition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungsadresseIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Zahlungsadresse.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsBonitaetsstufeDefIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Bonitätsstufendefinition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAbweichendeZahlungsweiseIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer abweichenden Zahlungsweise.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsGeschaeftsvorfallIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Geschäftsvorfalls.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+        <xsd:complexType name="WsGeschaeftsbereichIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Geschäftsbereichs.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>    
+    <xsd:complexType name="WsAbrechnungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Zahlung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungsverbindungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Zahlungsverbindung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>    
+    <xsd:complexType name="WsZahlungszuweisungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Zahlungszuweisung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsRateIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Rate.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsVorrechtlichesInkassoIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines vorrechtlichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsRechtlichesInkassoIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines vorrechtlichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsInkassoStatusIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines InkassoStatus.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsRechtlichesInkassoStatusIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines RechtlichesInkassoStatus.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsInkassoStatusIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsVorrechtlichesInkassoStatusIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines VorrechtlichesInkassoStatus.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsInkassoStatusIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+     <xsd:complexType name="WsTilgungspositionIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Tilgungsposition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsBelastungsermaechtigungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Belastungsermächtigung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsCodeIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Code-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsGeschaeftskategorieIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Geschäftskategorie.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

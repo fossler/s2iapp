@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:vertragprocess:v0:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:vertragprocess:v0:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:cp="urn:com:adcubum:syrius:api:common:process:v0"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:bt="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1"
+            xmlns:bc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            xmlns:bi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            version="0.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:process:v0" schemaLocation="../../../../../../common/process/v0/process.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+
+    <xsd:element name="changeVertragParamAttributesRequest" type="tns:ChangeVertragParamAttributesRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request für das Ändern von Parametrierbaren Attribute eines Vertrags.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeVertragParamAttributesResponse" type="tns:ChangeVertragParamAttributesResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Ändern von Parametrierbaren Attribute eines Vertrags.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="ChangeVertragParamAttributesRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request für das Ändern von Parametrierbaren Attribute eines Vertrags.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams" />
+            <xsd:element name="vertragId" type="bi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technische Id des Vertrags.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paramAttribut" type="bt:WsContractParamAttributType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Alle Parametrierbaren Attribute die am Vertrag geändert werden müssen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Datum zu dem die Änderung vorgenommen werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ChangeVertragParamAttributesResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response für das Ändern von Parametrierbaren Attribute eines Vertrags.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="paramAttrAenderungId" type="bi:WsParamAttrAenderungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Id des ParamAttrAednderungs-Prozesses der gestartet wurde.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

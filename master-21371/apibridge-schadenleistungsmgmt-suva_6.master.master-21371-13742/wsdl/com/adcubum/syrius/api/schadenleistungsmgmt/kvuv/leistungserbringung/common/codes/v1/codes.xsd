@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+	targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:common:codes:v1"
+	xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:common:codes:v1"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1"
+	elementFormDefault="qualified"
+	version="1.0.0">
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1"
+		schemaLocation="../../../../../../../../../../com/adcubum/syrius/api/common/codes/v1/codes.xsd" />
+
+	<xsd:complexType name="WsKostenartTypCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Der Typ einer Kostenart
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="cc:WsCodeType" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="VertragService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertrag:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertrag:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertrag:v1:schema">
+
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertrag:v1:schema" schemaLocation="schema/VertragService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GetVertragRequestMessage">
+        <wsdl:part name="Request" element="pa:getVertragRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragResponseMessage">
+        <wsdl:part name="Response" element="pa:getVertragResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetKollektivvertragNamentlichRequestMessage">
+        <wsdl:part name="Request" element="pa:getKollektivvertragNamentlichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetKollektivvertragNamentlichResponseMessage">
+        <wsdl:part name="Response" element="pa:getKollektivvertragNamentlichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragPraemientotalRequestMessage">
+        <wsdl:part name="Request" element="pa:getVertragPraemientotalRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragPraemientotalResponseMessage">
+        <wsdl:part name="Response" element="pa:getVertragPraemientotalResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchVertragForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:searchVertragForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchVertragForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:searchVertragForPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchVertragForVertragNrRequestMessage">
+        <wsdl:part name="Request" element="pa:searchVertragForVertragNrRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchVertragForVertragNrResponseMessage">
+        <wsdl:part name="Response" element="pa:searchVertragForVertragNrResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragStateRequestMessage">
+        <wsdl:part name="Request" element="pa:getVertragStateRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragStateResponseMessage">
+        <wsdl:part name="Response" element="pa:getVertragStateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchAllVertragForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:searchAllVertragForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchAllVertragForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:searchAllVertragForPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetTarifGueltigkeitInfoRequestMessage">
+        <wsdl:part name="Request" element="pa:getTarifGueltigkeitInfoRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetTarifGueltigkeitInfoResponseMessage">
+        <wsdl:part name="Response" element="pa:getTarifGueltigkeitInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragParamAttributesRequestMessage">
+        <wsdl:part name="Request" element="pa:getVertragParamAttributesRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVertragParamAttributesResponseMessage">
+        <wsdl:part name="Response" element="pa:getVertragParamAttributesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="VertragServicePortType">
+        <wsdl:operation name="getVertrag">
+            <wsdl:documentation>Liefert für mehrere technische Vertragsschlüssel eine Liste von Verträgen.</wsdl:documentation>
+            <wsdl:input name="getVertragRequest" message="tns:GetVertragRequestMessage"/>
+            <wsdl:output name="getVertragResponse" message="tns:GetVertragResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getKollektivvertragNamentlich">
+            <wsdl:documentation>Liefert für mehrere technische Vertragsschlüssel eine Liste von namentlichen Kollektivverträgen.</wsdl:documentation>
+            <wsdl:input name="getKollektivvertragNamentlichRequest" message="tns:GetKollektivvertragNamentlichRequestMessage"/>
+            <wsdl:output name="getKollektivvertragNamentlichResponse" message="tns:GetKollektivvertragNamentlichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVertragPraemientotal">
+            <wsdl:documentation>Liefert für einen technischen Vertragsschlüssel die Prämie.</wsdl:documentation>
+            <wsdl:input name="getVertragPraemientotalRequest" message="tns:GetVertragPraemientotalRequestMessage"/>
+            <wsdl:output name="getVertragPraemientotalResponse" message="tns:GetVertragPraemientotalResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchVertragForPartner">
+            <wsdl:documentation>Liefert für einen Partnerschlüssel eine Liste von Vetragsschlüsseln.</wsdl:documentation>
+            <wsdl:input name="searchVertragForPartnerRequest" message="tns:SearchVertragForPartnerRequestMessage"/>
+            <wsdl:output name="searchVertragForPartnerResponse" message="tns:SearchVertragForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchVertragForVertragNr">
+            <wsdl:documentation>Liefert für eine Vertragsnummer eine Liste von Vertragsschlüsseln.</wsdl:documentation>
+            <wsdl:input name="searchVertragForVertragNrRequest" message="tns:SearchVertragForVertragNrRequestMessage"/>
+            <wsdl:output name="searchVertragForVertragNrResponse" message="tns:SearchVertragForVertragNrResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVertragState">
+            <wsdl:documentation>Liefert für einen technischen Vertragsschlüssel eine Liste von fachlichen Vertragszuständen.</wsdl:documentation>
+            <wsdl:input name="getVertragStateRequest" message="tns:GetVertragStateRequestMessage"/>
+            <wsdl:output name="getVertragStateResponse" message="tns:GetVertragStateResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchAllVertragForPartner">
+            <wsdl:documentation>Liefert eine Liste von Vertragsschlüsseln und Gültigkeiten der Verträge für einen Partnerschlüssel. Zukünftige und beendete Verträge werden mitgeliefert.</wsdl:documentation>
+            <wsdl:input name="searchAllVertragForPartnerRequest" message="tns:SearchAllVertragForPartnerRequestMessage"/>
+            <wsdl:output name="searchAllVertragForPartnerResponse" message="tns:SearchAllVertragForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getTarifGueltigkeitInfo">
+            <wsdl:documentation>Liefert Informationen ob der Tarif eines bestimmten Vertrages zu einem Stichtag gültig ist oder nicht</wsdl:documentation>
+            <wsdl:input name="getTarifGueltigkeitInfoRequest" message="tns:GetTarifGueltigkeitInfoRequestMessage"/>
+            <wsdl:output name="getTarifGueltigkeitInfoResponse" message="tns:GetTarifGueltigkeitInfoResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVertragParamAttributes">
+            <wsdl:documentation>Liefert die parametrierbaren Attribute für einen Vertragskopf mit den Ausprägungen per Stichtag</wsdl:documentation>
+            <wsdl:input name="getVertragParamAttributesRequest" message="tns:GetVertragParamAttributesRequestMessage"/>
+            <wsdl:output name="getVertragParamAttributesResponse" message="tns:GetVertragParamAttributesResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="VertragServiceBinding" type="tns:VertragServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getVertrag">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getVertragRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getVertragResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getVertragPraemientotal">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getVertragPraemientotalRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getVertragPraemientotalResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="searchVertragForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchVertragForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchVertragForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="searchVertragForVertragNr">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchVertragForVertragNrRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchVertragForVertragNrResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getKollektivvertragNamentlich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getKollektivvertragNamentlichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getKollektivvertragNamentlichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getVertragState">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getVertragStateRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getVertragStateResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="searchAllVertragForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchAllVertragForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchAllVertragForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getTarifGueltigkeitInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getTarifGueltigkeitInfoRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTarifGueltigkeitInfoResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getVertragParamAttributes">
+			<soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getVertragParamAttributesRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getVertragParamAttributesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="VertragService_v1">
+        <wsdl:port name="VertragService_v1" binding="tns:VertragServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/VertragService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

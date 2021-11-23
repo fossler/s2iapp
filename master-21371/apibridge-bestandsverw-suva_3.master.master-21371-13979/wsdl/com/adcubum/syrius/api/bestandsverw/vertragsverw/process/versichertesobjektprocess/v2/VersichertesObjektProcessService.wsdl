@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="VersichertesObjektProcessService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:versichertesobjektprocess:v2"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:versichertesobjektprocess:v2"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:versichertesobjektprocess:v2:schema">
+
+    <wsdl:documentation>
+    	Version: 2.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:versichertesobjektprocess:v2:schema"
+                        schemaLocation="schema/VersichertesObjektProcessService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ChangeVersichertesObjektParamAttributeRequestMessage">
+        <wsdl:part name="Request" element="pa:changeVersichertesObjektParamAttributeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeVersichertesObjektParamAttributeResponseMessage">
+        <wsdl:part name="Response" element="pa:changeVersichertesObjektParamAttributeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="VersichertesObjektProcessServicePortType">
+        <wsdl:operation name="changeVersichertesObjektParamAttribute">
+            <wsdl:documentation>Ändert die ParamAttribute eines Versicherten Objekts entsprechend der übergebenen Liste.</wsdl:documentation>
+            <wsdl:input name="changeVersichertesObjektParamAttributeRequest" message="tns:ChangeVersichertesObjektParamAttributeRequestMessage"/>
+            <wsdl:output name="changeVersichertesObjektParamAttributeResponse" message="tns:ChangeVersichertesObjektParamAttributeResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="VersichertesObjektProcessServiceBinding" type="tns:VersichertesObjektProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="changeVersichertesObjektParamAttribute">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeVersichertesObjektParamAttributeRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeVersichertesObjektParamAttributeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="VersichertesObjektProcessService_v2">
+        <wsdl:port name="VersichertesObjektProcessService_v2" binding="tns:VersichertesObjektProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/VersichertesObjektProcessService_v2"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

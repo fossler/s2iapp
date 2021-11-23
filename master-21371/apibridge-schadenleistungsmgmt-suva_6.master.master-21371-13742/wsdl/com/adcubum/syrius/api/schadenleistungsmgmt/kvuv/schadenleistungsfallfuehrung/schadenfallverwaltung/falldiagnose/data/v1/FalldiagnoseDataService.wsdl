@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="FalldiagnoseService"
+                  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:falldiagnose:data:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:falldiagnose:data:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:snr="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:falldiagnose:data:v1:schema">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+                        schemaLocation="../../../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import
+                    namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:falldiagnose:data:v1:schema"
+                    schemaLocation="schema/FalldiagnoseDataService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ReadFalldiagnoseRequestMessage">
+        <wsdl:part name="Request" element="snr:readFalldiagnoseRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadFalldiagnoseResponseMessage">
+        <wsdl:part name="Response" element="snr:readFalldiagnoseResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="FalldiagnoseServicePortType">
+        <wsdl:operation name="readFalldiagnose">
+            <wsdl:documentation>Liefert zu den SchadenfallIds die entsprechenden Falldiagnosen</wsdl:documentation>
+            <wsdl:input name="readFalldiagnoseRequest" message="tns:ReadFalldiagnoseRequestMessage"/>
+            <wsdl:output name="readFalldiagnoseResponse" message="tns:ReadFalldiagnoseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="FalldiagnoseServiceBinding" type="tns:FalldiagnoseServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="readFalldiagnose">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readFalldiagnoseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readFalldiagnoseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="FalldiagnoseService_v1">
+        <wsdl:documentation>Ein lesender Service für Falldiagnosen.</wsdl:documentation>
+        <wsdl:port name="FalldiagnoseService_v1" binding="tns:FalldiagnoseServiceBinding">
+            <soap:address location="http://example.com/apibridge-schadenleistungsmgmt/FalldiagnoseService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

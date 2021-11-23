@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:mvi="urn:com:adcubum:syrius:api:marketingvertrieb:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+            xmlns:mvc="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:marketingvertrieb:vertriebsmgmt:data:documentdeliverysettings:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:marketingvertrieb:vertriebsmgmt:data:documentdeliverysettings:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+                schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:identifier:v1"
+                schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+                schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+                
+    <xsd:element name="createDocumentDeliverySettingsRequest" type="tns:CreateDocumentDeliverySettingsRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem der Sammelversand eines Vertriebspartners für einen bestimmten Dokument-Typ aktiviert wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateDocumentDeliverySettingsRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem der Sammelversand eines Vertriebspartners für einen bestimmten Dokument-Typ aktiviert wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="documentTypeId" type="mvi:WsDocumentTypeIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Dokumententyps.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="original" type="mvc:WsOriginalKopieCodeType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Original/Kopie Codes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="from" type="st:LocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Von-Datum der Aktivierungsperiode.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="upTo" type="st:LocalDateType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bis-Datum der Aktivierungsperiode. Der Parameter ist optional, wird er nicht
+                        gesetzt wird das Datum 01.01.3000 verwendet
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:element name="createDocumentDeliverySettingsResponse" type="tns:CreateDocumentDeliverySettingsResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die Antwort aus der Aktivierung des Sammelversands eines Vertriebspartners enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateDocumentDeliverySettingsResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die Antwort aus der Aktivierung des Sammelversands eines Vertriebspartners enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+        
+    <xsd:element name="changeDocumentDeliverySettingsRequest" type="tns:ChangeDocumentDeliverySettingsRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem der Sammelversand eines Vertriebspartners für einen bestimmten Dokument-Typ beendet wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ChangeDocumentDeliverySettingsRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem der Sammelversand eines Vertriebspartners für einen bestimmten Dokument-Typ beendet wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="documentTypeId" type="mvi:WsDocumentTypeIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Dokumententyps.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="original" type="mvc:WsOriginalKopieCodeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Original/Kopie Codes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="upTo" type="st:LocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Datum der Beendigung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:element name="changeDocumentDeliverySettingsResponse" type="tns:ChangeDocumentDeliverySettingsResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die Antwort aus der Beendigung des Sammelversands eines Vertriebspartners enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ChangeDocumentDeliverySettingsResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die Antwort aus der Beendigung des Sammelversands eines Vertriebspartners enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

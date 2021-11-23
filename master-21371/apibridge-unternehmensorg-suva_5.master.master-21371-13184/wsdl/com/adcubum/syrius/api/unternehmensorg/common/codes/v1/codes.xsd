@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+        xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1" 
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" 
+        elementFormDefault="qualified"
+        targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1"
+        version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+        
+    <xsd:complexType name="WsDokumentbestellungStatusCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Beschreibt den Status der Dokumentbestellung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsVersandartCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Auswahl aus Versandart, z. B. A-Post, E-Mail, Portal usw.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>    
+
+    <xsd:complexType name="WsHerkunftCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält einen Code der beschreibt wie dieser Empfänger zur Dokumentbestellung hinzugekommen ist.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>    
+
+    <xsd:complexType name="WsEmpfaengerTypCodeType">
+    	<xsd:annotation>
+           <xsd:documentation xml:lang="de">Der Type beschreibt, ob das Objekt "nur" ein Verbingdungsobjekt für den DocBest-Empfänger gemäss DOCBestellung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>     
+    
+    <xsd:complexType name="WsZusatzattributeTypCodeType">
+    	<xsd:annotation>
+           <xsd:documentation xml:lang="de">Typ des Dokumentbestellung-Zusatzattributes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+     <xsd:complexType name="WsWorkflowElementKategorieCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Beschreibt die Kategorie des Workflow-Elements z.B. Beschwerde.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsObjektTypCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">MetaID-Code des betroffenen Objekts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsWorkflowElementPrioritaetCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Mittels dieses Feldes wird einem Workflow-Element eine Priorität (hoch, normal, niedrig) zugeteilt.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsSLACodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein Service-Level-Agreement (SLA) stellt zugesicherte Leistungseigenschaften (Reaktionszeit, Bearbeitungszeit, Umfang, ...) dar.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsStatusCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein Workflow-Element hat stets einen definierten Zustand (Neu, In Bearbeitung, Beendet, Abgebrochen, etc.)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsBooleanCodeType">
+    	<xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein Boolean Code (Ja oder Nein)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+     
+</xsd:schema>

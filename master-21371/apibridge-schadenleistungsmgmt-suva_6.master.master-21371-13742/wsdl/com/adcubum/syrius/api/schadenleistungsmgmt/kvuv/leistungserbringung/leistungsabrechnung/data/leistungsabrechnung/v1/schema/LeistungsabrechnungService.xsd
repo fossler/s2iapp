@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:oi="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistungsabrechnung:v1:schema"
+            xmlns:et="urn:com:adcubum:syrius:api:common:extendedTypes:v1"
+            xmlns:ext="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+            xmlns:cip="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+            xmlns:cis="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:sysdef:identifier:v1"
+            xmlns:lai="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:common:identifier:v1"
+            targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistungsabrechnung:v1:schema"
+            elementFormDefault="qualified"
+            version="1.1.0">
+ <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../../common/types/v1/types.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:extendedTypes:v1" schemaLocation="../../../../../../../../common/extendedTypes/v1/extendedTypes.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1" schemaLocation="../../../../../../../../common/externalTypes/v1/externalTypes.xsd"/>
+ <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1" schemaLocation="../../../../../../extern/partner/identifier/v1/identifier.xsd" />
+ <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:sysdef:identifier:v1" schemaLocation="../../../../../../extern/sysdef/identifier/v1/identifier.xsd" />
+ <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:common:identifier:v1" schemaLocation="../../../../../../leistungserbringung/leistungsabrechnung/common/identifier/v1/identifier.xsd" />
+ <xsd:element name="getLeistungsabrechnungRequest" type="tns:GetLeistungsabrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Abrechnungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getLeistungsabrechnungResponse" type="tns:GetLeistungsabrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Leistungsabrechnungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+     <xsd:complexType name="GetLeistungsabrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Leistungsabrechnungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsabrechnungId" type="oi:WsLeistungsabrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetLeistungsabrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Leistungsabrechnungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsabrechnung" type="tns:WsLeistungsabrechnungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+     <xsd:element name="getLeistungsabrechnungMitPositionenRequest" type="tns:GetLeistungsabrechnungMitPositionenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Leistungsabrechnungen mitsamt den Positionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getLeistungsabrechnungMitPositionenResponse" type="tns:GetLeistungsabrechnungMitPositionenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Leistungsabrechnungen mitsamt Positionen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+     <xsd:complexType name="GetLeistungsabrechnungMitPositionenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Leistungsabrechnungen mitsamt Positionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsabrechnungId" type="oi:WsLeistungsabrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnung, von welchem die Leistungsabrechnung und Positionen geladen werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetLeistungsabrechnungMitPositionenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Leistungsabrechnungen mitsamt Positionen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsabrechnungMitPositionen" type="tns:WsLeistungsabrechnungMitPositionenType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Leistungsabrechnung mitsamt den Positionen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="readL10nAttributesLeistungsabrechnungRequest" type="tns:ReadL10nAttributesLeistungsabrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer Leistungsabrechnung zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesLeistungsabrechnungResponse" type="tns:ReadL10nAttributesLeistungsabrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der Leistungsabrechnung.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ReadL10nAttributesLeistungsabrechnungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer Leistungsabrechnung zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsabrechnungId" type="oi:WsLeistungsabrechnungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadL10nAttributesLeistungsabrechnungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der Leistungsabrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesLeistungsabrechnungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text einer Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsLeistungsabrechnungspositionType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eigenschaften einer Leistungsabrechnungsposition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="oi:WsLeistungsabrechnungspositionIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistungsabrechnung" type="oi:WsLeistungsabrechnungIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="datum" type="st:LocalDateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum zu einer Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="periode" type="et:WsLocalDateRangeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Periode der Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalsaldo der Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalbetrag der Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzsaldo der Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzbetrag der Leistungsabrechnungsposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="versicherter" type="cip:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel auf den Versicherten.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="gesetzesgrund" type="cis:WsGesetzesgrundIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel auf den Gesetzesgrund.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="herkunft" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Herkunft zu einer Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistung" type="lai:WsLeistungIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel der zugehörenden Leistung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistungsabrechnungsNummer" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Leistungsabrechnungsnummer der Leistung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsLeistungsabrechnungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eigenschaften einer Leistungsabrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="oi:WsLeistungsabrechnungIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahler" type="cip:WsZahlerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel auf den Zahler.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nummer" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Nummer zu einer Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="datum" type="st:LocalDateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum zu einer Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="periode" type="et:WsLocalDateRangeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Periode der Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalsaldo der Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="originalbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Originalbetrag der Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzsaldo" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzsaldo der Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="referenzbetrag" type="ext:WsMoneyType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenzbetrag der Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="definition" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Definition der Leistungsabrechnung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsLeistungsabrechnungMitPositionenType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eigenschaften einer Leistungsabrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsLeistungsabrechnungType">
+                <xsd:sequence>
+                    <xsd:element name="leistungsabrechnungspositionen" type="tns:WsLeistungsabrechnungspositionType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Leistungsabrechnungposition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsL10nAttributesLeistungsabrechnungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Lokalisierte Informationen der Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsabrechnungId" type="oi:WsLeistungsabrechnungIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="herkunft" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der Herkunft der Leistungsabrechnung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

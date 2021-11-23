@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="DocTypeService"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:data:doctype:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:data:doctype:v1"
+        xmlns:pa="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:data:doctype:v1:schema"
+        xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:documentation>Version: 1.0.0</wsdl:documentation>                  
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:data:doctype:v1:schema" schemaLocation="schema/DocTypeService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ReadL10nDocTypeAttributesRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nDocTypeAttributesRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nDocTypeAttributesResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nDocTypeAttributesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="DocTypeServicePortType">
+        <wsdl:operation name="readL10nDocTypeAttributes">
+            <wsdl:documentation>Liefert alle lokalisierten Attribute des Dokument-Typs zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nDocTypeAttributesRequest" message="tns:ReadL10nDocTypeAttributesRequestMessage"/>
+            <wsdl:output name="readL10nDocTypeAttributesResponse" message="tns:ReadL10nDocTypeAttributesResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DocTypeServiceBinding" type="tns:DocTypeServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="readL10nDocTypeAttributes">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nDocTypeAttributesRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nDocTypeAttributesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="DocTypeService_v1">
+        <wsdl:port name="DocTypeService_v1" binding="tns:DocTypeServiceBinding">
+            <soap:address location="https://example.com/apibridge-unternehmensorg/DocTypeService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

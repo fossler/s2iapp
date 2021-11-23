@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:militaersistierung:v0:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:militaersistierung:v0:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:cp="urn:com:adcubum:syrius:api:common:process:v0"
+            xmlns:pc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            version="0.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:process:v0" schemaLocation="../../../../../../common/process/v0/process.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    
+    <xsd:element name="militaerSistierungErstellenAnreicherungRequest" type="tns:MilitaerSistierungErstellenAnreicherungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine Militärsistierung für einen Partner zu erfassen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="militaerSistierungErstellenAnreicherungResponse" type="tns:MilitaerSistierungErstellenAnreicherungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für eine erfasste Militärsistierung.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="militaerSistierungErstellenRequest" type="tns:MilitaerSistierungErstellenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine Militärsistierung für einen Vertrag zu erfassen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="militaerSistierungErstellenResponse" type="tns:MilitaerSistierungErstellenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für eine erfasste Militärsistierung.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="MilitaerSistierungErstellenAnreicherungRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request Militärsistierung erstellen</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="militaerSistierungErstellenAnreicherung" type="tns:WsMilitaerSistierungErstellenAnreicherungType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Parameter zur Erstellung einer Militärsistierung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="MilitaerSistierungErstellenAnreicherungResponseType">
+        <xsd:annotation>
+	        <xsd:documentation>Response MilitäristierungErstellen Anreicherung</xsd:documentation>
+	    </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="militaerSistierungErstellenAnreicherungId" type="pi:WsMilitaerSistierungErstellenIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Prozess Id des Camunda Prozesses</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+	
+	<xsd:complexType name="MilitaerSistierungErstellenRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request Militärsistierung erstellen</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="militaerSistierungErstellen" type="tns:WsMilitaerSistierungErstellenType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Parameter zur Erstellung einer Militärsistierung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+	
+    <xsd:complexType name="MilitaerSistierungErstellenResponseType">
+        <xsd:annotation>
+	        <xsd:documentation>Response Militärsistierung erstellen </xsd:documentation>
+	    </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="militaerSistierungErstellenId" type="pi:WsMilitaerSistierungErstellenIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Prozess Id des Camunda Prozesses</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsMilitaerSistierungErstellenAnreicherungType">
+           <xsd:annotation>
+               <xsd:documentation>Parameter für das Erstellen der Militärsistierung</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:annotation>
+                   <xsd:documentation>Liste der Daten für eine Militärsistierung.</xsd:documentation>
+               </xsd:annotation>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                     <xsd:documentation>technische Id des Partners</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="einrueckDatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Datum wann der Militärdienst beginnen soll</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>      
+            <xsd:element name="entlassDatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Datum wann der Militärdienst enden soll</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>      
+            <xsd:element name="meldungsTypCode" type="pc:WsMilitaerSistierungErstellenMeldungsType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Gibt den Dokumenttyp an, welcher eingereicht wurde bzw. mit welchem die Militärsistierung bestätigt wird (Marschbef.,Dienstb. oder Zivildienst)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType> 
+
+    <xsd:complexType name="WsMilitaerSistierungErstellenType">
+           <xsd:annotation>
+               <xsd:documentation>Parameter für das Erstellen der Militärsistierung</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:annotation>
+                   <xsd:documentation>Liste der Daten für eine Militärsistierung.</xsd:documentation>
+               </xsd:annotation>
+            <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                     <xsd:documentation>technische Id des Vertrages</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertragsproduktId" type="pi:WsVertragsproduktIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                     <xsd:documentation>technische Id des Vertragsproduktes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="einrueckDatum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Datum wann der  Militärdienst beginnen soll</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>      
+            <xsd:element name="entlassDatum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Datum wann der Militärdienst enden soll</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>      
+            <xsd:element name="meldungsTypCode" type="pc:WsMilitaerSistierungErstellenMeldungsType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation> Gibt an, welches Dokument als Bestätigung mit eingereicht wird</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType> 
+</xsd:schema>

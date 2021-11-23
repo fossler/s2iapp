@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ZahlungsverbindungService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:zahlungsverbindung:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:zahlungsverbindung:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:zahlungsverbindung:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.3.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:zahlungsverbindung:v1:schema" schemaLocation="schema/ZahlungsverbindungService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetBankZahlungsverbindungRequestMessage">
+        <wsdl:part name="Request" element="pa:getBankZahlungsverbindungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetBankZahlungsverbindungResponseMessage">
+        <wsdl:part name="Response" element="pa:getBankZahlungsverbindungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerBankZahlungsverbindungenRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerBankZahlungsverbindungenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerBankZahlungsverbindungenResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerBankZahlungsverbindungenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="ZahlungsverbindungServicePortType">
+        <wsdl:operation name="getBankZahlungsverbindung">
+            <wsdl:documentation>Liefert für eine Liste von technischen Zahlungsverbindungsschlüssel die Daten der zugehörigen BankZahlungsverbindungen.</wsdl:documentation>
+            <wsdl:input name="getBankZahlungsverbindungRequest" message="tns:GetBankZahlungsverbindungRequestMessage"/>
+            <wsdl:output name="getBankZahlungsverbindungResponse" message="tns:GetBankZahlungsverbindungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerBankZahlungsverbindungen">
+            <wsdl:documentation>Liefert für eine Liste von technischen Partnerschlüssel die Daten aller dazugehörenden BankZahlungsverbindungen.</wsdl:documentation>
+            <wsdl:input name="getPartnerBankZahlungsverbindungenRequest" message="tns:GetPartnerBankZahlungsverbindungenRequestMessage"/>
+            <wsdl:output name="getPartnerBankZahlungsverbindungenResponse" message="tns:GetPartnerBankZahlungsverbindungenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ZahlungsverbindungServiceBinding" type="tns:ZahlungsverbindungServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getBankZahlungsverbindung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getBankZahlungsverbindungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getBankZahlungsverbindungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerBankZahlungsverbindungen">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerBankZahlungsverbindungenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerBankZahlungsverbindungenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZahlungsverbindungService_v1">
+        <wsdl:port name="ZahlungsverbindungService_v1" binding="tns:ZahlungsverbindungServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/ZahlungsverbindungService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

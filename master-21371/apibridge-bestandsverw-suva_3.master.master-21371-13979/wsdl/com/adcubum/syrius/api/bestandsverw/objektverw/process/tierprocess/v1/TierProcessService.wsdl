@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TierProcessService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:objektverw:process:tierprocess:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:objektverw:process:tierprocess:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:objektverw:process:tierprocess:v1:schema">
+
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:objektverw:process:tierprocess:v1:schema" schemaLocation="schema/TierProcessService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="GetTierVorlageRequestMessage">
+        <wsdl:part name="Request" element="pa:getTierVorlageRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetTierVorlageResponseMessage">
+        <wsdl:part name="Response" element="pa:getTierVorlageResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateTierRequestMessage">
+        <wsdl:part name="Request" element="pa:createTierRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateTierResponseMessage">
+        <wsdl:part name="Response" element="pa:createTierResponse"/>
+    </wsdl:message>    
+    <wsdl:message name="ChangeTierRequestMessage">
+        <wsdl:part name="Request" element="pa:changeTierRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeTierResponseMessage">
+        <wsdl:part name="Response" element="pa:changeTierResponse"/>
+    </wsdl:message>       
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="TierProcessServicePortType">
+        <wsdl:operation name="getTierVorlage">
+            <wsdl:documentation>Liefert zu der übergebenen VersichertesObjektDefinitionID eine Tier-Vorlage mit Default-Werten.</wsdl:documentation>
+            <wsdl:input name="getTierVorlageRequest" message="tns:GetTierVorlageRequestMessage"/>
+            <wsdl:output name="getTierVorlageResponse" message="tns:GetTierVorlageResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createTier">
+            <wsdl:documentation>Erstellt eine neues Tier. Das Tier wird nach erfolgreicher Validierung direkt persistiert. Im Falle eines Validierungsfehlers schlägt der komplette Request fehl.</wsdl:documentation>
+            <wsdl:input name="createTierRequest" message="tns:CreateTierRequestMessage"/>
+            <wsdl:output name="createTierResponse" message="tns:CreateTierResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>        
+        <wsdl:operation name="changeTier">
+            <wsdl:documentation>Ändert ein bestehendes Tier. Das Tier wird nach erfolgreicher Validierung direkt persistiert. Im Falle eines Validierungsfehlers schlägt der komplette Request fehl.</wsdl:documentation>
+            <wsdl:input name="changeTierRequest" message="tns:ChangeTierRequestMessage"/>
+            <wsdl:output name="changeTierResponse" message="tns:ChangeTierResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="TierProcessServiceBinding" type="tns:TierProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getTierVorlage">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getTierVorlageRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTierVorlageResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createTier">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createTierRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createTierResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>        
+        <wsdl:operation name="changeTier">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeTierRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeTierResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>             
+    </wsdl:binding>
+    <wsdl:service name="TierProcessService_v1">
+        <wsdl:port name="TierProcessService_v1" binding="tns:TierProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/TierProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

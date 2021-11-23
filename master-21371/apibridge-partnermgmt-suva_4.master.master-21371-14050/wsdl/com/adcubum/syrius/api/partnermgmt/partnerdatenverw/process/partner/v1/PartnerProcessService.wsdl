@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PartnerProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partner:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partner:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partner:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.5.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:partner:v1:schema" schemaLocation="schema/PartnerProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ChangeNatPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:changeNatPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeNatPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:changeNatPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateNatPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:createNatPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateNatPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:createNatPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateJurPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:createJurPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateJurPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:createJurPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="PartnerProcessServicePortType">
+        <wsdl:operation name="createNatPerson">
+            <wsdl:documentation>Erstellt eine neue natürliche Person inkl. Kommunikationsverbindungen. Die nat. Person wird nach erfolgreicher Validierung direkt persistiert und es findet keine Dublettenprüfung statt. Im Falle eines Validierungsfehlers schlägt der komplette Request fehl.</wsdl:documentation>
+            <wsdl:input name="createNatPersonRequest" message="tns:CreateNatPersonRequestMessage"/>
+            <wsdl:output name="createNatPersonResponse" message="tns:CreateNatPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createJurPerson">
+            <wsdl:documentation>Erstellt eine neue juristische Person inkl. Kommunikationsverbindungen. Die jur. Person wird nach erfolgreicher Validierung direkt persistiert und es findet keine Dublettenprüfung statt. Im Falle eines Validierungsfehlers schlägt der komplette Request fehl.</wsdl:documentation>
+            <wsdl:input name="createJurPersonRequest" message="tns:CreateJurPersonRequestMessage"/>
+            <wsdl:output name="createJurPersonResponse" message="tns:CreateJurPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeNatPerson">
+            <wsdl:documentation>Ändert eine natürliche Person.</wsdl:documentation>
+            <wsdl:input name="changeNatPersonRequest" message="tns:ChangeNatPersonRequestMessage"/>
+            <wsdl:output name="changeNatPersonResponse" message="tns:ChangeNatPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PartnerProcessServiceBinding" type="tns:PartnerProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createNatPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createNatPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createNatPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createJurPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createJurPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createJurPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeNatPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeNatPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeNatPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PartnerProcessService_v1">
+        <wsdl:port name="PartnerProcessService_v1" binding="tns:PartnerProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/PartnerProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

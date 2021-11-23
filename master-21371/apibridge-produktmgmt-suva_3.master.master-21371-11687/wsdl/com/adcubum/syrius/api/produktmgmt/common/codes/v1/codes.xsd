@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:common:codes:v1" targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:common:codes:v1"
+            version="1.0.0"
+            elementFormDefault="qualified">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+    <xsd:complexType name="WsKriteriumdefinitionTypCodeType">
+    	<xsd:annotation>
+    		<xsd:documentation>Typ der übergeordneten Kriteriumdefinition zu einem Code- oder Wertkriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAVMNetzTypCodeType">
+    	<xsd:annotation>
+    		<xsd:documentation>AVM-Netz-Typ</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAVMZuteilungCodeType">
+    	<xsd:annotation>
+    		<xsd:documentation>AVM-Zuteilungstyp</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAufnahmestoppCodeType">
+    	<xsd:annotation>
+    		<xsd:documentation>Aufnahmestopp-Typ</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsKriteriumTypCodeType">
+    	<xsd:annotation>
+    		<xsd:documentation>Typ des Kriteriums</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="AbrechnungService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnung:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnung:v1"
+                  xmlns:ov="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnung:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.1.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:abrechnung:v1:schema" schemaLocation="schema/AbrechnungService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAbrechnungRequestMessage">
+        <wsdl:part name="request" element="ov:getAbrechnungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAbrechnungResponseMessage">
+        <wsdl:part name="response" element="ov:getAbrechnungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAbrechnungMitPositionenRequestMessage">
+        <wsdl:part name="request" element="ov:getAbrechnungMitPositionenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAbrechnungMitPositionenResponseMessage">
+        <wsdl:part name="response" element="ov:getAbrechnungMitPositionenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesAbrechnungRequestMessage">
+        <wsdl:part name="Request" element="ov:readL10nAttributesAbrechnungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesAbrechnungResponseMessage">
+        <wsdl:part name="Response" element="ov:readL10nAttributesAbrechnungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SearchAbrechnungRequestMessage">
+    	<wsdl:part name="Request" element="ov:searchAbrechnungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchAbrechnungResponseMessage">
+    	<wsdl:part name="Response" element="ov:searchAbrechnungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="AbrechnungServicePortType">
+        <wsdl:operation name="getAbrechnung">
+            <wsdl:documentation>Liefert für einen technischen Abrechnungsschlüssel die Daten der zugehörigen Abrechnung.</wsdl:documentation>
+            <wsdl:input name="getAbrechnungRequest" message="tns:GetAbrechnungRequestMessage"/>
+            <wsdl:output name="getAbrechnungResponse" message="tns:GetAbrechnungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAbrechnungMitPositionen">
+            <wsdl:documentation>Liefert für einen technischen Abrechnungsschlüssel die Daten der zugehörigen Abrechnung mitsamt allen Abrechnungspositionen.</wsdl:documentation>
+            <wsdl:input name="getAbrechnungMitPositionenRequest" message="tns:GetAbrechnungMitPositionenRequestMessage"/>
+            <wsdl:output name="getAbrechnungMitPositionenResponse" message="tns:GetAbrechnungMitPositionenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesAbrechnung">
+            <wsdl:documentation>Liefert für einen technischen Abrechnungsschlüssel die Bezeichnung der zugehörigen Abrechnung zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesAbrechnungRequest" message="tns:ReadL10nAttributesAbrechnungRequestMessage"/>
+            <wsdl:output name="readL10nAttributesAbrechnungResponse" message="tns:ReadL10nAttributesAbrechnungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchAbrechnung">
+        	<wsdl:documentation>Liefert eine Liste von technischen Schlüssel gemäss den gesetzten Suchkriterien. Die Schlüssel beziehen sich dabei auf Abrechnung. Die Suche erfolgt per Stichdatum.</wsdl:documentation>
+        	<wsdl:input name="searchAbrechnungRequest" message="tns:SearchAbrechnungRequestMessage"/>
+            <wsdl:output name="searchAbrechnungResponse" message="tns:SearchAbrechnungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AbrechnungServiceBinding" type="tns:AbrechnungServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAbrechnung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAbrechnungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAbrechnungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAbrechnungMitPositionen">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAbrechnungMitPositionenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAbrechnungMitPositionenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesAbrechnung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesAbrechnungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesAbrechnungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchAbrechnung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchAbrechnungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchAbrechnungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AbrechnungService_v1">
+        <wsdl:port name="AbrechnungService_v1" binding="tns:AbrechnungServiceBinding">
+            <soap:address location="https://example.com/apibridge-operativesrechnungswesen/AbrechnungService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

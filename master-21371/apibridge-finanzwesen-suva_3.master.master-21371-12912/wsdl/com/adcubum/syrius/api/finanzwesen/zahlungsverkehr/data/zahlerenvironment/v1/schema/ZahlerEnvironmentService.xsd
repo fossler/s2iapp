@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:fi="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1"
+            xmlns:fc="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:zahlungsverkehr:data:zahlerenvironment:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:zahlungsverkehr:data:zahlerenvironment:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:element name="getZahlerEnvironmentRequest" type="tns:GetZahlerEnvironmentRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem das Zahler-Environment geladen wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getZahlerEnvironmentResponse" type="tns:GetZahlerEnvironmentResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der das geladene Zahler-Environment enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GetZahlerEnvironmentRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Zahler-Environment geladen wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetZahlerEnvironmentResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der das geladene Zahler-Environment enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlerEnvironment" type="tns:WsZahlerEnvironmentType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Request, mit dem das Zahler-Environment geladen wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlerEnvironmentType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten eines Zahler-Environments.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="zahlungsartCodes" type="fc:WsZahlungsartCodeType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Liste aller möglichen Zahlungsart-Codes</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahlungVorNachschuessigCodes" type="fc:WsZahlungVorNachschuessigCodeType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Liste aller möglichen ZahlungVorNachschuessig-Codes</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahlungsmittelDefIds" type="fi:WsZahlungsmittelDefIdType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Technische Schlüssel aller möglichen Zahlungsmittel-Definitionen</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahlertypIds" type="fi:WsZahlertypIdType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Technische Schlüssel aller möglichen Zahlertypen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bonitaetsstufeDefIds" type="fi:WsBonitaetsstufeDefIdType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Technische Schlüssel aller möglichen  Bonitätsstufen-Definitionen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

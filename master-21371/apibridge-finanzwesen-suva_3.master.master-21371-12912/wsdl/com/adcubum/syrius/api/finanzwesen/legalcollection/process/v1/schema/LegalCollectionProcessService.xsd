@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:legalcollection:process:v1:schema"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:legalcollection:process:v1:schema"
+            elementFormDefault="qualified"
+            version="1.1.0">
+
+    <xsd:element name="createAdditionalCostRequest" type="tns:CreateAdditionalCostRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new additional costs.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createAdditionalCostResponse" type="tns:CreateAdditionalCostResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateAdditionalCostRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new additional costs.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="additionalCosts" type="tns:WsAdditionalCostType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the additional costs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateAdditionalCostResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAdditionalCostType">
+        <xsd:annotation>
+            <xsd:documentation>A additional cost</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dossierId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Number of the legal collection where this additional cost should be applied on</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="treat" type="tns:WsTreatAdditionalCostType">
+                <xsd:annotation>
+                    <xsd:documentation>Use case of the dossier.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimDetailId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Id of the claim detail.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="typeOfClaim" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Type of the claim.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="reasonType" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Type of the reason.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amount" type="tns:WsAmountType">
+                <xsd:annotation>
+                    <xsd:documentation>Amount of the item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="businessUnit" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Business unit.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="currencyType" type="tns:WsCurrencyType">
+                <xsd:annotation>
+                    <xsd:documentation>Type of currency.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="datePeriodBegin" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>Date marking the start of period.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="datePeriodEnd" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>Date marking the end of period.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="assignment" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Assignment.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="createCertificateOfLossRequest" type="tns:CreateCertificateOfLossRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new debt reductions.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createCertificateOfLossResponse" type="tns:CreateCertificateOfLossResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateCertificateOfLossRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new debt reductions.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificatesOfLoss" type="tns:WsCertificateOfLossType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the debt reductions.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateCertificateOfLossResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCertificateOfLossType">
+        <xsd:annotation>
+            <xsd:documentation>A detailed certificate of loss.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="certificateOfLossId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The id of the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificateOfLossNumber" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Number of the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dossierId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The id of the dossier</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="businessUnit" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Identifier of the business unit.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificateOfLossClaims" type="tns:WsCertificateOfLossClaimType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the claims for the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="enforceAgency" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Agency which will enforce the claims.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificateOfLossAgency" type="tns:WsCantonAbbreviationType">
+                <xsd:annotation>
+                    <xsd:documentation>Agency which will enforce the claims.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificateOfLossReasonType" type="tns:WsCertificateOfLossReasonType">
+                <xsd:annotation>
+                    <xsd:documentation>Agency which will enforce the claims.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificateOfLossDate" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>Date of creation of the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCertificateOfLossClaimType">
+        <xsd:annotation>
+            <xsd:documentation>Claims for the certificate of loss.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="claimDetailAncestorIds" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the claims for the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amount" type="tns:WsAmountType">
+                <xsd:annotation>
+                    <xsd:documentation>The amount.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="currencyType" type="tns:WsCurrencyType">
+                <xsd:annotation>
+                    <xsd:documentation>The type of currency.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="reason" type="tns:WsString500Type">
+                <xsd:annotation>
+                    <xsd:documentation>Description of the reason of the certificate of loss claim.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="insuredPersonNumber" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The number of the insured person partner.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="periodFrom" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>The date start date for the claims.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="periodUpto" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>The date start date for the claims.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="createClaimReturnRequest" type="tns:CreateClaimReturnRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports new claim returns.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createClaimReturnResponse" type="tns:CreateClaimReturnResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateClaimReturnRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports new claim returns.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimReturns" type="tns:WsClaimReturnType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the claim returns.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateClaimReturnResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsClaimReturnType">
+        <xsd:annotation>
+            <xsd:documentation>A list of claim returns.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="claimReturnDetails" type="tns:WsClaimReturnDetailType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the claim returns.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsClaimReturnDetailType">
+        <xsd:annotation>
+            <xsd:documentation>Detailed view of the claim return.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="claimDetailId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The Id of the claim.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="returnAcknowledged" type="tns:WsReturnAcknowledgedType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Flag which implies if the return was acknowledged.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsReturnAcknowledgedType">
+        <xsd:annotation>
+            <xsd:documentation>Flag which implies if the return was acknowledged.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="YES"/>
+            <xsd:enumeration value="NO"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="closeCertificateOfLossRequest" type="tns:CloseCertificateOfLossRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports the certificates of loss close.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="closeCertificateOfLossResponse" type="tns:CloseCertificateOfLossResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CloseCertificateOfLossRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports the certificates of loss close.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificatesOfLossClose" type="tns:WsCloseCertificateOfLossType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the debt reductions.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CloseCertificateOfLossResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCloseCertificateOfLossType">
+        <xsd:annotation>
+            <xsd:documentation>A detailed certificate of loss close.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="certificateOfLossId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The id of the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="certificateOfLossNumber" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Number of the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="closeCertificateOfLossReasonType" type="tns:WsCloseCertificateOfLossReasonType">
+                <xsd:annotation>
+                    <xsd:documentation>Enum value which describes the reason of closing the certificate of loss.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsCloseCertificateOfLossReasonType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration containing the reasons of closing the certificate of loss.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="EXPIRATION"/>
+            <xsd:enumeration value="DEBTOR_DISAPPEARANCE"/>
+            <xsd:enumeration value="SALE"/>
+            <xsd:enumeration value="CANCELLATION"/>
+            <xsd:enumeration value="OTHERS"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="createDebtCollectionRequest" type="tns:CreateDebtCollectionRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports new debt collection.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createDebtCollectionResponse" type="tns:CreateDebtCollectionResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="CreateDebtCollectionRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports new debt collection.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="debtCollections" type="tns:WsDebtCollectionType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of debt collections.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateDebtCollectionResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsDebtCollectionType">
+        <xsd:annotation>
+            <xsd:documentation>A debt collection</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dossierId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>Number of the legal collection where this debt collection should be applied on
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="usecaseType" type="tns:WsUsecaseType">
+                <xsd:annotation>
+                    <xsd:documentation>Use case of the dossier.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="debtCollection" type="tns:WsTypeOfDebtType">
+                <xsd:annotation>
+                    <xsd:documentation>Type of debt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dossierState" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>State of the dossier.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="debtState" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>State of the debt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimDetailIdsToAdd" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of claimDetail id's which will be added to the dossier.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimDetailIdsToRemove" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of claimDetail id's which will be removed from the dossier.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="createDebtReductionRequest" type="tns:CreateDebtReductionRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new debt reductions.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createDebtReductionResponse" type="tns:CreateDebtReductionResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateDebtReductionRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new debt reductions.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="debtReductions" type="tns:WsDebtReductionType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the debt reductions.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateDebtReductionResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsDebtReductionType">
+        <xsd:annotation>
+            <xsd:documentation>A debt reduction</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element name="dossierId" type="tns:WsString40Type">
+                    <xsd:annotation>
+                        <xsd:documentation>Number of the legal collection where this debt reduction should be applied on</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="paymentPlanId" type="tns:WsString40Type">
+                    <xsd:annotation>
+                        <xsd:documentation>Number of the payment plan where this debt reduction should be applied on</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+            <xsd:element name="amortizations" type="tns:WsAmortizationType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>The debt reduction / amortization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAmortizationType">
+        <xsd:annotation>
+            <xsd:documentation>Main Body for an Amortization</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="tns:WsString40Type" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        The main claim/payment/amortization ID for messages to the Legal-Collection system;
+                        For messages from the Legal Collection System to SYRIUS, only in case of a Cancellation.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="treat" type="tns:WsTreatAmortizationType" >
+                <xsd:annotation>
+                    <xsd:documentation>Type of the amortization.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amountTotal" type="tns:WsAmountType" >
+                <xsd:annotation>
+                    <xsd:documentation>Total amount of the item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="currencyType" type="tns:WsCurrencyType" >
+                <xsd:annotation>
+                    <xsd:documentation>The currency of the amount.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="datePayment" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>Balance-Date for Credits, Interest-Date for Payments and Write-Offs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="typeOfReductionType" type="tns:WsTypeOfReductionType" >
+                <xsd:annotation>
+                    <xsd:documentation>Type of a reduction.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="reasonType" type="tns:WsReasonType" >
+                <xsd:annotation>
+                    <xsd:documentation>The reason type.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="businessUnit" type="tns:WsBusinessUnitType" >
+                <xsd:annotation>
+                    <xsd:documentation>Defines the main business unit for the item.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentDebtor" type="tns:WsPaymentDebtorType" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Debtor of a payment.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="reason" type="tns:WsString500Type">
+                <xsd:annotation>
+                    <xsd:documentation>A reason for this amortization.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amortizationDetails" type="tns:WsAmortizationDetailType" minOccurs="0" maxOccurs="unbounded" >
+                <xsd:annotation>
+                    <xsd:documentation>A reason for this amortization.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsPaymentDebtorType">
+        <xsd:annotation>
+            <xsd:documentation>Debtor of a payment</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="name" type="tns:WsString500Type" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Name of the payer.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="street" type="tns:WsString100Type" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Street of the payer.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="town" type="tns:WsString100Type" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Town of the payer.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="esrNumber" type="tns:WsEsrNumberType" minOccurs="1" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>The ESR-/QESR-Number which defines the number of a payment slip in Switzerland.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="participantNumber" type="tns:WsAccountNumberType" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Defines the ESR-Participant used on a payment slip in Switzerland.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="accountNumber" type="tns:WsAccountNumberType" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Defines the ESR-Participant used on a payment slip in Switzerland.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="remittanceInformation" type="tns:WsString500Type" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>RemittanceInformation for the payment.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsTypeOfReductionType">
+        <xsd:annotation>
+            <xsd:documentation>Type of a reduction</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="PAYMENT">
+                <xsd:annotation>
+                    <xsd:documentation>Payment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WRITE_OFF">
+                <xsd:annotation>
+                    <xsd:documentation>Write off</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CREDIT_CLEARING">
+                <xsd:annotation>
+                    <xsd:documentation>Credit clearing</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CREDIT_CLEARING_FROM_PV_CREDIT">
+                <xsd:annotation>
+                    <xsd:documentation>Premium-Credit (German: Praemien Verbilligung/PV)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CREDIT_CLEARING_FROM_PREMIUM_CREDIT">
+                <xsd:annotation>
+                    <xsd:documentation>Premium reduction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="REBALANCING">
+                <xsd:annotation>
+                    <xsd:documentation>Re-Balancing</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsTreatAmortizationType">
+        <xsd:annotation>
+            <xsd:documentation>Type of the amortization</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="REGULAR">
+                <xsd:annotation>
+                    <xsd:documentation>A regular amortization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CANCELLATION">
+                <xsd:annotation>
+                    <xsd:documentation>A cancellation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AMORTISATION_DISTRIBUTION_CHANGE">
+                <xsd:annotation>
+                    <xsd:documentation>Do a Re-Balance</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="WsAmortizationDetailType">
+        <xsd:annotation>
+            <xsd:documentation>Detail position of an Amortization.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="targetId" type="tns:WsString40Type" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Reference to the claim where the amortization should be applied onto</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="targetType" type="tns:WsTargetType" minOccurs="1" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Type of the amortization.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="connectorId" type="tns:WsString40Type" minOccurs="0" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Optional reference to a connection to an already done payment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="treat" type="tns:WsTreatAdditionalCostType" minOccurs="1" maxOccurs="1" >
+                <xsd:annotation>
+                    <xsd:documentation>Type of the additional costs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amount" type="tns:WsAmountType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>The amount.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="currencyType" type="tns:WsCurrencyType" >
+                <xsd:annotation>
+                    <xsd:documentation>The currency of the amout.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="createPaymentInstrumentRequest" type="tns:CreatePaymentInstrumentRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new payment instruments.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="createPaymentInstrumentResponse" type="tns:CreatePaymentInstrumentResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="CreatePaymentInstrumentRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new payment instruments.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentInstruments" type="tns:WsPaymentInstrumentType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the payment instruments.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CreatePaymentInstrumentResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsPaymentInstrumentType">
+        <xsd:annotation>
+            <xsd:documentation>A payment instrument.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:choice>
+                <xsd:element name="dossierId" type="tns:WsString40Type">
+                    <xsd:annotation>
+                        <xsd:documentation>The dossier id.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="paymentPlanId" type="tns:WsString40Type">
+                    <xsd:annotation>
+                        <xsd:documentation>The id of the payment plan.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+            <xsd:element name="esrReferenceNumber" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The reference number of the ESR.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="createPaymentPlanRequest" type="tns:CreatePaymentPlanRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new payment plans.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="createPaymentPlanResponse" type="tns:CreatePaymentPlanResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="CreatePaymentPlanRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request, which imports some new payment plans.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentPlans" type="tns:WsPaymentPlanType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of the payment plans.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CreatePaymentPlanResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response, with the status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="importResponses" type="tns:WsImportResponseType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Status of the work.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsPaymentPlanType">
+        <xsd:annotation>
+            <xsd:documentation>A payment plan.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="treatPaymentPlanType" type="tns:WsTreatPaymentPlanType">
+                <xsd:annotation>
+                    <xsd:documentation>The type of the payment plan.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentPlanId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The id of the payment plan.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimDetailIdsToAdd" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of claimDetail id's which will be added to the dossier.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimDetailIdsToRemove" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of claimDetail id's which will be removed from the dossier.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerMasterId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The master id of the partner.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentProfileId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The id of the payment profile.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="addressId" type="tns:WsString40Type">
+                <xsd:annotation>
+                    <xsd:documentation>The id of the address.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentPlanDetails" type="tns:WsPaymentPlanDetailType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>List of payment plans with detailed information.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsPaymentPlanDetailType">
+        <xsd:annotation>
+            <xsd:documentation>Details of the payment plan.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="amount" type="xsd:decimal">
+                <xsd:annotation>
+                    <xsd:documentation>The amount which is due for payment.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amountToAdd" type="xsd:decimal">
+                <xsd:annotation>
+                    <xsd:documentation>The amount which will be added to the amount for payment.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="currencyType" type="tns:WsCurrencyType">
+                <xsd:annotation>
+                    <xsd:documentation>The type of currency.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dateDue" type="xsd:date">
+                <xsd:annotation>
+                    <xsd:documentation>The due date of payment.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsTreatPaymentPlanType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration containing the types of the payment plan.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="OPENING"/>
+            <xsd:enumeration value="MODIFICATION"/>
+            <xsd:enumeration value="CANCELLATION"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="WsMetaType">
+        <xsd:annotation>
+            <xsd:documentation>
+                MetaData of the message, has to contain at least the unique message id and the origin.
+                All the other parameters are optional and are there for a better tracing and logging.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="messageId" type="tns:WsMessageIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>ID of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="origin" type="tns:WsOriginType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Name of the receiving SYRIUS-Instance.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="time" type="xsd:dateTime" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>The time when the message was sent.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="product" type="tns:WsProductType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Name of the Product which is sending the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="version" type="tns:WsVersionType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Version of the sending Product.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsMessageIdType">
+        <xsd:annotation>
+            <xsd:documentation>Unique message-ID</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="128"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsOriginType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Name of the receiving SYRIUS-Instance.
+                The Legal Collection System has to fill this field with the Instance-Name of SYRIUS
+                (see the legal collection configuration). If the origin does not match the defined origin,
+                SYRIUS will not process the message but throw an Error back.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="128"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsProductType">
+        <xsd:annotation>
+            <xsd:documentation>Name of the Product which is sending the message.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="50"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsVersionType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Version of the sending Product in the form 'A.B.C.D-E-F' where the positions A-D must be numbers and
+                the positions E and F can be alpha numeric.
+                Example: 1.2.3.4-01-A, 1.2-SD, 1.2.3-666
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:pattern value="(\d+)?(\.\d+)?(\.\d+)?(\.\d+)?(\-[a-zA-Z0-9]+)?(\-[a-zA-Z0-9]+)?"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsString40Type">
+        <xsd:annotation>
+            <xsd:documentation>String value with maximal 40 characters.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsAmountType">
+        <xsd:annotation>
+            <xsd:documentation>Amount of the Item.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsString500Type">
+        <xsd:annotation>
+            <xsd:documentation>String value with maximal 500 characters.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="500"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsReasonType">
+        <xsd:annotation>
+            <xsd:documentation>Defines a set of default values configured in both system for Claims, Payments,
+                Amortizations, ...
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="100"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsString100Type">
+        <xsd:annotation>
+            <xsd:documentation>String value with maximal 100 characters.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="100"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsEsrNumberType">
+        <xsd:annotation>
+            <xsd:documentation>The ESR-/QESR-Number which defines the number of a payment slip in Switzerland
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="27"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsAccountNumberType">
+        <xsd:annotation>
+            <xsd:documentation>Defines the ESR-Participant used on a payment slip in Switzerland</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="34"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsBusinessUnitType">
+        <xsd:annotation>
+            <xsd:documentation>Defines the main business unit for the item (claim, payment, amortization, fee, ...)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsCurrencyType">
+        <xsd:annotation>
+            <xsd:documentation>Currency in ISO-4217</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="AED"/>
+            <xsd:enumeration value="AFN"/>
+            <xsd:enumeration value="ALL"/>
+            <xsd:enumeration value="AMD"/>
+            <xsd:enumeration value="ANG"/>
+            <xsd:enumeration value="AOA"/>
+            <xsd:enumeration value="ARS"/>
+            <xsd:enumeration value="AUD"/>
+            <xsd:enumeration value="AWG"/>
+            <xsd:enumeration value="AZN"/>
+            <xsd:enumeration value="BAM"/>
+            <xsd:enumeration value="BBD"/>
+            <xsd:enumeration value="BDT"/>
+            <xsd:enumeration value="BGN"/>
+            <xsd:enumeration value="BHD"/>
+            <xsd:enumeration value="BIF"/>
+            <xsd:enumeration value="BMD"/>
+            <xsd:enumeration value="BND"/>
+            <xsd:enumeration value="BOB"/>
+            <xsd:enumeration value="BOV"/>
+            <xsd:enumeration value="BRL"/>
+            <xsd:enumeration value="BSD"/>
+            <xsd:enumeration value="BTN"/>
+            <xsd:enumeration value="BWP"/>
+            <xsd:enumeration value="BYN"/>
+            <xsd:enumeration value="BZD"/>
+            <xsd:enumeration value="CAD"/>
+            <xsd:enumeration value="CDF"/>
+            <xsd:enumeration value="CHF"/>
+            <xsd:enumeration value="CHW"/>
+            <xsd:enumeration value="CLF"/>
+            <xsd:enumeration value="CLP"/>
+            <xsd:enumeration value="CNY"/>
+            <xsd:enumeration value="COP"/>
+            <xsd:enumeration value="COU"/>
+            <xsd:enumeration value="CRC"/>
+            <xsd:enumeration value="CUC"/>
+            <xsd:enumeration value="CUP"/>
+            <xsd:enumeration value="CVE"/>
+            <xsd:enumeration value="CZK"/>
+            <xsd:enumeration value="DJF"/>
+            <xsd:enumeration value="DKK"/>
+            <xsd:enumeration value="DOP"/>
+            <xsd:enumeration value="DZD"/>
+            <xsd:enumeration value="EGP"/>
+            <xsd:enumeration value="ERN"/>
+            <xsd:enumeration value="ETB"/>
+            <xsd:enumeration value="EUR"/>
+            <xsd:enumeration value="FJD"/>
+            <xsd:enumeration value="FKP"/>
+            <xsd:enumeration value="GBP"/>
+            <xsd:enumeration value="GEL"/>
+            <xsd:enumeration value="GHS"/>
+            <xsd:enumeration value="GIP"/>
+            <xsd:enumeration value="GMD"/>
+            <xsd:enumeration value="GNF"/>
+            <xsd:enumeration value="GTQ"/>
+            <xsd:enumeration value="GYD"/>
+            <xsd:enumeration value="HKD"/>
+            <xsd:enumeration value="HNL"/>
+            <xsd:enumeration value="HRK"/>
+            <xsd:enumeration value="HTG"/>
+            <xsd:enumeration value="HUF"/>
+            <xsd:enumeration value="IDR"/>
+            <xsd:enumeration value="ILS"/>
+            <xsd:enumeration value="INR"/>
+            <xsd:enumeration value="IQD"/>
+            <xsd:enumeration value="IRR"/>
+            <xsd:enumeration value="ISK"/>
+            <xsd:enumeration value="JMD"/>
+            <xsd:enumeration value="JOD"/>
+            <xsd:enumeration value="JPY"/>
+            <xsd:enumeration value="KES"/>
+            <xsd:enumeration value="KGS"/>
+            <xsd:enumeration value="KHR"/>
+            <xsd:enumeration value="KMF"/>
+            <xsd:enumeration value="KPW"/>
+            <xsd:enumeration value="KRW"/>
+            <xsd:enumeration value="KWD"/>
+            <xsd:enumeration value="KYD"/>
+            <xsd:enumeration value="KZT"/>
+            <xsd:enumeration value="LAK"/>
+            <xsd:enumeration value="LBP"/>
+            <xsd:enumeration value="LKR"/>
+            <xsd:enumeration value="LRD"/>
+            <xsd:enumeration value="LSL"/>
+            <xsd:enumeration value="LYD"/>
+            <xsd:enumeration value="MAD"/>
+            <xsd:enumeration value="MDL"/>
+            <xsd:enumeration value="MGA"/>
+            <xsd:enumeration value="MKD"/>
+            <xsd:enumeration value="MMK"/>
+            <xsd:enumeration value="MNT"/>
+            <xsd:enumeration value="MOP"/>
+            <xsd:enumeration value="MRU"/>
+            <xsd:enumeration value="MUR"/>
+            <xsd:enumeration value="MVR"/>
+            <xsd:enumeration value="MWK"/>
+            <xsd:enumeration value="MXN"/>
+            <xsd:enumeration value="MXV"/>
+            <xsd:enumeration value="MYR"/>
+            <xsd:enumeration value="MZN"/>
+            <xsd:enumeration value="NAD"/>
+            <xsd:enumeration value="NGN"/>
+            <xsd:enumeration value="NIO"/>
+            <xsd:enumeration value="NOK"/>
+            <xsd:enumeration value="NPR"/>
+            <xsd:enumeration value="NZD"/>
+            <xsd:enumeration value="OMR"/>
+            <xsd:enumeration value="PAB"/>
+            <xsd:enumeration value="PEN"/>
+            <xsd:enumeration value="PGK"/>
+            <xsd:enumeration value="PHP"/>
+            <xsd:enumeration value="PKR"/>
+            <xsd:enumeration value="PLN"/>
+            <xsd:enumeration value="PYG"/>
+            <xsd:enumeration value="QAR"/>
+            <xsd:enumeration value="RON"/>
+            <xsd:enumeration value="RSD"/>
+            <xsd:enumeration value="RUB"/>
+            <xsd:enumeration value="RWF"/>
+            <xsd:enumeration value="SAR"/>
+            <xsd:enumeration value="SBD"/>
+            <xsd:enumeration value="SCR"/>
+            <xsd:enumeration value="SDG"/>
+            <xsd:enumeration value="SEK"/>
+            <xsd:enumeration value="SGD"/>
+            <xsd:enumeration value="SHP"/>
+            <xsd:enumeration value="SLL"/>
+            <xsd:enumeration value="SOS"/>
+            <xsd:enumeration value="SRD"/>
+            <xsd:enumeration value="SSP"/>
+            <xsd:enumeration value="STN"/>
+            <xsd:enumeration value="SVC"/>
+            <xsd:enumeration value="SYP"/>
+            <xsd:enumeration value="SZL"/>
+            <xsd:enumeration value="THB"/>
+            <xsd:enumeration value="TJS"/>
+            <xsd:enumeration value="TMT"/>
+            <xsd:enumeration value="TND"/>
+            <xsd:enumeration value="TOP"/>
+            <xsd:enumeration value="TRY"/>
+            <xsd:enumeration value="TTD"/>
+            <xsd:enumeration value="TWD"/>
+            <xsd:enumeration value="TZS"/>
+            <xsd:enumeration value="UAH"/>
+            <xsd:enumeration value="UGX"/>
+            <xsd:enumeration value="USD"/>
+            <xsd:enumeration value="USN"/>
+            <xsd:enumeration value="UYI"/>
+            <xsd:enumeration value="UYU"/>
+            <xsd:enumeration value="UZS"/>
+            <xsd:enumeration value="VEF"/>
+            <xsd:enumeration value="VND"/>
+            <xsd:enumeration value="VUV"/>
+            <xsd:enumeration value="WST"/>
+            <xsd:enumeration value="XAF"/>
+            <xsd:enumeration value="XAG"/>
+            <xsd:enumeration value="XAU"/>
+            <xsd:enumeration value="XBA"/>
+            <xsd:enumeration value="XBB"/>
+            <xsd:enumeration value="XBC"/>
+            <xsd:enumeration value="XBD"/>
+            <xsd:enumeration value="XCD"/>
+            <xsd:enumeration value="XDR"/>
+            <xsd:enumeration value="XOF"/>
+            <xsd:enumeration value="XPD"/>
+            <xsd:enumeration value="XPF"/>
+            <xsd:enumeration value="XPT"/>
+            <xsd:enumeration value="XSU"/>
+            <xsd:enumeration value="XTS"/>
+            <xsd:enumeration value="XUA"/>
+            <xsd:enumeration value="XXX"/>
+            <xsd:enumeration value="YER"/>
+            <xsd:enumeration value="ZAR"/>
+            <xsd:enumeration value="ZMW"/>
+            <xsd:enumeration value="ZWL"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="WsImportResponseType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Includes the status of the request.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="meta" type="tns:WsMetaType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>MetaData of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="statusType" type="tns:WsStatusType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>ID of the message.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="errorMessages" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>The error messages, if the status isn't ok.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="details" type="tns:WsImportResponseDetailType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>The details of the response.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsImportResponseDetailType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Includes the detail status of the request.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="claimDetail" type="tns:WsString40Type" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Identification of the claim detail</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimNumber" type="tns:WsString40Type" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Business-Identification of the claim detail</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="claimDetailAncestors" type="tns:WsString40Type" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>In case of a certificate of loss message, this field can contain the ancestor of
+                        the claim for a correct assignemt
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="amortization" type="tns:WsString40Type" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Identification of the amortization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="statusType" type="tns:WsStatusType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>This detail was processed without any errors</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsStatusType">
+        <xsd:annotation>
+            <xsd:documentation>Type of the additional costs</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="OK">
+                <xsd:annotation>
+                    <xsd:documentation>Status is ok.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NOK">
+                <xsd:annotation>
+                    <xsd:documentation>Status is not ok.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsTargetType">
+        <xsd:annotation>
+            <xsd:documentation>Type of the amortization</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="CLAIM">
+                <xsd:annotation>
+                    <xsd:documentation>A Claim</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PAYMENT">
+                <xsd:annotation>
+                    <xsd:documentation>Incoming Payment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsUsecaseType">
+        <xsd:annotation>
+            <xsd:documentation>Use case of the dossier.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="OPENING"/>
+            <xsd:enumeration value="MODIFICATION"/>
+            <xsd:enumeration value="DEBTOR_CREDITOR_CHANGE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsTypeOfDebtType">
+        <xsd:annotation>
+            <xsd:documentation>Type of debt.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="REGULAR"/>
+            <xsd:enumeration value="SHADOW"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsTreatAdditionalCostType">
+        <xsd:annotation>
+            <xsd:documentation>Use case of the dossier.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="REGULAR"/>
+            <xsd:enumeration value="CANCELLATION"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsCantonAbbreviationType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration containing the abbreviation of cantons.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="ZH"/>
+            <xsd:enumeration value="BE"/>
+            <xsd:enumeration value="LU"/>
+            <xsd:enumeration value="UR"/>
+            <xsd:enumeration value="SZ"/>
+            <xsd:enumeration value="OW"/>
+            <xsd:enumeration value="NW"/>
+            <xsd:enumeration value="GL"/>
+            <xsd:enumeration value="ZG"/>
+            <xsd:enumeration value="FR"/>
+            <xsd:enumeration value="SO"/>
+            <xsd:enumeration value="BS"/>
+            <xsd:enumeration value="BL"/>
+            <xsd:enumeration value="SH"/>
+            <xsd:enumeration value="AR"/>
+            <xsd:enumeration value="AI"/>
+            <xsd:enumeration value="SG"/>
+            <xsd:enumeration value="GR"/>
+            <xsd:enumeration value="TG"/>
+            <xsd:enumeration value="TI"/>
+            <xsd:enumeration value="VD"/>
+            <xsd:enumeration value="VS"/>
+            <xsd:enumeration value="NE"/>
+            <xsd:enumeration value="GE"/>
+            <xsd:enumeration value="JU"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="WsCertificateOfLossReasonType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration containing the reasons for the creation of a certificate of loss.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="INSOLVENCY"/>
+            <xsd:enumeration value="DISTRAINT"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

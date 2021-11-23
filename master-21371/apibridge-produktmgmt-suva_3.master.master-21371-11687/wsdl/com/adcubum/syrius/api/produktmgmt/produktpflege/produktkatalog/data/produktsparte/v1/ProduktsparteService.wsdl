@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ProduktsparteService"
+                  targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produktsparte:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produktsparte:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produktsparte:v1:schema">
+                  
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+                  
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produktsparte:v1:schema" schemaLocation="schema/ProduktsparteService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="ReadL10nAttributesProduktsparteRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesProduktsparteRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProduktsparteResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesProduktsparteResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ProduktsparteServicePortType">
+        <wsdl:operation name="readL10nAttributesProduktsparte">
+            <wsdl:documentation>Liefert für einen technischen Produktsparteschlüssel die Bezeichnung der zugehörigen Produktsparte zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesProduktsparteRequest" message="tns:ReadL10nAttributesProduktsparteRequestMessage"/>
+            <wsdl:output name="readL10nAttributesProduktsparteResponse" message="tns:ReadL10nAttributesProduktsparteResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ProduktsparteServiceBinding" type="tns:ProduktsparteServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="readL10nAttributesProduktsparte">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesProduktsparteRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesProduktsparteResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ProduktsparteService_v1">
+        <wsdl:port name="ProduktsparteService_v1" binding="tns:ProduktsparteServiceBinding">
+            <soap:address location="https://example.com/apibridge-produktmgmt/ProduktsparteService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
