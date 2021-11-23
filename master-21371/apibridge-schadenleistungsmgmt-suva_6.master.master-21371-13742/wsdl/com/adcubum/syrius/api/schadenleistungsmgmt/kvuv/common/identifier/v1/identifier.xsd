@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:ci="urn:com:adcubum:syrius:api:common:identifier:v1"
+        elementFormDefault="qualified"
+        version="1.2.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:identifier:v1"
+                schemaLocation="../../../../../../../../../com/adcubum/syrius/api/common/identifier/v1/identifier.xsd"/>
+
+    <xsd:complexType name="WsLeistungserbringerIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID eines Leistungserbringers.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsBeguenstigterTypIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID eines BeguenstigterTyp
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenfallIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID eines Schadenfalls.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenereignisIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID eines Schadenereignisses.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenfalltypIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID eines Schadenfalltyps.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsfallRueckfallIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID eines Leistungsfalls.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType">
+                <xsd:sequence>
+                    <xsd:element name="rueckfallNummer" type="xsd:nonNegativeInteger">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Da ein Grund- und ein Rückfall im selben Schadenfall dieselbe 'id' haben können lässt
+                                sich ein Leistungsfall nur in Kombination mit der Rückfallnummer eindeutig identifizieren.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsfallIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID eines Leistungsfall
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsRegressleistungsfallIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID eines Regressleistungsfall
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsHaftungsgrundIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID eines Haftungsgrundes
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsLeistungskategorieIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID einer Leistungskategorie
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>    
+    
+    <xsd:complexType name="WsLeistungskategorieDefinitionIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID einer LeistungskategorieDefinition
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>     
+    
+    <xsd:complexType name="WsProzessdefinitionIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID einer Prozessdefinition
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenartIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Objekt-ID einer Schadenart
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsBusinessKeyIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">BuisnessKey der Prozess-Instanz
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsFalldiagnoseIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID einer Falldiagnose.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsDiagnoseIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID einer Diagnose.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsDiagnoseTypIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID eines Diagnosetyps.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLohnangabeIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID einer Falldiagnose.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsKostenartIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID einer Kostenart.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsabrechnungIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID eines Leistungsabrechnung
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsabrechnungspositionIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID eines Leistungsabrechnungsposition
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsTaggeldVorberechnungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt-ID einer Taggeldvorberechnung.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAdresseIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID einer Adresse
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType" />
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsPartnerRolleIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID einer Partnerrolle
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType" />
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsKuerzungIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID einer Kürzung
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType" />
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsLeistungsreduktiondefinitionsIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID einer Leistungsreduktionsdefinition
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType" />
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsabrechnungstypIdType">
+        <xsd:annotation>
+            <xsd:documentation>Objekt-ID eines Leistungsabrechnungstyps
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType" />
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

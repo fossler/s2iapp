@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:kollektivvertraganonym:v1:schema"
+        xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:kollektivvertraganonym:v1:schema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:se="urn:com:adcubum:syrius:api:common:searchTypes:v2"
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+        xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+        xmlns:bc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+        version="1.0.0"
+        elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:syriusTypes:v1" schemaLocation="../../../../../../../common/syriusTypes/v1/syriusTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v2" schemaLocation="../../../../../../../common/searchTypes/v2/searchTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../common/types/v1/types.xsd"/>
+
+    <xsd:element name="getKollektivvertragAnonymRequest" type="tns:GetKollektivvertragAnonymRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request für das Laden eines Kollektivvertrag Anonym.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="getKollektivvertragAnonymResponse" type="tns:GetKollektivvertragAnonymResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response eines geladenen Kollektivvertrag Anonym.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchKollektivvertragAnonymRequest" type="tns:SearchKollektivvertragAnonymRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request für das Suchen eines Kollektivvertrag Anonym.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchKollektivvertragAnonymResponse" type="tns:SearchKollektivvertragAnonymResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response der gefunden Kollektivverträge Anonym, resp. deren ID.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="GetKollektivvertragAnonymRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Parameter für das Laden eines Kollektivvertrag Anonym.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kollektivvertragAnonymId" type="pi:WsKollektivvertragAnonymIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel vom KVA.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="st:LocalDateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Datum zu dem der Kollektivvertrag Anonym geladen werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetKollektivvertragAnonymResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält Daten des Kollektivvertrag Anonym.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="vertragsnehmerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Vertragsnehmers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragsnummer" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fachlicher Schlüssel (Vertragsnummer) des Kollektivvertrag Anonym.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="status" type="bc:WsKollektivvertragAnonymStatusCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Status des Kollektivvertrag Anonym.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktsparteId" type="pi:WsProduktsparteIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Produktsparte.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchKollektivvertragAnonymRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Parameter für das Suchen von Kollektivvertrag Anonym.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="suchbedingungen" type="se:WsSearchConditionType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Suchbedingungen für den Suchrequest.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="geschaeftsbereichId" type="se:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Geschäftsbereichs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertragsnehmerId" type="se:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Vertragsnehmers.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="produktsparteId" type="se:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel der Produktsparte.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertragsnummer" type="se:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Fachlicher Schlüssel des Kollektivvertrag Anonym.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchKollektivvertragAnonymResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die gefundenen Kollektivverträge Anonym enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kollektivvertragAnonym" type="tns:WsKollektivvertragAnonymSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefundenen Kollektivverträge Anonym.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsKollektivvertragAnonymSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener KVA.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="pi:WsKollektivvertragAnonymIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Kollektivvertrag Anonym.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:common:identifier:v1"
+            targetNamespace="urn:com:adcubum:syrius:api:common:identifier:v1"
+            elementFormDefault="qualified"
+            version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../simpleTypes/v1/simpleTypes.xsd"/>
+
+    <xsd:complexType name="WsIdType" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Abstrakter Basistyp für in Webservices vorkommende Ids.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Wert des Id Objekts.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

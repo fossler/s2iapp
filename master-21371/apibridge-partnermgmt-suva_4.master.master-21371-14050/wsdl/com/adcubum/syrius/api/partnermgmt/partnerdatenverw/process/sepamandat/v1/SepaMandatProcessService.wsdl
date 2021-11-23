@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="SepaMandatProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:sepamandat:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:sepamandat:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:sepamandat:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:sepamandat:v1:schema" schemaLocation="schema/SepaMandatProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="CreateEinzelmandatRequestMessage">
+        <wsdl:part name="Request" element="pa:createEinzelmandatRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateEinzelmandatResponseMessage">
+        <wsdl:part name="Response" element="pa:createEinzelmandatResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateSammelmandatRequestMessage">
+        <wsdl:part name="Request" element="pa:createSammelmandatRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateSammelmandatResponseMessage">
+        <wsdl:part name="Response" element="pa:createSammelmandatResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="SepaMandatProcessServicePortType">
+        <wsdl:operation name="createEinzelmandat">
+            <wsdl:documentation>Erstellt ein neues SEPA-Mandat zu einer bestehenden Zahlungsverbindung.</wsdl:documentation>
+            <wsdl:input name="createEinzelmandatRequest" message="tns:CreateEinzelmandatRequestMessage"/>
+            <wsdl:output name="createEinzelmandatResponse" message="tns:CreateEinzelmandatResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createSammelmandat">
+            <wsdl:documentation>Erstellt ein neues SEPA-Mandat zu einer bestehenden Zahlungsverbindung.</wsdl:documentation>
+            <wsdl:input name="createSammelmandatRequest" message="tns:CreateSammelmandatRequestMessage"/>
+            <wsdl:output name="createSammelmandatResponse" message="tns:CreateSammelmandatResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SepaMandatProcessServiceBinding" type="tns:SepaMandatProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createEinzelmandat">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createEinzelmandatRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createEinzelmandatResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createSammelmandat">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createSammelmandatRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createSammelmandatResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SepaMandatProcessService_v1">
+        <wsdl:port name="SepaMandatProcessService_v1" binding="tns:SepaMandatProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/SepaMandatProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

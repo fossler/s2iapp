@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TelefonBereichDefService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereichdef:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereichdef:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereichdef:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereichdef:v1:schema" schemaLocation="schema/TelefonBereichDefService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetTelefonBereichDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getTelefonBereichDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetTelefonBereichDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getTelefonBereichDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllTelefonBereichDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getAllTelefonBereichDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllTelefonBereichDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getAllTelefonBereichDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesTelefonBereichDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesTelefonBereichDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesTelefonBereichDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesTelefonBereichDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesTelefonBereichDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readAllL10nAttributesTelefonBereichDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesTelefonBereichDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readAllL10nAttributesTelefonBereichDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="TelefonBereichDefServicePortType">
+        <wsdl:operation name="getTelefonBereichDef">
+            <wsdl:documentation>Liefert für einen technischen Telefonbereich-Definition Schlüssel die Daten der zugehörigen Telefonbereich-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="getTelefonBereichDefRequest" message="tns:GetTelefonBereichDefRequestMessage"/>
+            <wsdl:output name="getTelefonBereichDefResponse" message="tns:GetTelefonBereichDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllTelefonBereichDef">
+            <wsdl:documentation>Liefert für ein Datum alle Telefonbereich-Definitionen zurück.</wsdl:documentation>
+            <wsdl:input name="getAllTelefonBereichDefRequest" message="tns:GetAllTelefonBereichDefRequestMessage"/>
+            <wsdl:output name="getAllTelefonBereichDefResponse" message="tns:GetAllTelefonBereichDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesTelefonBereichDef">
+            <wsdl:documentation>Liefert für einen technischen Telefonbereich-Definition Schlüssel die Bezeichnung der zugehörigen Telefonbereich-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesTelefonBereichDefRequest" message="tns:ReadL10nAttributesTelefonBereichDefRequestMessage"/>
+            <wsdl:output name="readL10nAttributesTelefonBereichDefResponse" message="tns:ReadL10nAttributesTelefonBereichDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesTelefonBereichDef">
+            <wsdl:documentation>Liefert alle Bezeichnungen von Telefonbereich-Definitionen zurück.</wsdl:documentation>
+            <wsdl:input name="readAllL10nAttributesTelefonBereichDefRequest" message="tns:ReadAllL10nAttributesTelefonBereichDefRequestMessage"/>
+            <wsdl:output name="readAllL10nAttributesTelefonBereichDefResponse" message="tns:ReadAllL10nAttributesTelefonBereichDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TelefonBereichDefServiceBinding" type="tns:TelefonBereichDefServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getTelefonBereichDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getTelefonBereichDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTelefonBereichDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAllTelefonBereichDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAllTelefonBereichDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAllTelefonBereichDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesTelefonBereichDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesTelefonBereichDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesTelefonBereichDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesTelefonBereichDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readAllL10nAttributesTelefonBereichDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readAllL10nAttributesTelefonBereichDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TelefonBereichDefService_v1">
+        <wsdl:port name="TelefonBereichDefService_v1" binding="tns:TelefonBereichDefServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/TelefonBereichDefService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:referenzdatenverw:data:adressstammdaten:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:referenzdatenverw:data:adressstammdaten:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            elementFormDefault="qualified"
+            version="1.0.1">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+
+    <xsd:element name="searchAdressstammdatenRequest" type="tns:SearchAdressstammdatenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Adressstammdaten gesucht werden sollen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchAdressstammdatenResponse" type="tns:SearchAdressstammdatenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die gefundenen Adressstammdaten enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="SearchAdressstammdatenRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Adressstammdaten gesucht werden sollen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="postleitzahl" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Postleitzahl, mit dem die Adressstammdaten gesucht werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="suchtext" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Der Suchtext, bspw. mit den ersten Zeichen einer Adresse, mit dem die Adressstammdaten gesucht werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="land" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">ISO-Code vom Land, in dem die Adressstammdaten gesucht werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchAdressstammdatenResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Adressstammdatensuche.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="adressstammdatenType" type="tns:WsAdressstammdatenType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Ergebnis der Adressstammdatensuche.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsAdressstammdatenType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Adressstammdaten.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="strasse" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Strasse aus der Adresssuche.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="plz" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">PLZ aus der Adresssuche.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ort" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Ort aus der Adresssuche.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="treffergenauigkeit" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Treffergenauigkeit des Suchergebnisses, mit einem Wertebereich zwischen 0 und 100 Prozent.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

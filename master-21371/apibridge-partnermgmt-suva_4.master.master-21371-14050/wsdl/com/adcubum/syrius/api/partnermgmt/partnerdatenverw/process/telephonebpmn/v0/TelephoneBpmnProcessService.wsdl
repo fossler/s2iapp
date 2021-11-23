@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TelephoneBpmnProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telephonebpmn:v0"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telephonebpmn:v0"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telephonebpmn:v0:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 0.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telephonebpmn:v0:schema"
+                        schemaLocation="schema/TelephoneBpmnProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="StartTelephoneEnrichmentProcessRequestMessage">
+        <wsdl:part name="Request" element="pa:startTelephoneEnrichmentProcessRequest"/>
+    </wsdl:message>
+    <wsdl:message name="StartTelephoneEnrichmentProcessResponseMessage">
+        <wsdl:part name="Response" element="pa:startTelephoneEnrichmentProcessResponse"/>
+    </wsdl:message>
+    <wsdl:message name="StartTelephoneExpertProcessRequestMessage">
+        <wsdl:part name="Request" element="pa:startTelephoneExpertProcessRequest"/>
+    </wsdl:message>
+    <wsdl:message name="StartTelephoneExpertProcessResponseMessage">
+        <wsdl:part name="Response" element="pa:startTelephoneExpertProcessResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="TelephoneBpmnProcessServicePortType">
+        <wsdl:operation name="startTelephoneEnrichmentProcess">
+            <wsdl:documentation>Startet einen Telefonnummer Aenderungs-Prozess (BPM) für einen bestimmten Partner. Dabei ist noch nicht unbedingt klar, ob es sich um eine Neuerfassung oder Änderung handelt. Dies kann ggf. in einer Anreicherung innerhalb vom Prozess gesteuert werden.</wsdl:documentation>
+            <wsdl:input name="startTelephoneEnrichmentProcessRequest" message="tns:StartTelephoneEnrichmentProcessRequestMessage"/>
+            <wsdl:output name="startTelephoneEnrichmentProcessResponse" message="tns:StartTelephoneEnrichmentProcessResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="startTelephoneExpertProcess">
+           <wsdl:documentation>Startet den BPM Prozess für eine neue Telefonnummer zu einem bestimmten Partner.</wsdl:documentation>
+           <wsdl:input name="startTelephoneExpertProcessRequest" message="tns:StartTelephoneExpertProcessRequestMessage"/>
+           <wsdl:output name="startTelephoneExpertProcessResponse" message="tns:StartTelephoneExpertProcessResponseMessage"/>
+           <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+       </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TelephoneBpmnProcessServiceBinding" type="tns:TelephoneBpmnProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="startTelephoneEnrichmentProcess">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="startTelephoneEnrichmentProcessRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="startTelephoneEnrichmentProcessResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="startTelephoneExpertProcess">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="startTelephoneExpertProcessRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="startTelephoneExpertProcessResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TelephoneBpmnProcessService_v0">
+        <wsdl:port name="TelephoneBpmnProcessService_v0" binding="tns:TelephoneBpmnProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/TelephoneBpmnProcessService_v0"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

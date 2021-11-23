@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+		targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:kostenbeteiligung:uebersicht:v2:schema"
+		xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:kostenbeteiligung:uebersicht:v2:schema"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+		xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1" xmlns:xt="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+		xmlns:pi="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+		xmlns:ci="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:vertrag:identifier:v1"
+		elementFormDefault="qualified"
+		version="2.0.0">
+
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+				schemaLocation="../../../../../../../../../../../../../com/adcubum/syrius/api/common/simpleTypes/v1/simpleTypes.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+				schemaLocation="../../../../../../../../../../../../../com/adcubum/syrius/api/common/types/v1/types.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+				schemaLocation="../../../../../../../../../../../../../com/adcubum/syrius/api/common/externalTypes/v1/externalTypes.xsd"/>
+	<xsd:import
+			namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+			schemaLocation="../../../../../../../extern/partner/identifier/v1/identifier.xsd"/>
+	<xsd:import
+		namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:vertrag:identifier:v1"
+		schemaLocation="../../../../../../../extern/vertrag/identifier/v1/identifier.xsd" />
+
+   <xsd:complexType name="WsKostenbeteiligungDetailType">
+		<xsd:annotation>
+			<xsd:documentation> Typ von KostenbeteiligungDetail
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="limit" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Die Limite
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="angerechnet" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Der angerechnete Betrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="offen" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Der offene Betrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="bezeichnung" type="st:StringType">
+						<xsd:annotation>
+							<xsd:documentation>Die Bezeichnung der des Details entsprechend der Sprache
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKostenbeteiligungProduktType">
+		<xsd:annotation>
+			<xsd:documentation>Ansicht eines Produktes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="produktId" type="ci:WsProduktIdType">
+						<xsd:annotation>
+							<xsd:documentation>Das Produkt
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="angerechnet" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Der angerechnete Betrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="offen" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Der offene Betrag
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="details" type="tns:WsKostenbeteiligungDetailType"
+								 maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Detail Informationen zu einem Produkt Kostenbeteiligung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WsKostenbeteiligungGruppeType">
+		<xsd:annotation>
+			<xsd:documentation>Ansicht eines Produktes
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsDataObjectType">
+				<xsd:sequence>
+					<xsd:element name="angerechnet" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Summe der angerechneten Beträge
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="offen" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Summe der offenen Beträge
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="limit" type="xt:WsMoneyType">
+						<xsd:annotation>
+							<xsd:documentation>Summe der limitierten Beträge
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkte" type="tns:WsKostenbeteiligungProduktType"
+								 maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Produkte Informationen zu einem Produkt Kostenbeteiligung
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="WsKostenbeteiligungUebersichtType">
+		<xsd:annotation>
+			<xsd:documentation>Uebersicht
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ct:WsLifecycleObjectType">
+				<xsd:sequence>
+					<xsd:element name="grp1" type="tns:WsKostenbeteiligungGruppeType">
+						<xsd:annotation>
+							<xsd:documentation>Gruppe 1
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="grp2" type="tns:WsKostenbeteiligungGruppeType"
+								 minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Gruppe 1
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="partnerId" type="pi:WsPartnerIdType">
+						<xsd:annotation>
+							<xsd:documentation>PartnerId
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uebrigeKoBe" type="tns:WsKostenbeteiligungProduktType" maxOccurs="unbounded">
+						<xsd:annotation>
+							<xsd:documentation>Uebrige KoBe, welche zu keiner Gruppe gehoeren
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType
+		name="ReadKostenbeteiligungenUebersichtForPartnerRequestType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">
+				Request-Typ, der die
+				PartnerIds und das Stichdatum beinhaltet.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="partnerId" type="pi:WsPartnerIdType"
+						 maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel eines Partners.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="locale" type="xsd:language"
+			>
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Local mit welcher
+						die
+						korrekte Bezeichnung ermittelt wird.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="stichdatum" type="st:LocalDateType">
+				<xsd:annotation>
+					<xsd:documentation>Stichdatum für die Kostenbeteiligungsperiode.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType
+		name="ReadKostenbeteiligungenUebersichtForPartnerResponseType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">
+				Response-Typ, in
+				welcher pro Partner die Kostenbeteiligung Uebersicht
+				geliefert wird.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kostenbeteiligungUebersicht"
+				type="tns:WsKostenbeteiligungUebersichtType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Die
+						Kostenbeteiligung
+						zur
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element
+		name="readKostenbeteiligungenUebersichtForPartnerRequest"
+		type="tns:ReadKostenbeteiligungenUebersichtForPartnerRequestType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Response, in welcher
+				pro Partner die Kostenbeteiligung zur Grundversicherung geliefert
+				wird.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:element
+		name="readKostenbeteiligungenUebersichtForPartnerResponse"
+		type="tns:ReadKostenbeteiligungenUebersichtForPartnerResponseType">
+		<xsd:annotation>
+			<xsd:documentation xml:lang="de">Response, in welcher
+				pro Partner die Kostenbeteiligung zur Grundversicherung geliefert
+				wird.
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+</xsd:schema>

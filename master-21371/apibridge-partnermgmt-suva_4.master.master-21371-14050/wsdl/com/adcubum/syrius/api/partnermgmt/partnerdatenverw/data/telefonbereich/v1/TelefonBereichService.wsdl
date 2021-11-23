@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TelefonBereichService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereich:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereich:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereich:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:telefonbereich:v1:schema" schemaLocation="schema/TelefonBereichService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:getTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:getTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAdresseTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:getAdresseTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAdresseTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:getAdresseTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungserbringerTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:getLeistungserbringerTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungserbringerTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:getLeistungserbringerTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetOrganisationseinheitTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:getOrganisationseinheitTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetOrganisationseinheitTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:getOrganisationseinheitTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="TelefonBereichServicePortType">
+        <wsdl:operation name="getTelefonBereich">
+            <wsdl:documentation>Liefert für einen technischen Telefonbereichsschlüssel die Daten des zugehörigen Telefonnummerbereichs.</wsdl:documentation>
+            <wsdl:input name="getTelefonBereichRequest" message="tns:GetTelefonBereichRequestMessage"/>
+            <wsdl:output name="getTelefonBereichResponse" message="tns:GetTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerTelefonBereich">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Daten der dazugehörenden Telefonnummerbereiche.</wsdl:documentation>
+            <wsdl:input name="getPartnerTelefonBereichRequest" message="tns:GetPartnerTelefonBereichRequestMessage"/>
+            <wsdl:output name="getPartnerTelefonBereichResponse" message="tns:GetPartnerTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAdresseTelefonBereich">
+            <wsdl:documentation>Liefert für einen technischen Adressschlüssel die Daten der dazugehörenden Telefonnummerbereiche.</wsdl:documentation>
+            <wsdl:input name="getAdresseTelefonBereichRequest" message="tns:GetAdresseTelefonBereichRequestMessage"/>
+            <wsdl:output name="getAdresseTelefonBereichResponse" message="tns:GetAdresseTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getLeistungserbringerTelefonBereich">
+            <wsdl:documentation>Liefert für einen technischen Leistungserbringerschlüssel die Daten der dazugehörenden Telefonnummerbereiche.</wsdl:documentation>
+            <wsdl:input name="getLeistungserbringerTelefonBereichRequest" message="tns:GetLeistungserbringerTelefonBereichRequestMessage"/>
+            <wsdl:output name="getLeistungserbringerTelefonBereichResponse" message="tns:GetLeistungserbringerTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOrganisationseinheitTelefonBereich">
+            <wsdl:documentation>Liefert für einen technischen Organisationseinheitschlüssel die Daten der dazugehörenden Telefonnummerbereiche.</wsdl:documentation>
+            <wsdl:input name="getOrganisationseinheitTelefonBereichRequest" message="tns:GetOrganisationseinheitTelefonBereichRequestMessage"/>
+            <wsdl:output name="getOrganisationseinheitTelefonBereichResponse" message="tns:GetOrganisationseinheitTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TelefonBereichServiceBinding" type="tns:TelefonBereichServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAdresseTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAdresseTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAdresseTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getLeistungserbringerTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getLeistungserbringerTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getLeistungserbringerTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getOrganisationseinheitTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getOrganisationseinheitTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getOrganisationseinheitTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TelefonBereichService_v1">
+        <wsdl:port name="TelefonBereichService_v1" binding="tns:TelefonBereichServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/TelefonBereichService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

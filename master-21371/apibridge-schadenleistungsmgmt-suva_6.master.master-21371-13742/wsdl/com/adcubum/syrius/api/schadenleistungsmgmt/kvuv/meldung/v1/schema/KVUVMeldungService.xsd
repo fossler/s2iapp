@@ -1,0 +1,65 @@
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:meldung:v1:schema"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:meldung:v1:schema"       
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"        
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        elementFormDefault="qualified" version="1.0.0">
+   
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../../../../com/adcubum/syrius/api/common/simpleTypes/v1/simpleTypes.xsd"/>
+    
+	<!--KVUV Meldung speichern -->
+	<xsd:element name="empfangeKVUVMeldungRequest"
+		type="tns:EmpfangeKVUVMeldungRequestType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Request um eine KVUV Meldung zu empfangen
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType
+		name="EmpfangeKVUVMeldungRequestType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Request um eine KVUV Meldung zu empfangen
+			</xsd:documentation>
+		</xsd:annotation>
+		
+		 <xsd:sequence>
+            <xsd:element name="inhalt" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        XML Inhalt der KVUVMeldung
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="empfangeKVUVMeldungResponse"
+				 type="tns:EmpfangeKVUVMeldungResponseType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Response in dem die ID der empfangenen KVUVMeldung geliefert wird
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="EmpfangeKVUVMeldungResponseType">
+		<xsd:annotation>
+			<xsd:documentation>
+			Response in dem die ID der empfangenen KVUVMeldung geliefert wird
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="st:StringType">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">
+					die ID der empfangenen KVUVMeldung
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+</xsd:schema>

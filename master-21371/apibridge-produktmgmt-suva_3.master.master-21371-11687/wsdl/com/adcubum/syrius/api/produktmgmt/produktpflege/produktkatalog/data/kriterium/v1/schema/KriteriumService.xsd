@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:produktmgmt:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:produktmgmt:common:codes:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:kriterium:v1:schema"
+            targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:kriterium:v1:schema"
+            version="1.1.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../common/types/v1/types.xsd"/>
+
+    <xsd:element name="readL10nAttributesKriteriumdefinitionTypRequest" type="tns:ReadL10nAttributesKriteriumdefinitionTypRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request zur Ermittlung der lokalisierten Attribute des Kriteriumdefinition-Typs.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesKriteriumdefinitionTypRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request zum Lesen lokalisierter Attribute des Kriteriumdefinition-Typs.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kriteriumdefinitionTyp" type="pc:WsKriteriumdefinitionTypCodeType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Mehrere technische Schlüssel zu Kriteriumdefinition-Typen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Locale zur Ermittlung der Bezeichnungen zu den Kriteriumdefinition-Typen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="readL10nAttributesKriteriumdefinitionTypResponse" type="tns:ReadL10nAttributesKriteriumdefinitionTypResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response zur Ermittlung der lokalisierten Attribute des Kriteriumdefinition-Typs.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesKriteriumdefinitionTypResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response zum Lesen lokalisierter Attribute des Kriteriumdefinition-Typs.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesKriteriumdefinitionTypType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzte Texte eines Kriteriumdefinition-Typs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsL10nAttributesKriteriumdefinitionTypType">
+        <xsd:annotation>
+            <xsd:documentation>Übersetzte Texte eines Kriteriumdefinition-Typs.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kriteriumdefinitionTyp" type="pc:WsKriteriumdefinitionTypCodeType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Kriteriumdefinition-Typs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung des Kriteriumdefinition-Typs.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="evaluateAuswaehlbareKriterienZuProduktRequest" type="tns:EvaluateAuswaehlbareKriterienZuProduktRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request zur Ermittlung der durch den Anwender auswählbaren Kriterien zu einem Produkt.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="evaluateAuswaehlbareKriterienZuProduktResponse" type="tns:EvaluateAuswaehlbareKriterienZuProduktResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response zur Ermittlung der durch den Anwender auswählbaren Kriterien zu einem Produkt.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+	<xsd:complexType name="EvaluateAuswaehlbareKriterienZuProduktRequestType">
+	    <xsd:annotation>
+	       <xsd:documentation>Request-Objekt zur Ermittlung der durch den Anwender auswählbaren Kriterien zu einem Produkt.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="produktId" type="pi:WsProduktIdType" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel des Produktes.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+	            <xsd:annotation>
+	            	<xsd:documentation xml:lang="de">Optionale Angabe des Stichtags zur Datenermittlung, ohne Angabe wird das Tagesdatum verwendet.</xsd:documentation>
+	            </xsd:annotation>
+	        </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="EvaluateAuswaehlbareKriterienZuProduktResponseType">
+	    <xsd:annotation>
+	       <xsd:documentation>Response-Objekt zur Ermittlung der durch den Anwender auswählbaren Kriterien zu einem Produkt.</xsd:documentation>
+	    </xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="auswaehlbareKriterienZuProdukt" type="tns:WsAuswaehlbareKriterienZuProduktType" minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+	       			<xsd:documentation>Die auswählbaren Kriterien zu einem Produkt, repräsentiert durch seine ProduktId.</xsd:documentation>
+	    		</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+    
+    <xsd:complexType name="WsAuswaehlbareKriterienZuProduktType">
+    	<xsd:annotation>
+	       <xsd:documentation>Die auswählbaren Kriterien zu einem Produkt, repräsentiert durch seine ProduktId.</xsd:documentation>
+	    </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="produktId" type="pi:WsProduktIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Produktes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="kriterium" type="tns:WsKriteriumType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Das auswählbare Kriterium.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsKriteriumType" abstract="true">
+    	<xsd:annotation>
+    		<xsd:documentation>Kriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsKriteriumIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumTyp" type="pc:WsKriteriumTypCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Code des Kriteriumtyps (nicht zwingend vorhanden).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumdefinitionTyp" type="pc:WsKriteriumdefinitionTypCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Typ der Kriteriumdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="istUebersteuerbar" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Gibt an, ob das Kriterum uebersteuert werden kann.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sortierreihenfolge" type="st:IntegerType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Rang innerhalb der Sortierung der Kriterien.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCodekriteriumType">
+    	<xsd:annotation>
+    		<xsd:documentation>Codekriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsKriteriumType">
+                <xsd:sequence>
+                    <xsd:element name="defaultKriteriumCode" type="pi:WsCodeIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Default-Code des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="defaultKriteriumCodeKey" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fachlicher Schlüssel des Default-Codes zum Codekriterium.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWertkriteriumType">
+    	<xsd:annotation>
+    		<xsd:documentation>Wertkriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsKriteriumType">
+                <xsd:sequence>
+                    <xsd:element name="anzahlNachkommastellen" type="st:IntegerType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Anzahl Nachkommastellen zum Wertkriterium.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="minimalwert" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Minimaler Wert des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="maximalwert" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Maximaler Wert des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schrittweite" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Legt fest, mit welcher Schrittweite der Wert des Kriteriums verändert werden kann.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="defaultKriteriumWert" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Default-Wert des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:element name="readL10nAttributesKriteriumRequest" type="tns:ReadL10nAttributesKriteriumRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Ermittlung der lokalisierten Attribute eines Kriteriums.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesKriteriumRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request-Objekt zur Ermittlung der lokalisierten Attribute eines Kriteriums.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="codekriteriumId" type="pi:WsCodekriteriumIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel zu einem Codekriterium.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="wertkriteriumId" type="pi:WsWertkriteriumIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel zu einem Wertkriterium.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Locale zur Ermittlung der Bezeichnungen zu den Kriterien.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+	            <xsd:annotation>
+	            	<xsd:documentation xml:lang="de">Optionale Angabe des Stichtags zur Datenermittlung, ohne Angabe wird das Tagesdatum verwendet.</xsd:documentation>
+	            </xsd:annotation>
+	        </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="readL10nAttributesKriteriumResponse" type="tns:ReadL10nAttributesKriteriumResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response zur Ermittlung der lokalisierten Attribute eines Kriteriums.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesKriteriumResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response-Objekt zur Ermittlung der lokalisierten Attribute eines Kriteriums.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesKriteriumType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzte Texte zu einem Kriterium.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsL10nAttributesKriteriumType" abstract="true">
+    	<xsd:annotation>
+    		<xsd:documentation>Übersetzte Texte zu einem Kriterium.</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="pi:WsKriteriumIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Kriteriums.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="kriteriumBezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung des Kriteriums.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="kriteriumTypBezeichnung" type="ct:WsLocalizedTextType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung des Typs des Kriteriums (sofern gegeben).</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsL10nAttributesCodekriteriumType">
+    	<xsd:annotation>
+    		<xsd:documentation>Übersetzte Texte zu einem Codekriterium.</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsL10nAttributesKriteriumType">
+                <xsd:sequence>
+                    <xsd:element name="defaultKriteriumCodeBezeichnung" type="ct:WsLocalizedTextType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Lokalisierte Bezeichnung des Default-Codes zum Codekriterium (sofern gegeben).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsL10nAttributesWertkriteriumType">
+    	<xsd:annotation>
+    		<xsd:documentation>Übersetzte Texte zu einem Wertkriterium.</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsL10nAttributesKriteriumType">
+               <!--  Keine zusätzlichen Attribute für das Wertkriterium -->
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+</xsd:schema>

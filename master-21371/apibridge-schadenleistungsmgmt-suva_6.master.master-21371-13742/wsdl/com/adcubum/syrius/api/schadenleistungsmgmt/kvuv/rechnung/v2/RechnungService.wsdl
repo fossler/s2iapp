@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="RechnungService"
+				  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:rechnung:v2"
+				  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:rechnung:v2"
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+				  xmlns:pa="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:rechnung:v2:schema">
+
+	<wsdl:documentation>Version: 2.0.0</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+					namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:rechnung:v2:schema"
+					schemaLocation="schema/RechnungService.xsd"/>
+			<xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+						schemaLocation="../../../../common/faults/v1/faults.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ApiFaultMessage">
+		<wsdl:part name="fault" element="flt:apiFaultInfo"/>
+	</wsdl:message>
+
+	<!-- Rechnungen fuer eine Liste von Partner -->
+	<wsdl:message name="ReadRechnungenForPartnerInBehandlungsperiodeRequestMessage">
+		<wsdl:part name="request" element="pa:readRechnungenForPartnerInBehandlungsperiodeRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ReadRechnungenForPartnerResponseMessage">
+		<wsdl:part name="response" element="pa:readRechnungenForPartnerResponse" />
+	</wsdl:message>
+	
+	<wsdl:message name="ReadRechnungenForPartnerRequestInImportperiodeMessage">
+		<wsdl:part name="request" element="pa:readRechnungenForPartnerInImportperiodeRequest" />
+	</wsdl:message>
+
+	<!-- portType -->
+	<wsdl:portType name="RechnungServicePortType">
+		<!-- Rechnungen fuer einen Partner in einer Behandlungsperiode -->
+		<wsdl:operation name="readRechnungenForPartnerInBehandlungsperiode">
+			<wsdl:documentation>Liefert eine Liste von Rechnungen für einen Partner in einer Behandlungsperiode</wsdl:documentation>
+			<wsdl:input name="readRechnungenForPartnerInBehandlungsperiodeRequest"
+				message="tns:ReadRechnungenForPartnerInBehandlungsperiodeRequestMessage" />
+			<wsdl:output name="readRechnungenForPartnerInBehandlungsperiodeResponse"
+				message="tns:ReadRechnungenForPartnerResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		
+		
+		<!-- Rechnungen fuer einen Partner in einer Importperiode -->
+		<wsdl:operation name="readRechnungenForPartnerInImportperiode">
+			<wsdl:documentation>Liefert eine Liste von Rechnungen für einen Partner in einer Importperiode</wsdl:documentation>
+			<wsdl:input name="readRechnungenForPartnerInImportperiodeRequest"
+				message="tns:ReadRechnungenForPartnerRequestInImportperiodeMessage" />
+			<wsdl:output name="readRechnungenForPartnerInImportperiodeResponse"
+				message="tns:ReadRechnungenForPartnerResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- binding -->
+	<wsdl:binding name="RechnungServiceBinding" type="tns:RechnungServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<!-- Rechnungen fuer einen Partner in einer Behandlungsperiode -->
+		<wsdl:operation name="readRechnungenForPartnerInBehandlungsperiode">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readRechnungenForPartnerInBehandlungsperiodeRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readRechnungenForPartnerInBehandlungsperiodeResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<!-- Rechnungen fuer einen Partner in einer Importperiode -->
+		<wsdl:operation name="readRechnungenForPartnerInImportperiode">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="readRechnungenForPartnerInImportperiodeRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="readRechnungenForPartnerInImportperiodeResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+
+
+	</wsdl:binding>
+
+	<!-- service -->
+	<wsdl:service name="RechnungService_v2">
+		<wsdl:port name="RechnungService_v2" binding="tns:RechnungServiceBinding">
+			<soap:address location="https://example.com/apibridge-schadenleistungsmgmt/RechnungService_v2"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

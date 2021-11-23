@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="EmailProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:email:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:email:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:email:v1:schema"
+                  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.4.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:email:v1:schema" schemaLocation="schema/EmailProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="CreateEmailForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:createEmailForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateEmailForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:createEmailForPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeEmailRequestMessage">
+        <wsdl:part name="Request" element="pa:changeEmailRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeEmailResponseMessage">
+        <wsdl:part name="Response" element="pa:changeEmailResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeEmailGueltigkeitRequestMessage">
+        <wsdl:part name="Request" element="pa:changeEmailGueltigkeitRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeEmailGueltigkeitResponseMessage">
+        <wsdl:part name="Response" element="pa:changeEmailGueltigkeitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateEmailRequestMessage">
+        <wsdl:part name="Request" element="pa:terminateEmailRequest"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateEmailResponseMessage">
+        <wsdl:part name="Response" element="pa:terminateEmailResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="EmailProcessServicePortType">
+        <wsdl:operation name="createEmailForPartner">
+            <wsdl:documentation>Erstellt eine neue E-Mail zu einem Partner.</wsdl:documentation>
+            <wsdl:input name="createEmailForPartnerRequest" message="tns:CreateEmailForPartnerRequestMessage"/>
+            <wsdl:output name="createEmailForPartnerResponse" message="tns:CreateEmailForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeEmail">
+            <wsdl:documentation>Ändert eine E-Mail.</wsdl:documentation>
+            <wsdl:input name="changeEmailRequest" message="tns:ChangeEmailRequestMessage"/>
+            <wsdl:output name="changeEmailResponse" message="tns:ChangeEmailResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeEmailGueltigkeit">
+            <wsdl:documentation>
+            	<xhtml:ul>
+            		<xhtml:li>Ändert die Gültigkeit einer bestehenden E-Mail.</xhtml:li>
+            		<xhtml:li>Deprecation: Wird durch den fachlich getriebene Methode terminateEmail ersetzt.</xhtml:li>
+            	</xhtml:ul>
+            </wsdl:documentation>
+            <wsdl:input name="changeEmailGueltigkeitRequest" message="tns:ChangeEmailGueltigkeitRequestMessage"/>
+            <wsdl:output name="changeEmailGueltigkeitResponse" message="tns:ChangeEmailGueltigkeitResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="terminateEmail">
+            <wsdl:documentation>Terminiert eine bestehende E-Mail.
+            Setzt die Gültigkeit der E-Mail auf bis gestern.
+            Falls die E-Mail dadurch eine negative Gültigkeit bekommt, wird sie gelöscht.</wsdl:documentation>
+            <wsdl:input name="terminateEmailRequest" message="tns:TerminateEmailRequestMessage"/>
+            <wsdl:output name="terminateEmailResponse" message="tns:TerminateEmailResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EmailProcessServiceBinding" type="tns:EmailProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createEmailForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createEmailForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createEmailForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeEmail">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeEmailRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeEmailResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeEmailGueltigkeit">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeEmailGueltigkeitRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeEmailGueltigkeitResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="terminateEmail">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="terminateEmailRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="terminateEmailResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="EmailProcessService_v1">
+        <wsdl:port name="EmailProcessService_v1" binding="tns:EmailProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/EmailProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

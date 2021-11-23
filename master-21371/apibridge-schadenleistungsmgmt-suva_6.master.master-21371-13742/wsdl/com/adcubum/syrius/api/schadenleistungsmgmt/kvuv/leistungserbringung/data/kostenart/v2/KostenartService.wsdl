@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="KostenartService"
+				  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:data:kostenart:v2"
+				  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:data:kostenart:v2"
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+				  xmlns:pa="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:data:kostenart:v2:schema">
+
+	<wsdl:documentation>Version: 2.0.0</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+					namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:data:kostenart:v2:schema"
+					schemaLocation="schema/KostenartService.xsd"/>
+			<xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+						schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ApiFaultMessage">
+		<wsdl:part name="fault" element="flt:apiFaultInfo" />
+	</wsdl:message>
+
+	<wsdl:message name="ReadKostenartRequestMessage">
+		<wsdl:part name="request" element="pa:readKostenartRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="ReadKostenartResponseMessage">
+		<wsdl:part name="response" element="pa:readKostenartResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="ReadL10nAttributesKostenartRequestMessage">
+		<wsdl:part name="request" element="pa:readL10nAttributesKostenartRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="ReadL10nAttributesKostenartResponseMessage">
+		<wsdl:part name="response" element="pa:readL10nAttributesKostenartResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="KostenartServicePortType">
+		<wsdl:operation name="readKostenart">
+			<wsdl:documentation>Liefert für die technischen Schlüssel die
+				Kostenarten
+			</wsdl:documentation>
+			<wsdl:input name="readKostenartRequest" message="tns:ReadKostenartRequestMessage" />
+			<wsdl:output name="readKostenartResponse" message="tns:ReadKostenartResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="readL10nAttributesKostenart">
+			<wsdl:documentation>Liefert für die technischen Schlüssel die
+				lokalisierten Attribute der Kostenarten
+			</wsdl:documentation>
+			<wsdl:input name="readL10nAttributesKostenartRequest" message="tns:ReadL10nAttributesKostenartRequestMessage" />
+			<wsdl:output name="readL10nAttributesKostenartResponse" message="tns:ReadL10nAttributesKostenartResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="KostenartServiceBinding" type="tns:KostenartServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="readKostenart">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readKostenartRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readKostenartResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="readL10nAttributesKostenart">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readL10nAttributesKostenartRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readL10nAttributesKostenartResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="KostenartService_v2">
+		<wsdl:port name="KostenartService_v2" binding="tns:KostenartServiceBinding">
+			<soap:address
+					location="https://example.com/apibridge-schadenleistungsmgmt/KostenartService_v2"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

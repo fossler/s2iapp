@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:fi="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1"
+            xmlns:fc="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1"
+            xmlns:xt="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+            xmlns:ext="urn:com:adcubum:syrius:api:common:extendedTypes:v1"
+            xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:zahlungsmitteldef:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:zahlungsmitteldef:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1" schemaLocation="../../../../../../common/externalTypes/v1/externalTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:extendedTypes:v1" schemaLocation="../../../../../../common/extendedTypes/v1/extendedTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v1" schemaLocation="../../../../../../common/searchTypes/v1/searchTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:element name="readL10nAttributesZahlungsmittelDefRequest" type="tns:ReadL10nAttributesZahlungsmittelDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer ZahlungsmittelDef zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesZahlungsmittelDefResponse" type="tns:ReadL10nAttributesZahlungsmittelDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der ZahlungsmittelDef.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchZahlungsmittelDefRequest" type="tns:SearchZahlungsmittelDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die ZahlungsmittelDefinitionen zu suchen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchZahlungsmittelDefResponse" type="tns:SearchZahlungsmittelDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die gefundenen ZahlungsmittelDefinitionen enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getZahlungsmittelDefRequest" type="tns:GetZahlungsmittelDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die ZahlungsmittelDefinitionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getZahlungsmittelDefResponse" type="tns:GetZahlungsmittelDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen ZahlungsmittelDefinitionen enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ReadL10nAttributesZahlungsmittelDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer ZahlungsmittelDef zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlungsmittelDefId" type="fi:WsZahlungsmittelDefIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer ZahlungsmittelDef.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadL10nAttributesZahlungsmittelDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der ZahlungsmittelDef.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesZahlungsmittelDefType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text einer ZahlungsmittelDef.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsL10nAttributesZahlungsmittelDefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Lokalisierte Informationen der ZahlungsmittelDef.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlungsmittelDefId" type="fi:WsZahlungsmittelDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der ZahlungsmittelDef.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der ZahlungsmittelDef.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="SearchZahlungsmittelDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die ZahlungsmittelDefinitionen zu suchen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="internalName" type="search:WsStringSearchType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer ZahlungsmittelDef.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchZahlungsmittelDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die gefundenen ZahlungsmittelDefinitionen enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlungsmittelDef" type="tns:WsZahlungsmittelDefSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefundenen ZahlungsmittelDefinitionen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="GetZahlungsmittelDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die ZahlungsmittelDefinitionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlungsmittelDefId" type="fi:WsZahlungsmittelDefIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer ZahlungsmittelDef.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetZahlungsmittelDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen ZahlungsmittelDefinitionen enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zahlungsmittelDef" type="tns:WsZahlungsmittelDefType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den geladenen ZahlungsmittelDefinitionen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsZahlungsmittelDefSearchType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Eine gefundene ZahlungsmittelDefinition (Ids).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="fi:WsZahlungsmittelDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer ZahlungsmittelDefinition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="internalName" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Interner Name.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsZahlungsmittelDefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer ZahlungsmittelDefinition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="fi:WsZahlungsmittelDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer ZahlungsmittelDefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="internalName" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Interner Name.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="geldfluss" type="fc:WsGeldflussCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Geldfluss.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahlungsmittelType" type="fc:WsZahlungsmittelCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zahlungsmittel Typ.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

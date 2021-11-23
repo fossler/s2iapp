@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="VersichertesObjektService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:versichertesobjekt:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:versichertesobjekt:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:versichertesobjekt:v1:schema">
+
+    <wsdl:documentation>
+    	Version: 1.2.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:versichertesobjekt:v1:schema"
+                        schemaLocation="schema/VersichertesObjektService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="SearchVersichertesObjektForVertragRequestMessage">
+        <wsdl:part name="Request" element="pa:searchVersichertesObjektForVertragRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchVersichertesObjektForVertragResponseMessage">
+        <wsdl:part name="Response" element="pa:searchVersichertesObjektForVertragResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SearchVersichertesObjektForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:searchVersichertesObjektForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SearchVersichertesObjektForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:searchVersichertesObjektForPartnerResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="GetVersichertesObjektRequestMessage">
+        <wsdl:part name="Request" element="pa:getVersichertesObjektRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVersichertesObjektResponseMessage">
+        <wsdl:part name="Response" element="pa:getVersichertesObjektResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="ReadL10nAttributesVersichertesObjektRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesVersichertesObjektRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadL10nAttributesVersichertesObjektResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesVersichertesObjektResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="GetVersichertesObjektKopfRequestMessage">
+        <wsdl:part name="Request" element="pa:getVersichertesObjektKopfRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetVersichertesObjektKopfResponseMessage">
+        <wsdl:part name="Response" element="pa:getVersichertesObjektKopfResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="VersichertesObjektServicePortType">
+        <wsdl:operation name="searchVersichertesObjektForVertrag">
+            <wsdl:documentation>Liefert eine Liste von VersichertesObjektIDs zu einem technischen Vertragsschlüssel.
+            </wsdl:documentation>
+            <wsdl:input name="searchVersichertesObjektForVertragRequest" message="tns:SearchVersichertesObjektForVertragRequestMessage"/>
+            <wsdl:output name="searchVersichertesObjektForVertragResponse" message="tns:SearchVersichertesObjektForVertragResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchVersichertesObjektForPartner">
+            <wsdl:documentation>Liefert eine Liste von VersichertesObjektIDs zu einem technischen Partnerschlüssel.
+            </wsdl:documentation>
+            <wsdl:input name="searchVersichertesObjektForPartnerRequest" message="tns:SearchVersichertesObjektForPartnerRequestMessage"/>
+            <wsdl:output name="searchVersichertesObjektForPartnerResponse" message="tns:SearchVersichertesObjektForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVersichertesObjekt">
+            <wsdl:documentation>Liefert zu den übergebenen VersichertesObjektIDs die entsprechenden versicherten Objekte mit deren Vertragsprodukten.
+            </wsdl:documentation>
+            <wsdl:input name="getVersichertesObjektRequest" message="tns:GetVersichertesObjektRequestMessage"/>
+            <wsdl:output name="getVersichertesObjektResponse" message="tns:GetVersichertesObjektResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesVersichertesObjekt">
+            <wsdl:documentation>Liefert zu den technischen Schlüsseln von versicherten Objekten die sprachabhängige Bezeichnung.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesVersichertesObjektRequest" message="tns:ReadL10nAttributesVersichertesObjektRequestMessage"/>
+            <wsdl:output name="readL10nAttributesVersichertesObjektResponse" message="tns:ReadL10nAttributesVersichertesObjektResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getVersichertesObjektKopf">
+            <wsdl:documentation>Liefert zu den übergebenen VersichertesObjektIds die wichtigsten Kopfdaten zu den entsprechenden versicherten Objekten.
+            </wsdl:documentation>
+            <wsdl:input name="getVersichertesObjektKopfRequest" message="tns:GetVersichertesObjektKopfRequestMessage"/>
+            <wsdl:output name="getVersichertesObjektKopfResponse" message="tns:GetVersichertesObjektKopfResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="VersichertesObjektServiceBinding" type="tns:VersichertesObjektServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="searchVersichertesObjektForVertrag">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchVersichertesObjektForVertragRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchVersichertesObjektForVertragResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchVersichertesObjektForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchVersichertesObjektForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchVersichertesObjektForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getVersichertesObjekt">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getVersichertesObjektRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getVersichertesObjektResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesVersichertesObjekt">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesVersichertesObjektRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesVersichertesObjektResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getVersichertesObjektKopf">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getVersichertesObjektKopfRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getVersichertesObjektKopfResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="VersichertesObjektService_v1">
+        <wsdl:port name="VersichertesObjektService_v1" binding="tns:VersichertesObjektServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/VersichertesObjektService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

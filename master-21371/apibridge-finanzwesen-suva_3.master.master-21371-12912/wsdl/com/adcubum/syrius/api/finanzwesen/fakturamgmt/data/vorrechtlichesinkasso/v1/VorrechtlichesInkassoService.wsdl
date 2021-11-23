@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="VorrechtlichesInkassoService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:vorrechtlichesinkasso:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:vorrechtlichesinkasso:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:vorrechtlichesinkasso:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:vorrechtlichesinkasso:v1:schema" schemaLocation="schema/VorrechtlichesInkassoService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ReadL10nAttributesVorrechtlichesInkassoRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesVorrechtlichesInkassoRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesVorrechtlichesInkassoResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesVorrechtlichesInkassoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesVorrechtlichesInkassoRequestMessage">
+        <wsdl:part name="Request" element="pa:readAllL10nAttributesVorrechtlichesInkassoRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesVorrechtlichesInkassoResponseMessage">
+        <wsdl:part name="Response" element="pa:readAllL10nAttributesVorrechtlichesInkassoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="VorrechtlichesInkassoServicePortType">
+        <wsdl:operation name="readL10nAttributesVorrechtlichesInkasso">
+            <wsdl:documentation>Liefert für einen technischen Schlüssel des vorrechtlichen Inkassos die Bezeichnung des zugehörigen vorrechtlichen Inkassos zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesVorrechtlichesInkassoRequest" message="tns:ReadL10nAttributesVorrechtlichesInkassoRequestMessage"/>
+            <wsdl:output name="readL10nAttributesVorrechtlichesInkassoResponse" message="tns:ReadL10nAttributesVorrechtlichesInkassoResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesVorrechtlichesInkasso">
+            <wsdl:documentation>Liefert alle Bezeichnungen von vorrechtlichen Inkasso zurück.</wsdl:documentation>
+            <wsdl:input name="readAllL10nAttributesVorrechtlichesInkassoRequest" message="tns:ReadAllL10nAttributesVorrechtlichesInkassoRequestMessage"/>
+            <wsdl:output name="readAllL10nAttributesVorrechtlichesInkassoResponse" message="tns:ReadAllL10nAttributesVorrechtlichesInkassoResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="VorrechtlichesInkassoServiceBinding" type="tns:VorrechtlichesInkassoServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="readL10nAttributesVorrechtlichesInkasso">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesVorrechtlichesInkassoRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesVorrechtlichesInkassoResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesVorrechtlichesInkasso">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readAllL10nAttributesVorrechtlichesInkassoRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readAllL10nAttributesVorrechtlichesInkassoResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="VorrechtlichesInkassoService_v1">
+        <wsdl:port name="VorrechtlichesInkassoService_v1" binding="tns:VorrechtlichesInkassoServiceBinding">
+            <soap:address location="https://example.com/apibridge-finanzwesen/VorrechtlichesInkassoService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

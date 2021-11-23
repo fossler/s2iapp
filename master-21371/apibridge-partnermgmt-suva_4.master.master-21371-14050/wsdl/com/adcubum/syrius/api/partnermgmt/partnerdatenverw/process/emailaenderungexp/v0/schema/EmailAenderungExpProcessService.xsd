@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:cp="urn:com:adcubum:syrius:api:common:process:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:emailaenderungexp:v0:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:emailaenderungexp:v0:schema"
+            version="0.2.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:process:v1" schemaLocation="../../../../../../common/process/v1/process.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+            
+    <xsd:element name="createEmailAenderungProcessRequest" type="tns:CreateEmailAenderungProcessRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine E-Mail-Adresse Änderung zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createEmailAenderungProcessResponse" type="tns:CreateEmailAenderungProcessResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der E-Mail-Adresse Änderung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createEmailRequest" type="tns:CreateEmailRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um ein neue E-Mail-Adresse auf dem Partner anzulegen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createEmailResponse" type="tns:CreateEmailResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der E-Mail-Adresse Erstellung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeEmailRequest" type="tns:ChangeEmailRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request für eine Änderung einer bestehenden E-Mail-Adresse.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeEmailResponse" type="tns:ChangeEmailResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der E-Mail-Adresse Änderung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="terminateEmailRequest" type="tns:TerminateEmailRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um eine E-Mail-Adresse zu terminieren.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="terminateEmailResponse" type="tns:TerminateEmailResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Terminierung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateEmailAenderungProcessRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine E-Mail-Adresse Änderung für einen Partner zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, dessen E-Mail-Adresse geändert werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aenderungAb" type="st:LocalDateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die E-Mail-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="emailAenderung" type="tns:WsEmailAenderungType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten der E-Mail-Adresse, die geändert werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="emailLoeschung" type="tns:WsEmailLoeschungType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten der E-Mail-Adresse, die gelöscht werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateEmailAenderungProcessResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der E-Mail-Adresse Änderung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessProcessState" type="cp:BusinessProcessStateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des gestarteten Prozesses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateEmailRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um eine neue E-Mail-Adresse auf dem Partner anzulegen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, für den die E-Mail-Adresse erstellt werden soll.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des verwendeten Mutationsgrunds.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aenderungAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die neue E-Mail-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="email" type="tns:WsCreateEmailType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten der neuen E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateEmailResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der E-Mail-Adresse Erstellung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessProcessState" type="cp:BusinessProcessStateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des gestarteten Prozesses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeEmailRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um eine bestehende E-Mail-Adresse zu ändern.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des verwendeten Mutationsgrunds.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="aenderungAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die Änderung der E-Mail-Adresse gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="email" type="tns:WsChangeEmailType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Daten der neuen E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeEmailResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der E-Mail-Adresse Änderung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessProcessState" type="cp:BusinessProcessStateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des gestarteten Prozesses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TerminateEmailRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine E-Mail-Adresse zu terminieren.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="emailId" type="pi:WsEmailIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id der zu terminierenden E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des verwendeten Mutationsgrunds.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="beendigungsdatum" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt per welchem Datum die E-Mail-Adresse terminiert wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TerminateEmailResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Terminierung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessProcessState" type="cp:BusinessProcessStateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des gestarteten Prozesses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+     <xsd:complexType name="WsEmailAenderungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer E-Mail-Adresse, die geändert werden soll.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="emailAdresse" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="emailDefId" type="pi:WsEmailDefIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der E-Mail-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="qualitaetsStufe" type="pc:WsQualitaetsStufeCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Code der Qualitätsstufe.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsEmailLoeschungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer E-Mail-Adresse, die gelöscht werden soll.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="emailAdresse" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsCreateEmailType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer E-Mail-Adresse.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="emailDefId" type="pi:WsEmailDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der E-Mail-Adresse-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="emailAdresse" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="qualitaetsStufe" type="pc:WsQualitaetsStufeCodeType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Qualitätsstufe der E-Mail-Adresse</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsChangeEmailType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer Die E-Mail-Adresse.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="emailId" type="pi:WsEmailIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der zu ändernden Die E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="emailDefId" type="pi:WsEmailDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der E-Mail-Adresse-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="emailAdresse" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die E-Mail-Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="qualitaetsStufe" type="pc:WsQualitaetsStufeCodeType" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="de">Qualitätsstufe der E-Mail-Adresse</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+            

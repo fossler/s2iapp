@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:verkaufsprodukt:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:verkaufsprodukt:v1:schema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:produktmgmt:common:codes:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:produktmgmt:common:identifier:v1"
+            version="1.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../common/types/v1/types.xsd"/>
+
+    <xsd:element name="readL10nAttributesVerkaufsproduktRequest" type="tns:ReadL10nAttributesVerkaufsproduktRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request zur Ermittlung der lokalisierten Attribute des Verkaufsproduktes.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesVerkaufsproduktRequestType">
+        <xsd:annotation>
+        		<xsd:documentation>Enthält eine Liste von Suchparam-Konstellationen für die Anfrage nach Bezeichnungen</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="verkaufsproduktId" type="pi:WsVerkaufsproduktIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Mehrere Technische Schlüssel von Verkaufsprodukten.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+         <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+             <xsd:annotation>
+                 <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+         <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+             <xsd:annotation>
+                 <xsd:documentation xml:lang="de">Optionale Angabe des Stichtags zur Datenermittlung, ohne Angabe wird das Tagesdatum verwendet.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="readL10nAttributesVerkaufsproduktResponse" type="tns:ReadL10nAttributesVerkaufsproduktResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response zur Ermittlung der lokalisierten Attribute des Verkaufsproduktes.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesVerkaufsproduktResponseType">
+        <xsd:annotation>
+        	<xsd:documentation>Response zur Ermittlung der lokalisierten Attribute des Verkaufsproduktes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesVerkaufsproduktType" minOccurs="1" maxOccurs="unbounded">
+             <xsd:annotation>
+                 <xsd:documentation xml:lang="de">Übersetzter Text eines Verkaufsproduktes.</xsd:documentation>
+             </xsd:annotation>
+         </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsL10nAttributesVerkaufsproduktType">
+          <xsd:annotation>
+        	<xsd:documentation>lokalisierte Attribute zum Verkaufsprodukt</xsd:documentation>
+          </xsd:annotation>
+          <xsd:sequence>
+            <xsd:element name="verkaufsproduktId" type="pi:WsVerkaufsproduktIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Verkaufsproduktes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung des Verkaufsproduktes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="text" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierter Text des Verkaufsproduktes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>
+

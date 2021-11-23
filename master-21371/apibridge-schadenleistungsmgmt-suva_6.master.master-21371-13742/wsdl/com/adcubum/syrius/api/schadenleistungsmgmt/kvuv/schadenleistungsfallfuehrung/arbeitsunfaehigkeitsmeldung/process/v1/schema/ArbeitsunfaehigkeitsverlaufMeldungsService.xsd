@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:arbeitsunfaehigkeitsmeldung:process:v1:schema"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:arbeitsunfaehigkeitsmeldung:process:v1:schema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:lt="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:arbeitsunfaehigkeitsmeldung:types:v1"
+        xmlns:li="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+        xmlns:rt="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:types:v1"
+        elementFormDefault="qualified"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:arbeitsunfaehigkeitsmeldung:types:v1"
+                schemaLocation="../../../types/v1/types.xsd"/>
+
+    <xsd:import
+            namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+            schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import
+            namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:types:v1"
+            schemaLocation="../../../../../common/types/v1/types.xsd"/>
+
+    <xsd:complexType name="WsCreateArbeitsunfaehigkeitsverlaufMeldungsRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem ein Arbeitsunfähigkeitsverlauf gemeldet wird</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Schadenfall-ID
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="arbeitsunfaehigkeitsverlauf" type="lt:WsArbeitsunfaehigkeitType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Ein Verlauf von Arbeitsunfähigkeiten
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dokumentId" type="rt:WsKurzerStringType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Identifikation dieser Nachricht im Archiv</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCreateArbeitsunfaehigkeitsverlaufMeldungsResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response mit der Id des Aktualisierungsprozesses</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="processInstanceState" type="rt:WsProzessInstanceStateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Zustand der Prozess-Instanz</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="createArbeitsunfaehigkeitsverlaufRequest" type="tns:WsCreateArbeitsunfaehigkeitsverlaufMeldungsRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eingabeelement für Anlage eines Arbeitsunfähigkeitsverlaufs über die Schadenfall-ID</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createArbeitsunfaehigkeitsverlaufResponse" type="tns:WsCreateArbeitsunfaehigkeitsverlaufMeldungsResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Response mit der der Erfolg der Aktualisierung gemeldet wird</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+</xsd:schema>

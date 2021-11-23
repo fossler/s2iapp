@@ -1,0 +1,64 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ci="urn:com:adcubum:syrius:api:common:identifier:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:operativesrechnungswesen:common:identifier:v1"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:common:identifier:v1"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:identifier:v1" schemaLocation="../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:complexType name="WsAbrechnungIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+        <xsd:complexType name="WsAbrechnungspositionIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Abrechnungsposition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsPartnerIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsGesetzesgrundIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Gesetzesgrundes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlerIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Zahlers.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsTilgungspositionIdType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Tilgungsposition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsCodeIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Code-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:referenzstammdatenverwaltung:leistungserbringerverwaltung:data:v1:schema"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:referenzstammdatenverwaltung:leistungserbringerverwaltung:data:v1:schema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:lt="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:referenzstammdatenverwaltung:leistungserbringerverwaltung:types:v1"
+        xmlns:li="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+        elementFormDefault="qualified"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:referenzstammdatenverwaltung:leistungserbringerverwaltung:types:v1"
+                schemaLocation="../../../types/v1/simpleTypes.xsd"/>
+
+    <xsd:import
+            namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+            schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+
+    <xsd:complexType name="WsLeistungserbringerSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener Leistungserbringer</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zsrNummer" type="lt:WsZsrNummerType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Zahlstellenregister-Nummer des Leistungserbringers</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="leistungserbringerId" type="li:WsLeistungserbringerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des Leistungserbringers</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSearchLeistungserbringerForZsrNummerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem ein Leistungserbringer über Zahlstellenregister-Nummer gesucht wird</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="zsrNummer" type="lt:WsZsrNummerType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Zahlstellenregister-Nummer des Leistungserbringers, der gefunden werden soll
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSearchLeistungserbringerForZsrNummerResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Ausgabedatenstruktur für Suche nach Leistungserbringer über Zahlstellenregister-Nummer</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungserbringer" type="tns:WsLeistungserbringerSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die gefundenen Leistungserbringer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="searchLeistungserbringerForZsrNummerRequest" type="tns:WsSearchLeistungserbringerForZsrNummerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eingabeelement für Suche nach Leistungserbringern über Zahlstellenregister-Nummer</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchLeistungserbringerForZsrNummerResponse" type="tns:WsSearchLeistungserbringerForZsrNummerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ausgabeelement für Suche nach Leistungserbringern über Zahlstellenregister-Nummer</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+</xsd:schema>

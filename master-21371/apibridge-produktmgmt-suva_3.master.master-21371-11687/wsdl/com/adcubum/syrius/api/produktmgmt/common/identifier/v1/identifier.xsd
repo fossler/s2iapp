@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:common:identifier:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:common:identifier:v1"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ci="urn:com:adcubum:syrius:api:common:identifier:v1"
+            elementFormDefault="qualified"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:identifier:v1" schemaLocation="../../../../common/identifier/v1/identifier.xsd"/>
+
+    <xsd:complexType name="WsCodeIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Code-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+     </xsd:complexType>
+     <xsd:complexType name="WsPartnerIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Partner-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsProduktIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Produkt-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsProduktsparteIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Produktsparte-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsVerkaufsproduktIdType">
+        <xsd:annotation>
+            <xsd:documentation>Verkaufsprodukt-Id</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsGesetzlicheGrundlageIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Gesetzliche-Grundlage-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAvmDefIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>AVM-Definition-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsAvmZuteilungIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>AVM-zuteilung-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsKriteriumIdType" abstract="true">
+    	<xsd:annotation>
+    		<xsd:documentation>Kriterium-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsCodekriteriumIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Codekriterium-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsKriteriumIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsWertkriteriumIdType">
+    	<xsd:annotation>
+    		<xsd:documentation>Wertkriterium-Id</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsKriteriumIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsProduktRisikoDefIdType">
+        <xsd:annotation>
+            <xsd:documentation>Produktrisiko-Definition-Id</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ci:WsIdType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

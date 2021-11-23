@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:cp="urn:com:adcubum:syrius:api:common:process:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:paymentmethod:bpmn:v0:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:paymentmethod:bpmn:v0:schema"
+            version="0.1.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:process:v1" schemaLocation="../../../../../../../common/process/v1/process.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+
+    <xsd:element name="startPaymentMethodEnrichmentProcessRequest" type="tns:StartPaymentMethodEnrichmentProcessRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um den Anreicherungsprozess zur Aktualisierung einer Zahlungsweise zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="startPaymentMethodEnrichmentProcessResponse" type="tns:StartPaymentMethodEnrichmentProcessResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Zahlungsweise Änderung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="startPaymentMethodExpertProcessRequest" type="tns:StartPaymentMethodExpertProcessRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um den Expertenprozess zur Aktualisierung einer Zahlungsweise zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="startPaymentMethodExpertProcessResponse" type="tns:StartPaymentMethodExpertProcessResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Zahlungsweise Änderung mit den Prozessinformationen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="StartPaymentMethodEnrichmentProcessRequestType">
+       <xsd:annotation>
+           <xsd:documentation xml:lang="de">Request, um eine Änderung einer Zahlungsweise für einen Partner zu erstellen.</xsd:documentation>
+       </xsd:annotation>
+       <xsd:sequence>
+           <xsd:group ref="cp:GeneralProcessParams"/>
+           <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, dessen Zahlungsweise geändert werden sollen.</xsd:documentation>
+               </xsd:annotation>
+           </xsd:element>
+           <xsd:element name="validFrom" type="st:LocalDateType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt ab wann die Zahlungsweise Änderung gültig ist.</xsd:documentation>
+               </xsd:annotation>
+           </xsd:element>
+           <xsd:element name="changeReason" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt den Mutationsgrund.</xsd:documentation>
+               </xsd:annotation>
+           </xsd:element>
+           <xsd:sequence>
+	   			<xsd:choice minOccurs="0" maxOccurs="1">
+		           <xsd:element name="payorId" type="pi:WsPayorIdType">
+		               <xsd:annotation>
+		                   <xsd:documentation xml:lang="de">Technischer Schlüssel des zu ändernden Zahlungsprofils.</xsd:documentation>
+		               </xsd:annotation>
+		           </xsd:element>
+		           <xsd:element name="paymentChannelId" type="pi:WsZahlungskanalIdType">
+		               <xsd:annotation>
+		                   <xsd:documentation xml:lang="de">Technischer Schlüssel des zu ändernden Zahlungskanals.</xsd:documentation>
+		               </xsd:annotation>
+		           </xsd:element>
+	            </xsd:choice>
+	    	</xsd:sequence>
+           <xsd:element name="paymentMethodChange" type="tns:WsPaymentMethodChangeType" minOccurs="1" maxOccurs="1">
+            	<xsd:annotation>
+                   	<xsd:documentation xml:lang="de">Enthält die neuen Daten der Zahlungsweise.</xsd:documentation>
+               	</xsd:annotation>
+            </xsd:element>
+       </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StartPaymentMethodEnrichmentProcessResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Zahlungsweise Änderung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessProcessState" type="cp:BusinessProcessStateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des gestarteten Prozesses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="StartPaymentMethodExpertProcessRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine Änderung einer Zahlungsweise für einen Partner zu erstellen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:group ref="cp:GeneralProcessParams"/>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners, dessen Zahlungsweise geändert werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="validFrom" type="st:LocalDateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die Zahlungsweise Änderung gültig ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="changeReason" type="pi:WsMutationsgrundIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt den Mutationsgrund.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:sequence>
+	   			<xsd:choice minOccurs="1" maxOccurs="1">
+		           <xsd:element name="payorId" type="pi:WsPayorIdType">
+		               <xsd:annotation>
+		                   <xsd:documentation xml:lang="de">Technischer Schlüssel des zu ändernden Zahlungsprofils.</xsd:documentation>
+		               </xsd:annotation>
+		           </xsd:element>
+		           <xsd:element name="paymentChannelId" type="pi:WsZahlungskanalIdType">
+		               <xsd:annotation>
+		                   <xsd:documentation xml:lang="de">Technischer Schlüssel des zu ändernden Zahlungskanals.</xsd:documentation>
+		               </xsd:annotation>
+		           </xsd:element>
+	            </xsd:choice>
+	    	</xsd:sequence>
+            <xsd:element name="paymentMethodChange" type="tns:WsPaymentMethodChangeType" minOccurs="1" maxOccurs="1">
+            	<xsd:annotation>
+                   	<xsd:documentation xml:lang="de">Enthält die neuen Daten der Zahlungsweise.</xsd:documentation>
+               	</xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StartPaymentMethodExpertProcessResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response der Zahlungsweise Änderung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessProcessState" type="cp:BusinessProcessStateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des gestarteten Prozesses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsPaymentMethodChangeType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die gewünschten Änderungen an der Zahlungsweise.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="iban" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt die neue IBAN der zu ändernden Zahlungsweise.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="cashFlow" type="pc:WsCashFlowCodeType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Geldfluss der Zahlungsweise.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="debtPayMethodId" type="pi:WsMeansOfPaymentDefIdType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                  <xsd:documentation xml:lang="de">Technischer Schlüssel des Inkasso Zahlungsverfahren.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="creditPayMethodId" type="pi:WsMeansOfPaymentDefIdType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                  <xsd:documentation xml:lang="de">Technischer Schlüssel des Exkasso Zahlungsverfahren.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="alternativeAccountHolder" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt den abweichenden Kontoinhaber.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="usages" type="pc:WsUsageCodeType" minOccurs="0" maxOccurs="unbounded">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Verwendungszwecke einer Zahlungsweise.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="closedLoopId" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt die Closed-Loop-Id.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="affectedPaymentAddress" type="pi:WsPaymentAddressIdType" minOccurs="0" maxOccurs="1">
+              <xsd:annotation>
+                  <xsd:documentation xml:lang="de">Technischer Schlüssel des Inkasso Zahlungsverfahren.</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="paymentFrequency" type="pc:WsPaymentFrequencyCodeType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt den Code der Zahlungsart.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="inputChannel" type="pc:WsInputChannelCodeType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt den Eingangskanal.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="advanceOrArrear" type="pc:WsPaymentAdvanceArrearCodeType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt die Vor- oder Nachschüssigkeit der Zahlungsweise.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="signedBank" type="st:BooleanType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt, ob die Unterschrift der Bank enthalten ist.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="signedAccountHolder" type="st:BooleanType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt, ob die Unterschrift des Kontoinhabers enthalten ist.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="signedPolicyHolder" type="st:BooleanType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt, ob die Unterschrift des Versicherungsnehmers enthalten ist.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="payorTypeId" type="pi:WsPayorTypeIdType" minOccurs="0" maxOccurs="1">
+               <xsd:annotation>
+                   <xsd:documentation xml:lang="de">Bestimmt den Zahlertyp.</xsd:documentation>
+               </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

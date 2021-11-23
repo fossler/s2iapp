@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ProvinzService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:referenzdatenverw:data:provinz:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:referenzdatenverw:data:provinz:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:referenzdatenverw:data:provinz:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:referenzdatenverw:data:provinz:v1:schema" schemaLocation="schema/ProvinzService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetProvinzRequestMessage">
+        <wsdl:part name="request" element="pa:getProvinzRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetProvinzResponseMessage">
+        <wsdl:part name="request" element="pa:getProvinzResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetProvinzForLandRequestMessage">
+        <wsdl:part name="Request" element="pa:getProvinzForLandRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetProvinzForLandResponseMessage">
+        <wsdl:part name="Response" element="pa:getProvinzForLandResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProvinzRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesProvinzRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProvinzResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesProvinzResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProvinzForLandRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesProvinzForLandRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProvinzForLandResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesProvinzForLandResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="ProvinzServicePortType">
+        <wsdl:operation name="getProvinz">
+            <wsdl:documentation>Liefert für die angegegebenen Ids die Provinzen als Ergebnisse.</wsdl:documentation>
+            <wsdl:input name="getProvinzRequest" message="tns:GetProvinzRequestMessage"/>
+            <wsdl:output name="getProvinzResponse" message="tns:GetProvinzResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getProvinzForLand">
+            <wsdl:documentation>Liefert für ein Datum alle Provinzen für ein Land zurück.</wsdl:documentation>
+            <wsdl:input name="getProvinzForLandRequest" message="tns:GetProvinzForLandRequestMessage"/>
+            <wsdl:output name="getProvinzForLandResponse" message="tns:GetProvinzForLandResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesProvinz">
+            <wsdl:documentation>Liefert für einen technischen Provinzen-Schlüssel die Bezeichnung der zugehörigen Provinz zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesProvinzRequest" message="tns:ReadL10nAttributesProvinzRequestMessage"/>
+            <wsdl:output name="readL10nAttributesProvinzResponse" message="tns:ReadL10nAttributesProvinzResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesProvinzForLand">
+            <wsdl:documentation>Liefert alle Bezeichnungen von Provinzen für ein Land zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesProvinzForLandRequest" message="tns:ReadL10nAttributesProvinzForLandRequestMessage"/>
+            <wsdl:output name="readL10nAttributesProvinzForLandResponse" message="tns:ReadL10nAttributesProvinzForLandResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ProvinzServiceBinding" type="tns:ProvinzServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getProvinz">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getProvinzRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getProvinzResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getProvinzForLand">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getProvinzForLandRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getProvinzForLandResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesProvinz">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesProvinzRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesProvinzResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesProvinzForLand">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesProvinzForLandRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesProvinzForLandResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ProvinzService_v1">
+        <wsdl:port name="ProvinzService_v1" binding="tns:ProvinzServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/ProvinzService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

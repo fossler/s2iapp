@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TierService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:objektverw:auskunft:data:tier:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:objektverw:auskunft:data:tier:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:objektverw:auskunft:data:tier:v1:schema">
+
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:objektverw:auskunft:data:tier:v1:schema"
+                        schemaLocation="schema/TierService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="GetTierRequestMessage">
+        <wsdl:part name="Request" element="pa:getTierRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetTierResponseMessage">
+        <wsdl:part name="Response" element="pa:getTierResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="TierServicePortType">
+        <wsdl:operation name="getTier">
+            <wsdl:documentation>Liefert zu den übergebenen TierIDs die entsprechenden Tiere.
+            </wsdl:documentation>
+            <wsdl:input name="getTierRequest" message="tns:GetTierRequestMessage"/>
+            <wsdl:output name="getTierResponse" message="tns:GetTierResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="TierServiceBinding" type="tns:TierServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getTier">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getTierRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTierResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TierService_v1">
+        <wsdl:port name="TierService_v1" binding="tns:TierServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/TierService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

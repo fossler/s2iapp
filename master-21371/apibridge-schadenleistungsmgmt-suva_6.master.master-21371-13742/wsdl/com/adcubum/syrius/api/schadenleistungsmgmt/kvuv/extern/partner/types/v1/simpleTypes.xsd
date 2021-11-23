@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:types:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:types:v1"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        elementFormDefault="qualified"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../../../../../com/adcubum/syrius/api/common/simpleTypes/v1/simpleTypes.xsd"/>
+
+    <xsd:simpleType name="SozialversicherungsnummerType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Typ für die 13-Stellige Sozialversicherungsnummer der Schweiz. Die Punkte können optional gesetzt sein.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="st:StringType">
+            <xsd:minLength value="13"/>
+            <xsd:maxLength value="16"/>
+            <xsd:pattern value="[0-9]{3}\.?[0-9]{4}\.?[0-9]{4}\.?[0-9]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="TelefonnummerType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Typ für die Telefonnummer.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="st:StringType">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="EMailType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Typ für die EMail.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="st:StringType">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="LaenderType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Typ für den Ländertyp im ISO-3166-Code CH, DE, ...
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="st:StringType">
+            <xsd:minLength value="2"/>
+            <xsd:maxLength value="2"/>
+            <xsd:pattern value="[A-Z]{2}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="NameVornameType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Typ für den Namen bzw. Vornamen
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="st:StringType">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

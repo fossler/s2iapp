@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="OeZuteilungService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:oezuteilung:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:oezuteilung:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:oezuteilung:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:oezuteilung:v1:schema" schemaLocation="schema/OeZuteilungService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetPartnerGbereichArtOeZuteilungRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerGbereichArtOeZuteilungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerGbereichArtOeZuteilungResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerGbereichArtOeZuteilungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerGbereichOeZuteilungRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerGbereichOeZuteilungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerGbereichOeZuteilungResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerGbereichOeZuteilungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerOeZuteilungRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerOeZuteilungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerOeZuteilungResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerOeZuteilungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="OeZuteilungServicePortType">
+        <wsdl:operation name="getPartnerGbereichArtOeZuteilung">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel, einen Geschäftsbereich und die Organisationseinheitsart die Daten der zugehörigen OeZuteilung.</wsdl:documentation>
+            <wsdl:input name="getPartnerGbereichArtOeZuteilungRequest" message="tns:GetPartnerGbereichArtOeZuteilungRequestMessage"/>
+            <wsdl:output name="getPartnerGbereichArtOeZuteilungResponse" message="tns:GetPartnerGbereichArtOeZuteilungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerGbereichOeZuteilung">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel und einen Geschäftsbereich für alle Organisationseinheitsart die Daten der zugehörigen OeZuteilung.</wsdl:documentation>
+            <wsdl:input name="getPartnerGbereichOeZuteilungRequest" message="tns:GetPartnerGbereichOeZuteilungRequestMessage"/>
+            <wsdl:output name="getPartnerGbereichOeZuteilungResponse" message="tns:GetPartnerGbereichOeZuteilungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerOeZuteilung">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die OeZuteilung für alle Geschäftsbereiche und Organisationseinheitsart.</wsdl:documentation>
+            <wsdl:input name="getPartnerOeZuteilungRequest" message="tns:GetPartnerOeZuteilungRequestMessage"/>
+            <wsdl:output name="getPartnerOeZuteilungResponse" message="tns:GetPartnerOeZuteilungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="OeZuteilungServiceBinding" type="tns:OeZuteilungServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getPartnerGbereichArtOeZuteilung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerGbereichArtOeZuteilungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerGbereichArtOeZuteilungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerGbereichOeZuteilung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerGbereichOeZuteilungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerGbereichOeZuteilungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerOeZuteilung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerOeZuteilungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerOeZuteilungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OeZuteilungService_v1">
+        <wsdl:port name="OeZuteilungService_v1" binding="tns:OeZuteilungServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/OeZuteilungService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

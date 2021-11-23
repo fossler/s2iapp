@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PartnerEnvironmentService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerenvironment:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerenvironment:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerenvironment:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.2.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerenvironment:v1:schema" schemaLocation="schema/PartnerEnvironmentService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetNatPersonEnvironmentRequestMessage">
+        <wsdl:part name="Request" element="pa:getNatPersonEnvironmentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetNatPersonEnvironmentResponseMessage">
+        <wsdl:part name="Response" element="pa:getNatPersonEnvironmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetJurPersonEnvironmentRequestMessage">
+        <wsdl:part name="Request" element="pa:getJurPersonEnvironmentRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetJurPersonEnvironmentResponseMessage">
+        <wsdl:part name="Response" element="pa:getJurPersonEnvironmentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="PartnerEnvironmentServicePortType">
+        <wsdl:operation name="getNatPersonEnvironment">
+            <wsdl:documentation>Liefert alle zur Erstellung oder Änderung einer NatPerson nötigen Informationen.</wsdl:documentation>
+            <wsdl:input name="getNatPersonEnvironmentRequest" message="tns:GetNatPersonEnvironmentRequestMessage"/>
+            <wsdl:output name="getNatPersonEnvironmentResponse" message="tns:GetNatPersonEnvironmentResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getJurPersonEnvironment">
+            <wsdl:documentation>Liefert alle zur Erstellung oder Änderung einer JurPerson nötigen Informationen.</wsdl:documentation>
+            <wsdl:input name="getJurPersonEnvironmentRequest" message="tns:GetJurPersonEnvironmentRequestMessage"/>
+            <wsdl:output name="getJurPersonEnvironmentResponse" message="tns:GetJurPersonEnvironmentResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PartnerEnvironmentServiceBinding" type="tns:PartnerEnvironmentServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getNatPersonEnvironment">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getNatPersonEnvironmentRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getNatPersonEnvironmentResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getJurPersonEnvironment">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getJurPersonEnvironmentRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getJurPersonEnvironmentResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PartnerEnvironmentService_v1">
+        <wsdl:port name="PartnerEnvironmentService_v1" binding="tns:PartnerEnvironmentServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/PartnerEnvironmentService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

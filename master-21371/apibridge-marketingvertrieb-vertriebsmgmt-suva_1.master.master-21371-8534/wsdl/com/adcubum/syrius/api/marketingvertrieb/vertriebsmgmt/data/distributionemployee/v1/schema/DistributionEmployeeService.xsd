@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:mvi="urn:com:adcubum:syrius:api:marketingvertrieb:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+            xmlns:mvc="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:marketingvertrieb:vertriebsmgmt:data:distributionemployee:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:marketingvertrieb:vertriebsmgmt:data:distributionemployee:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+                schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:identifier:v1"
+                schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+                schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v1"
+                schemaLocation="../../../../../../common/searchTypes/v1/searchTypes.xsd"/>
+    <xsd:element name="getDistributionEmployeeAndDistributionContractRequest" type="tns:GetDistributionEmployeeAndDistributionContractRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Vertriebspartner geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getDistributionEmployeeAndDistributionContractResponse" type="tns:GetDistributionEmployeeAndDistributionContractResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Vertriebspartner enthalten sind.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchDistributionEmployeeRequest" type="tns:SearchDistributionEmployeeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Vertriebspartner gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchDistributionEmployeeResponse" type="tns:SearchDistributionEmployeeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die gefundenen Vertriebspartner enthalten sind (IDs und
+                Kernattribute).
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createDistributionEmployeeAndDistributionContractRequest" type="tns:CreateDistributionEmployeeAndDistributionContractRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Request for creating new distribution employee.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createDistributionEmployeeAndDistributionContractResponse" type="tns:CreateDistributionEmployeeAndDistributionContractResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Response with id of new distribution employee.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="CreateDistributionEmployeeAndDistributionContractRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Request for creating new distribution employee.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="personalNo" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Personal number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="finmaNo" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">FINMA number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="mvi:WsPartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Partner id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="parentDistributionEmployeeId" type="mvi:WsVertriebspartnerIdType"  minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Parent distribution employee id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externalNo" type="st:StringType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">External number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distributionEmployeeDefinitionId" type="mvi:WsVertriebspartnerDefIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Distribution employee definition id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distributionEmployeeContractStatus" type="mvc:WsVermittlerstatusCodeType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Distribution employee contract status</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distributionEmployeeType" type="mvc:WsVermittlertypCodeType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Distribution employee type</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="documentDeliveryActive" type="mvc:WsSammelversandCodeType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Document delivery active</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="hasAnonymDistributionEmployees" type="mvc:WsHasAnonymDistributionEmployeesCodeType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Has anonymous distribution employees</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="verguetungskontoAbrechnungsart" type="mvi:WsVerguetungskontoAbrechnungsartIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Has anonymous distribution employees</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>        
+            <xsd:element name="limitStornoreserve" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Cancellation reserve limit</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gBereich" type="mvi:WsGBereichIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Has anonymous distribution employees</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="orgUnit" type="mvi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Organisation unit ID</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="zahler" type="mvi:WsZahlerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Payer id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="salesPermissionDefId" type="mvi:WsSalesPermissionDefIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">SalesPermissionDef id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="validFrom" type="st:LocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Valid-from date for new distribution employee</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="changeReason" type="mvi:WsMutationsgrundIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Change reason id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="customAttribute" type="ct:WsCustomAttributeType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">List of parametrized attributes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateDistributionEmployeeAndDistributionContractResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Response with id of new distribution employee.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Technical key of a newly created distribution employee </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="changeDistributionEmployeeAndDistributionContractRequest" type="tns:ChangeDistributionEmployeeAndDistributionContractRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Request for changing an existing distribution employee.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changeDistributionEmployeeAndDistributionContractResponse" type="tns:ChangeDistributionEmployeeAndDistributionContractResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Response without data of changed distribution employee.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ChangeDistributionEmployeeAndDistributionContractRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Request for changing new distribution employee.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Technical Key of the distribution employee</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="personalNo" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Personal number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="finmaNo" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">FINMA number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="mvi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Partner id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="parentDistributionEmployeeId" type="mvi:WsVertriebspartnerIdType"   minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Parent distribution employee id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externalNo" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">External number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distributionEmployeeDefinitionId" type="mvi:WsVertriebspartnerDefIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Distribution employee definition id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distributionEmployeeContractStatus" type="mvc:WsVermittlerstatusCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Distribution employee contract status</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="distributionEmployeeType" type="mvc:WsVermittlertypCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Distribution employee type</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="documentDeliveryActive" type="mvc:WsSammelversandCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Document delivery active</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="hasAnonymDistributionEmployees" type="mvc:WsHasAnonymDistributionEmployeesCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Has anonymous distribution employees</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="verguetungskontoAbrechnungsart" type="mvi:WsVerguetungskontoAbrechnungsartIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Payment accounting method for distribution employee</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>        
+            <xsd:element name="limitStornoreserve" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Cancellation reserve limit</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gBereich" type="mvi:WsGBereichIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Business division of distribution employees</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="orgUnit" type="mvi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Organisation unit ID</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="zahler" type="mvi:WsZahlerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Payer id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="salesPermissionDefId" type="mvi:WsSalesPermissionDefIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">SalesPermissionDef id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="validFrom" type="st:LocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Valid-from date for changed value(s)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="validTo" type="st:LocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Valid-to date for changed value(s)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="changeReason" type="mvi:WsMutationsgrundIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">Change reason id</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="customAttribute" type="ct:WsCustomAttributeType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="en">List of parametrized attributes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChangeDistributionEmployeeAndDistributionContractResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Response without data.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:complexType name="GetDistributionEmployeeAndDistributionContractRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Vertriebspartner geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartnerId" type="mvi:WsVertriebspartnerIdType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="xsd:date" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht
+                        gesetzt wird der aktuelle Zeitpunkt verwendet
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetDistributionEmployeeAndDistributionContractResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Vertriebspartner enthalten sind.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartner" type="tns:WsVertriebspartnerType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden Vertriebspartnern.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchDistributionEmployeeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Vertriebspartner gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="suchbedingungen" type="search:WsSearchConditionType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Suchbedingungen für den Suchrequest.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertriebspartnerNr" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Eindeutige Nummer des Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externeNr" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Externe Nummer des Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="personalNr" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Personalnummer des Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="name" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Name des Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vorname" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Vorname des Vertriebspartners (falls vorhanden).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="strasse" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Strasse der Domiziladresse des Vertriebspartners.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="hausnummer" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Hausnummer der Domiziladresse des Vertriebspartners.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="postleitzahl" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Postleitzahl der Domiziladresse des Vertriebspartners.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ort" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Ort der Domiziladresse des Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertriebspartnerDefId" type="mvi:WsVertriebspartnerDefIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die für den Vertriebspartner geltende Vertriebspartnerdefinition.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vermittlerstatus" type="mvc:WsVermittlerstatusCodeType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Status des Vermittlervertrags (aktiv, inaktiv, usw.).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchDistributionEmployeeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die gefundenen Vertriebspartner enthalten sind.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertriebspartner" type="tns:WsVertriebspartnerSearchType" minOccurs="0"
+                         maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefundenen Vertriebspartnern.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsVertriebspartnerSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener Vertriebspartner (IDs).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="mvi:WsVertriebspartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Vertriebspartners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertriebspartnerDefId" type="mvi:WsVertriebspartnerDefIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die für den Vertriebspartner geltende Vertriebspartnerdefinition.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="mvi:WsPartnerIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des zugehörigen Partners (nat. oder jur.
+                        Person).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="adresseId" type="mvi:WsAdresseIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der Adresse.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsVertriebspartnerType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein Vertriebspartner.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="mvi:WsVertriebspartnerIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Vertriebspartners.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="name" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Name des Vertriebspartners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vorname" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Vorname des Vertriebspartners (falls vorhanden).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerId" type="mvi:WsPartnerIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des zugehörigen Partners (nat. oder
+                                jur. Person).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="adresseId" type="mvi:WsAdresseIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Adresse.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="uebergeordVertrPartnerId" type="mvi:WsVertriebspartnerIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Übergeordneter Vertriebspartner innerhalb der
+                                Vertriebspartnerhierarchie. Ist der Vertriebspartner in der obersten Hierarchieebene ist
+                                diese Referenz leer.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertriebspartnerNr" type="st:StringType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Eindeutige Nummer des Vertriebspartners.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="externeNr" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Externe Nummer des Vertriebspartners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="personalNr" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Personalnummer des Vertriebspartners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertriebspartnerDefId" type="mvi:WsVertriebspartnerDefIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Die für den Vertriebspartner geltende
+                                Vertriebspartnerdefinition.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sozialabgabeprofilId" type="mvi:WsSozialabgabeprofilIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Sozialabgabeprofil des Vertriebspartners.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vermittlertyp" type="mvc:WsVermittlertypCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Bestimmt den Vermittlertyp, z.B. gebunden oder
+                                ungebunden.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vermittlerstatus" type="mvc:WsVermittlerstatusCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Status des Vermittlervertrags (aktiv, inaktiv, usw.).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sammelversand" type="mvc:WsSammelversandCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Gibt an, ob der Sammelversand (hinterlegt auf der
+                                Definition) für diesen Vertriebspartner aktiv ist.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sozialabgabepflichtig" type="mvc:WsSozialabgabepflichtigCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Gibt an, ob von dieser Vertriebspartner
+                                sozialabgabepflichtig ist.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="quellsteuerpflichtig" type="mvc:WsQuellsteuerpflichtigCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Gibt an, ob von dieser Vertriebspartner
+                                quellsteuerpflichtig ist.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsCustomAttributeBORefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Objekt zur Darstellung beliebiger BOIds.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsCustomAttributeType">
+                <xsd:sequence>
+                    <xsd:element name="attrValue" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Der Wert des BOIds. Dieser kann leer sein.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

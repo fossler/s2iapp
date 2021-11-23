@@ -1,0 +1,192 @@
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:nachrichten:process:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:nachrichten:process:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="1.0.0">
+
+    <xsd:element name="nachrichtEmpfangenRequest" type="tns:UvgKtgNachrichtenRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Die empfangene Nachricht</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="UvgKtgNachrichtenRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Die empfangene Nachricht</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="nachricht" type="tns:WsNachrichtenKontextType">
+                <xsd:annotation>
+                    <xsd:documentation>Die empfangene Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="nachrichtEmpfangenResponse" type="tns:UvgKtgNachrichtenResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Antwort zum Empfang der Nachricht</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="UvgKtgNachrichtenResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Antwort zum Empfang der Nachricht</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="nachrichtenId" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Id, mit welcher diese Nachricht gespeichert wurde</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsNachrichtenKontextType">
+        <xsd:annotation>
+            <xsd:documentation>Die empfangene Nachricht</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ereignismeldungId" type="tns:WsEreignismeldungIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Eindeutige Identifikation der Kommunikation über den Leistungsfall</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="schadennummer" type="tns:WsSchadennummerType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Schadennummer zur Identifikation des Falldossiers zum Ereignis</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="absender" type="tns:WsPartnernummerType">
+                <xsd:annotation>
+                    <xsd:documentation>Partner-Nummer des Betriebes der die Nachricht verschickte</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="nachricht" type="tns:WsNachrichtType">
+                <xsd:annotation>
+                    <xsd:documentation>Die empfangene Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsEreignismeldungIdType">
+        <xsd:annotation>
+            <xsd:documentation>Eindeutige Identifikation der Kommunikation über den Leistungsfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id">
+                <xsd:annotation>
+                    <xsd:documentation>Eindeutige Identifikation der Kommunikation über den Leistungsfall</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="de">String mit länge 255</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="255"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadennummerType">
+        <xsd:annotation>
+            <xsd:documentation>Schadennummer des Falles</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadennummer" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Schadennummer des Falles</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsPartnernummerType">
+        <xsd:annotation>
+            <xsd:documentation>Partner-Nummer des Betriebes der verunfallten Person</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Partner-Nummer des Betriebes der verunfallten Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsNachrichtType">
+        <xsd:annotation>
+            <xsd:documentation>Die empfangene Nachricht</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="erstellung" type="xsd:dateTime">
+                <xsd:annotation>
+                    <xsd:documentation>Datum und Zeit der Erstellung der Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="nachrichtId" type="tns:WsKurzerStringType">
+                <xsd:annotation>
+                    <xsd:documentation>Die ID dieser Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vorherigeNachrichtId" type="tns:WsKurzerStringType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Die ID der vorherigen Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="dokumentId" type="tns:WsKurzerStringType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Identifikation dieser Nachricht im Archiv</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="titel" type="tns:WsKurzerStringType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Der Titel dieser Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:element name="absatz" type="tns:WsAbsatzType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Die Absätze der Nachricht</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsAbsatzType">
+        <xsd:annotation>
+            <xsd:documentation>Ein Absatz dieser Nachricht</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="absatzId" type="xsd:short">
+                <xsd:annotation>
+                    <xsd:documentation>Die ID dieses Absatzes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="text">
+                <xsd:annotation>
+                    <xsd:documentation>Text in einem Absatz, Beschreibung für Werte oder Antworten</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:annotation>
+                        <xsd:documentation xml:lang="de">Token mit länge 4000</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:restriction base="xsd:token">
+                        <xsd:maxLength value="4000"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsKurzerStringType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält einen String mit begrenzter Zeichenlänge</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

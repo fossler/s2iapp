@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:common:codes:v1"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+    <xsd:complexType name="WsPraemienAbrechnungsartCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt, die Abrechnungsart der Prämie.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsGesetzlVertreterCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">ist der Schuldnervertreter der gesetzliche Vertreter (ja/nein)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsVerzugszinsBerechnenCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Verzugszins berechnen (ja/nein)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungsartCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Zahlungsmodus (1-, 2-, 3-, 4-, 6-, 12 Monatlich)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungVorNachschuessigCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt ob Zahlungen vorschüssig / nachschüssig sind</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsPeriodizitaetCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Periodizitaet Sammelkontoabrechnung (1-, 2-, 3-, 4-, 6-, 12 Monatlich)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsGeldflussCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt den Geldfluss für die Zahlungsweise (Inkasse, Exkasso, In/Exkasso)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungsmittelStatusCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt den Status eines Zahlungsmittels (eingelöst, aufgehoben, zurückgewiesen, verfallen, erstellt, vorgemerkt)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsHerkunftCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt den Typ einer Faktura (Prämie, Leistung, ...)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsStatusCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt den Status einer Faktura (Aktiv, ...)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsZahlungCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt den Typ einer Zahlung (Abschreibung, Ausbuchung, ...)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WsZahlungsmittelCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bestimmt das zugrundeliegende Zahlungsmittel (ESR, ASR, ...)</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

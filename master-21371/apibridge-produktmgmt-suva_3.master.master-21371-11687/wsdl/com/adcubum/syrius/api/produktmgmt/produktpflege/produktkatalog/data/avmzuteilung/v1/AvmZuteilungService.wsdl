@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="AvmZuteilungService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:avmzuteilung:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:avmzuteilung:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:avmzuteilung:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+                  
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:avmzuteilung:v1:schema" schemaLocation="schema/AvmZuteilungService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="SearchAvmZuteilungForPartnerNrRequestMessage">
+        <wsdl:part name="Request" element="pa:searchAvmZuteilungForPartnerNrRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SearchAvmZuteilungForPartnerNrResponseMessage">
+        <wsdl:part name="Response" element="pa:searchAvmZuteilungForPartnerNrResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="GetAvmZuteilungRequestMessage">
+        <wsdl:part name="Request" element="pa:getAvmZuteilungRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="GetAvmZuteilungResponseMessage">
+        <wsdl:part name="Response" element="pa:getAvmZuteilungResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SearchHausarztRequestMessage">
+        <wsdl:part name="Request" element="pa:searchHausarztRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SearchHausarztResponseMessage">
+        <wsdl:part name="Response" element="pa:searchHausarztResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SearchHausarztForAvmDefRequestMessage">
+        <wsdl:part name="Request" element="pa:searchHausarztForAvmDefRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SearchHausarztForAvmDefResponseMessage">
+        <wsdl:part name="Response" element="pa:searchHausarztForAvmDefResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="AvmZuteilungServicePortType">
+    
+        <wsdl:operation name="searchAvmZuteilungForPartnerNr">
+            <wsdl:documentation>Liefert zu einer AVM-Definition und Partner-Nr (ZSR-Nr.) eine Liste von AVM-Definitionen</wsdl:documentation>
+            <wsdl:input name="searchAvmZuteilungForPartnerNrRequest" message="tns:SearchAvmZuteilungForPartnerNrRequestMessage"/>
+            <wsdl:output name="searchAvmZuteilungForPartnerNrResponse" message="tns:SearchAvmZuteilungForPartnerNrResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAvmZuteilung">
+            <wsdl:documentation>AVM-Zuteilungsdaten zu den angefragten technischen Schlüsseln</wsdl:documentation>
+            <wsdl:input name="getAvmZuteilungRequest" message="tns:GetAvmZuteilungRequestMessage"/>
+            <wsdl:output name="getAvmZuteilungResponse" message="tns:GetAvmZuteilungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="searchHausarzt">
+            <wsdl:documentation>Liefert zu einem Produkt, AVMNetz und Anfangsdatum eine Liste von Hausärzten als Partner</wsdl:documentation>
+            <wsdl:input name="searchHausarztRequest" message="tns:SearchHausarztRequestMessage"/>
+            <wsdl:output name="searchHausarztResponse" message="tns:SearchHausarztResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="searchHausarztForAvmDef">
+            <wsdl:documentation>Liefert zu einer AvmDefId, AVMNetz und Anfangsdatum eine Liste von Hausärzten als Partner</wsdl:documentation>
+            <wsdl:input name="searchHausarztForAvmDefRequest" message="tns:SearchHausarztForAvmDefRequestMessage"/>
+            <wsdl:output name="searchHausarztForAvmDefResponse" message="tns:SearchHausarztForAvmDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        
+    </wsdl:portType>
+    
+    <wsdl:binding name="AvmZuteilungServiceBinding" type="tns:AvmZuteilungServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <wsdl:operation name="searchAvmZuteilungForPartnerNr">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchAvmZuteilungForPartnerNrRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchAvmZuteilungForPartnerNrResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="getAvmZuteilung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAvmZuteilungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAvmZuteilungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="searchHausarzt">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchHausarztRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchHausarztResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="searchHausarztForAvmDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchHausarztForAvmDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchHausarztForAvmDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AvmZuteilungService_v1">
+        <wsdl:port name="AvmZuteilungService_v1" binding="tns:AvmZuteilungServiceBinding">
+            <soap:address location="https://example.com/apibridge-produktmgmt/AvmZuteilungService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="BedingungProcessService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:bedingungprocess:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:bedingungprocess:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:bedingungprocess:v1:schema">
+
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+                        schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:bedingungprocess:v1:schema" schemaLocation="schema/BedingungProcessService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="AusschliessenBedingungRequestMessage">
+        <wsdl:part name="Request" element="pa:ausschliessenBedingungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="AusschliessenBedingungResponseMessage">
+        <wsdl:part name="Response" element="pa:ausschliessenBedingungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EinschliessenVertragBedingungRequestMessage">
+        <wsdl:part name="Request" element="pa:einschliessenVertragBedingungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="EinschliessenVertragBedingungResponseMessage">
+        <wsdl:part name="Response" element="pa:einschliessenVertragBedingungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EinschliessenVersichertesObjektBedingungRequestMessage">
+        <wsdl:part name="Request" element="pa:einschliessenVersichertesObjektBedingungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="EinschliessenVersichertesObjektBedingungResponseMessage">
+        <wsdl:part name="Response" element="pa:einschliessenVersichertesObjektBedingungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EinschliessenVertragsproduktBedingungRequestMessage">
+        <wsdl:part name="Request" element="pa:einschliessenVertragsproduktBedingungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="EinschliessenVertragsproduktBedingungResponseMessage">
+        <wsdl:part name="Response" element="pa:einschliessenVertragsproduktBedingungResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="BedingungProcessServicePortType">
+        <wsdl:operation name="ausschliessenBedingung">
+            <wsdl:documentation>Beendet innerhalb des Vertrages die Gültigkeit der angegebenen Bedingungen zum Stichdatum.</wsdl:documentation>
+            <wsdl:input name="ausschliessenBedingungRequest" message="tns:AusschliessenBedingungRequestMessage"/>
+            <wsdl:output name="ausschliessenBedingungResponse" message="tns:AusschliessenBedingungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="einschliessenVertragBedingung">
+            <wsdl:documentation>Schliesst die angegebenen Bedingungen zum Stichdatum am Vertrag ein.</wsdl:documentation>
+            <wsdl:input name="einschliessenVertragBedingungRequest" message="tns:EinschliessenVertragBedingungRequestMessage"/>
+            <wsdl:output name="einschliessenVertragBedingungResponse" message="tns:EinschliessenVertragBedingungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="einschliessenVersichertesObjektBedingung">
+            <wsdl:documentation>Schliesst die angegebenen Bedingungen zum Stichdatum am versicherten Objekt ein.</wsdl:documentation>
+            <wsdl:input name="einschliessenVersichertesObjektBedingungRequest" message="tns:EinschliessenVersichertesObjektBedingungRequestMessage"/>
+            <wsdl:output name="einschliessenVersichertesObjektBedingungResponse" message="tns:EinschliessenVersichertesObjektBedingungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="einschliessenVertragsproduktBedingung">
+            <wsdl:documentation>Schliesst die angegebenen Bedingungen zum Stichdatum am Vertragsprodukt ein.</wsdl:documentation>
+            <wsdl:input name="einschliessenVertragsproduktBedingungRequest" message="tns:EinschliessenVertragsproduktBedingungRequestMessage"/>
+            <wsdl:output name="einschliessenVertragsproduktBedingungResponse" message="tns:EinschliessenVertragsproduktBedingungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="BedingungProcessServiceBinding" type="tns:BedingungProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ausschliessenBedingung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="ausschliessenBedingungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ausschliessenBedingungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="einschliessenVertragBedingung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="einschliessenVertragBedingungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="einschliessenVertragBedingungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="einschliessenVersichertesObjektBedingung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="einschliessenVersichertesObjektBedingungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="einschliessenVersichertesObjektBedingungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="einschliessenVertragsproduktBedingung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="einschliessenVertragsproduktBedingungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="einschliessenVertragsproduktBedingungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="BedingungProcessService_v1">
+        <wsdl:port name="BedingungProcessService_v1" binding="tns:BedingungProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/BedingungProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

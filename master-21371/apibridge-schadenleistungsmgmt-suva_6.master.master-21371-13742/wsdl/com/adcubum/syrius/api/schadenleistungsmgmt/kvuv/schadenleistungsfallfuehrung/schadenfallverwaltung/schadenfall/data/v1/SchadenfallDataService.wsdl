@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="SchadenfallService"
+                  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:schadenfall:data:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:schadenfall:data:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:snr="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:schadenfall:data:v1:schema">
+    <wsdl:documentation>Version: 1.1.0</wsdl:documentation>
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+                        schemaLocation="../../../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import
+                    namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:schadenfall:data:v1:schema"
+                    schemaLocation="schema/SchadenfallDataService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ReadSchadenfallRequestMessage">
+        <wsdl:part name="Request" element="snr:readSchadenfallRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadSchadenfallResponseMessage">
+        <wsdl:part name="Response" element="snr:readSchadenfallResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadLeistungsfallRequestMessage">
+        <wsdl:part name="Request" element="snr:readLeistungsfallRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadLeistungsfallResponseMessage">
+        <wsdl:part name="Response" element="snr:readLeistungsfallResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadSchadenpartnerRequestMessage">
+        <wsdl:part name="Request" element="snr:readSchadenpartnerRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="ReadSchadenpartnerResponseMessage">
+        <wsdl:part name="Response" element="snr:readSchadenpartnerResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="SearchSchadenfallRequestMessage">
+        <wsdl:part name="Request" element="snr:searchSchadenfallRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="SearchSchadenfallResponseMessage">
+        <wsdl:part name="Response" element="snr:searchSchadenfallResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="SearchLeistungsfallRequestMessage">
+        <wsdl:part name="Request" element="snr:searchLeistungsfallRequest"/>
+    </wsdl:message>
+
+    <wsdl:message name="SearchLeistungsfallResponseMessage">
+        <wsdl:part name="Response" element="snr:searchLeistungsfallResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="SchadenfallServicePortType">
+        <wsdl:operation name="searchSchadenfall">
+            <wsdl:documentation>Sucht nach Schadenfällen über die übergebenen Parameter.</wsdl:documentation>
+            <wsdl:input name="searchSchadenfallRequest" message="tns:SearchSchadenfallRequestMessage"/>
+            <wsdl:output name="searchSchadenfallResponse" message="tns:SearchSchadenfallResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchLeistungsfall">
+            <wsdl:documentation>Sucht nach Leistungsfällen über die übergebene Parameter.</wsdl:documentation>
+            <wsdl:input name="searchLeistungsfallRequest" message="tns:SearchLeistungsfallRequestMessage"/>
+            <wsdl:output name="searchLeistungsfallResponse" message="tns:SearchLeistungsfallResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readSchadenfall">
+            <wsdl:documentation>Liefert zu den SchadenfallIds die entsprechenden Schadenfälle</wsdl:documentation>
+            <wsdl:input name="readSchadenfallRequest" message="tns:ReadSchadenfallRequestMessage"/>
+            <wsdl:output name="readSchadenfallResponse" message="tns:ReadSchadenfallResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readLeistungsfall">
+            <wsdl:documentation>Liefert zu den LeistungsfallIds die entsprechenden Leistungsfälle</wsdl:documentation>
+            <wsdl:input name="readLeistungsfallRequest" message="tns:ReadLeistungsfallRequestMessage"/>
+            <wsdl:output name="readLeistungsfallResponse" message="tns:ReadLeistungsfallResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readSchadenpartner">
+            <wsdl:documentation>Liefert zu einem Schadenfall die direkt referenzierten Schadenpartner</wsdl:documentation>
+            <wsdl:input name="readSchadenpartnerRequest" message="tns:ReadSchadenpartnerRequestMessage"/>
+            <wsdl:output name="readSchadenpartnerResponse" message="tns:ReadSchadenpartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="SchadenfallServiceBinding" type="tns:SchadenfallServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="searchSchadenfall">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchSchadenfallRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchSchadenfallResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchLeistungsfall">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="searchLeistungsfallRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="searchLeistungsfallResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readSchadenfall">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readSchadenfallRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readSchadenfallResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readLeistungsfall">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readLeistungsfallRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readLeistungsfallResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readSchadenpartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readSchadenpartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readSchadenpartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="SchadenfallService_v1">
+        <wsdl:documentation>Ein lesender Service für Schadenfälle.</wsdl:documentation>
+        <wsdl:port name="SchadenfallService_v1" binding="tns:SchadenfallServiceBinding">
+            <soap:address location="http://example.com/apibridge-schadenleistungsmgmt/SchadenfallService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

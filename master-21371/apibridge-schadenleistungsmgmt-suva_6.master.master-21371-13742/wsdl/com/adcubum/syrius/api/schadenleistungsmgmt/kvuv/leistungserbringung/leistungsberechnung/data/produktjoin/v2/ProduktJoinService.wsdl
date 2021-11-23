@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ProduktJoinService"
+				  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:produktjoin:v2"
+				  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:produktjoin:v2"
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+				  xmlns:pa="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:produktjoin:v2:schema">
+
+	<wsdl:documentation>Version: 2.0.0</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+					namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:produktjoin:v2:schema"
+					schemaLocation="schema/ProduktJoinService.xsd"/>
+			<xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+						schemaLocation="../../../../../../../common/faults/v1/faults.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ApiFaultMessage">
+		<wsdl:part name="fault" element="flt:apiFaultInfo"/>
+	</wsdl:message>
+
+	<wsdl:message name="ReadProduktJoinRequestMessage">
+		<wsdl:part name="request" element="pa:readProduktJoinRequest"/>
+	</wsdl:message>
+
+	<wsdl:message name="ReadProduktJoinResponseMessage">
+		<wsdl:part name="response" element="pa:readProduktJoinResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="ProduktJoinServicePortType">
+		<wsdl:operation name="readL10nAttributesProduktJoin">
+			<wsdl:documentation>Liefert für einen technischen Schlüssel den
+				ProduktJoin</wsdl:documentation>
+			<wsdl:input name="readL10nAttributesProduktJoinRequest" message="tns:ReadProduktJoinRequestMessage" />
+			<wsdl:output name="readL10nAttributesProduktJoinResponse" message="tns:ReadProduktJoinResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="ProduktJoinServiceBinding" type="tns:ProduktJoinServicePortType">
+		<soap:binding style="document"
+					  transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="readL10nAttributesProduktJoin">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input name="readL10nAttributesProduktJoinRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="readL10nAttributesProduktJoinResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ProduktJoinService_v2">
+		<wsdl:port name="ProduktJoinService_v2" binding="tns:ProduktJoinServiceBinding">
+			<soap:address location="https://example.com/apibridge-schadenleistungsmgmt/ProduktJoinService_v2"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

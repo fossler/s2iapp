@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="KostenbeteiligungService"
+				  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:kostenbeteiligung:v2"
+				  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:kostenbeteiligung:v2"
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+				  xmlns:pa="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:kostenbeteiligung:v2:schema">
+
+	<wsdl:documentation>Version: 2.0.0</wsdl:documentation>
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+					namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsberechnung:data:kostenbeteiligung:v2:schema"
+					schemaLocation="schema/KostenbeteiligungService.xsd"/>
+			<xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1"
+						schemaLocation="../../../../../../../common/faults/v1/faults.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ApiFaultMessage">
+		<wsdl:part name="fault" element="flt:apiFaultInfo" />
+	</wsdl:message>
+
+	<!-- Kostenbeteiligungen fuer Id's per Stichtag -->
+	<wsdl:message name="ReadKostenbeteiligungenRequestMessage">
+		<wsdl:part name="request" element="pa:readKostenbeteiligungenRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReadKostenbeteiligungenResponseMessage">
+		<wsdl:part name="response" element="pa:readKostenbeteiligungenResponse" />
+	</wsdl:message>
+
+	<!-- Kostenbeteiligungen fuer einen Partner per Stichdatum -->
+	<wsdl:message name="ReadKostenbeteiligungenForPartnerRequestMessage">
+		<wsdl:part name="request"
+			element="pa:readKostenbeteiligungenForPartnerRequest" />
+	</wsdl:message>
+	<wsdl:message name="ReadKostenbeteiligungenForPartnerResponseMessage">
+		<wsdl:part name="response"
+			element="pa:readKostenbeteiligungenForPartnerResponse" />
+	</wsdl:message>
+
+	<!-- Kostenbeteiligungen zur Grundversicherung fuer einen Partner per Stichdatum -->
+	<wsdl:message
+		name="ReadKostenbeteiligungenOfGrundversicherungForPartnerRequestMessage">
+		<wsdl:part name="request"
+			element="pa:readKostenbeteiligungenOfGrundversicherungForPartnerRequest" />
+	</wsdl:message>
+	<wsdl:message
+		name="ReadKostenbeteiligungenOfGrundversicherungForPartnerResponseMessage">
+		<wsdl:part name="response"
+			element="pa:readKostenbeteiligungenOfGrundversicherungForPartnerResponse" />
+	</wsdl:message>	   
+	
+	<!-- Kostenbeteiligunggruppen fuer einen Locale per Stichdatum -->
+	<wsdl:message
+		name="ReadKostenbeteiligungGruppenRequestMessage">
+		<wsdl:part name="request"
+			element="pa:readKostenbeteiligungGruppenRequest" />
+	</wsdl:message>
+	<wsdl:message
+		name="ReadKostenbeteiligungGruppenResponseMessage">
+		<wsdl:part name="response"
+			element="pa:readKostenbeteiligungGruppenResponse" />
+	</wsdl:message>	
+
+	<wsdl:portType name="KostenbeteiligungServicePortType">
+		<!-- Kostenbeteiligungen fuer Ids -->
+		<wsdl:operation name="readKostenbeteiligungen">
+			<wsdl:documentation>Liefert für die technischen Schlüssel die Daten
+				der zugehörigen Kostenbeteiligungen.</wsdl:documentation>
+			<wsdl:input name="readKostenbeteiligungenRequest" message="tns:ReadKostenbeteiligungenRequestMessage" />
+			<wsdl:output name="readKostenbeteiligungenResponse"
+				message="tns:ReadKostenbeteiligungenResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- Kostenbeteiligungen fuer einen Partner per Stichdatum -->
+		<wsdl:operation name="readKostenbeteiligungenForPartner">
+			<wsdl:documentation>Liefert eine Liste von Kostenbeteiligungen für
+				einen Partner per Stichdatum.
+			</wsdl:documentation>
+			<wsdl:input name="readKostenbeteiligungenForPartnerRequest"
+				message="tns:ReadKostenbeteiligungenForPartnerRequestMessage" />
+			<wsdl:output name="readKostenbeteiligungenForPartnerResponse"
+				message="tns:ReadKostenbeteiligungenForPartnerResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>
+		<!-- Kostenbeteiligungen der Grundversicherung fuer einen Partner per Stichdatum -->
+		<wsdl:operation name="readKostenbeteiligungenOfGrundversicherungForPartner">
+			<wsdl:documentation>Liefert für einen Partner die Kostenbeteiligung
+				der Grundversicherung.</wsdl:documentation>
+			<wsdl:input
+				name="readKostenbeteiligungenOfGrundversicherungForPartnerRequest"
+				message="tns:ReadKostenbeteiligungenOfGrundversicherungForPartnerRequestMessage" />
+			<wsdl:output
+				name="readKostenbeteiligungenOfGrundversicherungForPartnerResponse"
+				message="tns:ReadKostenbeteiligungenOfGrundversicherungForPartnerResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>	
+		<!-- Kostenbeteiligunggruppen per Locale und Stichdatum -->
+		<wsdl:operation name="readKostenbeteiligungGruppen">
+			<wsdl:documentation>Liefert eine Liste von Kostenbeteiligunggruppen für
+				einen Locale per Stichdatum.</wsdl:documentation>
+			<wsdl:input
+				name="readKostenbeteiligungGruppenRequest"
+				message="tns:ReadKostenbeteiligungGruppenRequestMessage" />
+			<wsdl:output
+				name="readKostenbeteiligungGruppenResponse"
+				message="tns:ReadKostenbeteiligungGruppenResponseMessage" />
+			<wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+		</wsdl:operation>		
+			
+	</wsdl:portType>
+
+	<wsdl:binding name="KostenbeteiligungServiceBinding" type="tns:KostenbeteiligungServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<!-- Kostenbeteiligungen fuer Id's -->
+		<wsdl:operation name="readKostenbeteiligungen">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readKostenbeteiligungenRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readKostenbeteiligungenResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Kostenbeteiligungen fuer Partner per Stichdatum -->
+		<wsdl:operation name="readKostenbeteiligungenForPartner">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="readKostenbeteiligungenForPartnerRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="readKostenbeteiligungenForPartnerResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Kostenbeteiligungen der Grundversicherung fuer einen Partner per Stichdatum -->
+		<wsdl:operation name="readKostenbeteiligungenOfGrundversicherungForPartner">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input
+				name="readKostenbeteiligungenOfGrundversicherungForPartnerRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output
+				name="readKostenbeteiligungenOfGrundversicherungForPartnerResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<!-- Kostenbeteiligunggruppen per Locale und Stichdatum -->
+		<wsdl:operation name="readKostenbeteiligungGruppen">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input
+					name="readKostenbeteiligungGruppenRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output
+					name="readKostenbeteiligungGruppenResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ApiFault">
+				<soap:fault name="ApiFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="KostenbeteiligungService_v2">
+		<wsdl:port name="KostenbeteiligungService_v2" binding="tns:KostenbeteiligungServiceBinding">
+			<soap:address
+					location="https://example.com/apibridge-schadenleistungsmgmt/KostenbeteiligungService_v2"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

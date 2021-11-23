@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ZahlungsverbindungProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:zahlungsverbindung:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:zahlungsverbindung:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:zahlungsverbindung:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.1.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:zahlungsverbindung:v1:schema" schemaLocation="schema/ZahlungsverbindungProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ChangeBankZahlungsverbindungRequestMessage">
+        <wsdl:part name="Request" element="pa:changeBankZahlungsverbindungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeBankZahlungsverbindungResponseMessage">
+        <wsdl:part name="Response" element="pa:changeBankZahlungsverbindungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="CreateBankZahlungsverbindungRequestMessage">
+        <wsdl:part name="Request" element="pa:createBankZahlungsverbindungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateBankZahlungsverbindungResponseMessage">
+        <wsdl:part name="Response" element="pa:createBankZahlungsverbindungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateBankZahlungsverbindungRequestMessage">
+        <wsdl:part name="Request" element="pa:terminateBankZahlungsverbindungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateBankZahlungsverbindungResponseMessage">
+        <wsdl:part name="Response" element="pa:terminateBankZahlungsverbindungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="ZahlungsverbindungProcessServicePortType">
+        <wsdl:operation name="changeBankZahlungsverbindung">
+            <wsdl:documentation>Ändert ein Zahlungsverbindung-Objekt.</wsdl:documentation>
+            <wsdl:input name="changeBankZahlungsverbindungRequest" message="tns:ChangeBankZahlungsverbindungRequestMessage"/>
+            <wsdl:output name="changeBankZahlungsverbindungResponse" message="tns:ChangeBankZahlungsverbindungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="createBankZahlungsverbindung">
+            <wsdl:documentation>Erstellt eine neue Zahlungsverbindung-Objekt.</wsdl:documentation>
+            <wsdl:input name="createBankZahlungsverbindungRequest" message="tns:CreateBankZahlungsverbindungRequestMessage"/>
+            <wsdl:output name="createBankZahlungsverbindungResponse" message="tns:CreateBankZahlungsverbindungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="terminateBankZahlungsverbindung">
+            <wsdl:documentation>Terminiert ein Zahlungsverbindung-Objekt.</wsdl:documentation>
+            <wsdl:input name="terminateBankZahlungsverbindungRequest" message="tns:TerminateBankZahlungsverbindungRequestMessage"/>
+            <wsdl:output name="terminateBankZahlungsverbindungResponse" message="tns:TerminateBankZahlungsverbindungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ZahlungsverbindungProcessServiceBinding" type="tns:ZahlungsverbindungProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="changeBankZahlungsverbindung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeBankZahlungsverbindungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeBankZahlungsverbindungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createBankZahlungsverbindung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createBankZahlungsverbindungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createBankZahlungsverbindungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="terminateBankZahlungsverbindung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="terminateBankZahlungsverbindungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="terminateBankZahlungsverbindungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZahlungsverbindungProcessService_v1">
+        <wsdl:port name="ZahlungsverbindungProcessService_v1" binding="tns:ZahlungsverbindungProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/ZahlungsverbindungProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

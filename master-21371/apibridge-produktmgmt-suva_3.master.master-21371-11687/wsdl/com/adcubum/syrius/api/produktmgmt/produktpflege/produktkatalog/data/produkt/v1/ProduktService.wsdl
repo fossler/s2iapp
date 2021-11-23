@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ProduktService"
+                  targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produkt:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produkt:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produkt:v1:schema">
+                  
+    <wsdl:documentation>
+    	Version: 1.0.0
+    </wsdl:documentation>
+                  
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:produkt:v1:schema" schemaLocation="schema/ProduktService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="GetProduktRequestMessage">
+        <wsdl:part name="Request" element="pa:getProduktRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetProduktResponseMessage">
+        <wsdl:part name="Response" element="pa:getProduktResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProduktRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesProduktRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesProduktResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesProduktResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ProduktServicePortType">
+        <wsdl:operation name="getProdukt">
+            <wsdl:documentation>Liefert für mehrere technische Produktschlüssel eine Liste von Produkten.</wsdl:documentation>
+            <wsdl:input name="getProduktRequest" message="tns:GetProduktRequestMessage"/>
+            <wsdl:output name="getProduktResponse" message="tns:GetProduktResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="readL10nAttributesProdukt">
+            <wsdl:documentation>Liefert für einen technischen Produktschlüssel die Bezeichnung und die externe Bezeichnung des zugehörigen Produktes zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesProduktRequest" message="tns:ReadL10nAttributesProduktRequestMessage"/>
+            <wsdl:output name="readL10nAttributesProduktResponse" message="tns:ReadL10nAttributesProduktResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ProduktServiceBinding" type="tns:ProduktServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getProdukt">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getProduktRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getProduktResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="readL10nAttributesProdukt">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesProduktRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesProduktResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ProduktService_v1">
+        <wsdl:port name="ProduktService_v1" binding="tns:ProduktServiceBinding">
+            <soap:address location="https://example.com/apibridge-produktmgmt/ProduktService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

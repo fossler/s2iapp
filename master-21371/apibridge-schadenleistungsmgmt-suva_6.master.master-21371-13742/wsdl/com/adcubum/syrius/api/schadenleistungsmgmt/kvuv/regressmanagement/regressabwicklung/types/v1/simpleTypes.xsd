@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:regressmanagement:regressabwicklung:types:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:regressmanagement:regressabwicklung:types:v1"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        elementFormDefault="qualified"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../../../../../com/adcubum/syrius/api/common/simpleTypes/v1/simpleTypes.xsd"/>
+
+    <xsd:simpleType name="WsRegressleistungsfallnummerType">
+        <xsd:annotation>
+            <xsd:documentation>
+                Nummer eines Regressleistungsfalles.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="st:StringType">
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

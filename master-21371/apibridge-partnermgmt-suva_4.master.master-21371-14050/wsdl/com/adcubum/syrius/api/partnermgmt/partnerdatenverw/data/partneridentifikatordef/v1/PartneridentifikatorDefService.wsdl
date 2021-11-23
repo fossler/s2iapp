@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PartneridentifikatorDefService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partneridentifikatordef:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partneridentifikatordef:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partneridentifikatordef:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partneridentifikatordef:v1:schema" schemaLocation="schema/PartneridentifikatorDefService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetPartneridentifikatorDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartneridentifikatorDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartneridentifikatorDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartneridentifikatorDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllPartneridentifikatorDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getAllPartneridentifikatorDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllPartneridentifikatorDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getAllPartneridentifikatorDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesPartneridentifikatorDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesPartneridentifikatorDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesPartneridentifikatorDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesPartneridentifikatorDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesPartneridentifikatorDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readAllL10nAttributesPartneridentifikatorDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadAllL10nAttributesPartneridentifikatorDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readAllL10nAttributesPartneridentifikatorDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="PartneridentifikatorDefServicePortType">
+        <wsdl:operation name="getPartneridentifikatorDef">
+            <wsdl:documentation>Liefert für einen technischen Partneridentifikatordefschlüssel die Daten der zugehörigen Partneridentifikator-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="getPartneridentifikatorDefRequest" message="tns:GetPartneridentifikatorDefRequestMessage"/>
+            <wsdl:output name="getPartneridentifikatorDefResponse" message="tns:GetPartneridentifikatorDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAllPartneridentifikatorDef">
+            <wsdl:documentation>Liefert für ein Datum alle Partneridentifikator-Definitionen zurück.</wsdl:documentation>
+            <wsdl:input name="getAllPartneridentifikatorDefRequest" message="tns:GetAllPartneridentifikatorDefRequestMessage"/>
+            <wsdl:output name="getAllPartneridentifikatorDefResponse" message="tns:GetAllPartneridentifikatorDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesPartneridentifikatorDef">
+            <wsdl:documentation>Liefert für einen technischen Partneridentifikatordefschlüssel die Bezeichnung der zugehörigen Partneridentifikator-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesPartneridentifikatorDefRequest" message="tns:ReadL10nAttributesPartneridentifikatorDefRequestMessage"/>
+            <wsdl:output name="readL10nAttributesPartneridentifikatorDefResponse" message="tns:ReadL10nAttributesPartneridentifikatorDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesPartneridentifikatorDef">
+            <wsdl:documentation>Liefert alle Bezeichnungen von Partneridentifikator-Definitionen zurück.</wsdl:documentation>
+            <wsdl:input name="readAllL10nAttributesPartneridentifikatorDefRequest" message="tns:ReadAllL10nAttributesPartneridentifikatorDefRequestMessage"/>
+            <wsdl:output name="readAllL10nAttributesPartneridentifikatorDefResponse" message="tns:ReadAllL10nAttributesPartneridentifikatorDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PartneridentifikatorDefServiceBinding" type="tns:PartneridentifikatorDefServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getPartneridentifikatorDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartneridentifikatorDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartneridentifikatorDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAllPartneridentifikatorDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAllPartneridentifikatorDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAllPartneridentifikatorDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesPartneridentifikatorDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesPartneridentifikatorDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesPartneridentifikatorDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readAllL10nAttributesPartneridentifikatorDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readAllL10nAttributesPartneridentifikatorDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readAllL10nAttributesPartneridentifikatorDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PartneridentifikatorDefService_v1">
+        <wsdl:port name="PartneridentifikatorDefService_v1" binding="tns:PartneridentifikatorDefServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/PartneridentifikatorDefService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

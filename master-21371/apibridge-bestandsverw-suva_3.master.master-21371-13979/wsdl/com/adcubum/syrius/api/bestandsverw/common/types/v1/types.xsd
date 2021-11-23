@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1"
+            xmlns:bi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:simpleType name="WsOrganisationseinheitArtType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Bildet die vier möglichen Typen einer Organisationseinheit bzw. dessen Verwendung ab.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="admin"/>
+            <xsd:enumeration value="inexkasso"/>
+            <xsd:enumeration value="leistung"/>
+            <xsd:enumeration value="vertrieb"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="WsHistoryStateType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält fachliche Zustände.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="begin" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Beginn des fachlichen Zustandes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsObjektRefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert eine allgemeine Referenz auf ein beliebiges Objekt im Syrius (technischer Schlüssel).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="objektId" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Objektes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="objektTypCode" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt den Typ der Objektreferenz.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsContractParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="paramAttributDefId" type="bi:WsParamAttributDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Param-Attribut-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractTextParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Text.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="text" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Text-Wert des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractBigTextParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Big Text.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="bigText" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Big-Text des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractDateParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Date.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="date" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum-Wert des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractIntegerParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Integer.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="integer" type="st:IntegerType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Integer-Wert des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractDecimalParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Decimal.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="decimal" type="st:DecimalType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Decimal-Wert des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractCodeParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Code.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="code" type="cc:WsCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code-Wert des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsContractObjektReferenzParamAttributType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut vom Typ Objekt-Referenz.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsContractParamAttributType">
+                <xsd:sequence>
+                    <xsd:element name="objektReferenz" type="tns:WsObjektRefType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf ein Objekt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:simpleType name="WsGeldflussType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Verschiedene Ausprägungen des Geldflusses.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="credit"/>
+            <xsd:enumeration value="debit"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="WsKomponentenGeldflussType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Verschiedene Ausprägungen des Geldflusses.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="credit"/>
+            <xsd:enumeration value="debit"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

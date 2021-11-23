@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="AufgabeProcessService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:process:aufgabe:v1"
+    xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:process:aufgabe:v1"
+    xmlns:pa="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:process:aufgabe:v1:schema"
+    xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>	
+
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:process:aufgabe:v1:schema" schemaLocation="schema/AufgabeProcessService.xsd" />
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd" />
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ChangeAufgabeRequestMessage">
+        <wsdl:part name="Request" element="pa:changeAufgabeRequest" />
+    </wsdl:message>
+    <wsdl:message name="ChangeAufgabeResponseMessage">
+        <wsdl:part name="Response" element="pa:changeAufgabeResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="CreateAufgabeRequestMessage">
+        <wsdl:part name="Request" element="pa:createAufgabeRequest" />
+    </wsdl:message>
+    <wsdl:message name="CreateAufgabeResponseMessage">
+        <wsdl:part name="Response" element="pa:createAufgabeResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo" />
+    </wsdl:message>
+
+    <wsdl:portType name="AufgabeProcessServicePortType">
+        <wsdl:operation name="changeAufgabe">
+            <wsdl:documentation>Ändert eine bestehende Aufgabe und parametriernbaren Attribute des zugehörigen Workflows.
+            </wsdl:documentation>
+            <wsdl:input name="changeAufgabeRequest" message="tns:ChangeAufgabeRequestMessage" />
+            <wsdl:output name="changeAufgabeResponse" message="tns:ChangeAufgabeResponseMessage" />
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+        </wsdl:operation>
+
+        <wsdl:operation name="createAufgabe">
+            <wsdl:documentation>Erstellt eine neue Aufgabe.</wsdl:documentation>
+            <wsdl:input name="createAufgabeRequest" message="tns:CreateAufgabeRequestMessage" />
+            <wsdl:output name="createAufgabeResponse" message="tns:CreateAufgabeResponseMessage" />
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="AufgabeProcessServiceBinding" type="tns:AufgabeProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="changeAufgabe">
+            <soap:operation soapAction="" style="document" />
+            <wsdl:input name="changeAufgabeRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="changeAufgabeResponse">
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="createAufgabe">
+            <soap:operation soapAction="" style="document" />
+            <wsdl:input name="createAufgabeRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="createAufgabeResponse">
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="AufgabeProcessService_v1">
+        <wsdl:port name="AufgabeProcessService_v1" binding="tns:AufgabeProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-unternehmensorg/AufgabeProcessService_v1" />
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

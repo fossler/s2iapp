@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="LeistungsabrechnungspositionService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistungsabrechnungsposition:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistungsabrechnungsposition:v1"
+                  xmlns:ov="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistungsabrechnungsposition:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.1.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:leistungserbringung:leistungsabrechnung:data:leistungsabrechnungsposition:v1:schema" schemaLocation="schema/LeistungsabrechnungspositionService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetLeistungsabrechnungspositionRequestMessage">
+        <wsdl:part name="request" element="ov:getLeistungsabrechnungspositionRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungsabrechnungspositionResponseMessage">
+        <wsdl:part name="response" element="ov:getLeistungsabrechnungspositionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadLeistungsabrechnungspositionenForLeistungsabrechnungRequestMessage">
+        <wsdl:part name="request" element="ov:readLeistungsabrechnungspositionenForLeistungsabrechnungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadLeistungsabrechnungspositionenForLeistungsabrechnungResponseMessage">
+        <wsdl:part name="response" element="ov:readLeistungsabrechnungspositionenForLeistungsabrechnungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesLeistungsabrechnungspositionRequestMessage">
+        <wsdl:part name="Request" element="ov:readL10nAttributesLeistungsabrechnungspositionRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesLeistungsabrechnungspositionResponseMessage">
+        <wsdl:part name="Response" element="ov:readL10nAttributesLeistungsabrechnungspositionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="LeistungsabrechnungspositionServicePortType">
+        <wsdl:operation name="getLeistungsabrechnungsposition">
+            <wsdl:documentation>Liefert für einen technischen Leistungsabrechnungspositionsschlüssel die Daten der zugehörigen Leistungsabrechnungsposition.</wsdl:documentation>
+            <wsdl:input name="getLeistungsabrechnungspositionRequest" message="tns:GetLeistungsabrechnungspositionRequestMessage"/>
+            <wsdl:output name="getLeistungsabrechnungspositionResponse" message="tns:GetLeistungsabrechnungspositionResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readLeistungsabrechnungspositionenForLeistungsabrechnung">
+            <wsdl:documentation>Liefert für einen technischen Leistungsabrechnungschlüssel die zugehörigen Leistungsabrechnungspositionen.</wsdl:documentation>
+            <wsdl:input name="readLeistungsabrechnungspositionenForLeistungsabrechnungRequest" message="tns:ReadLeistungsabrechnungspositionenForLeistungsabrechnungRequestMessage"/>
+            <wsdl:output name="readLeistungsabrechnungspositionenForLeistungsabrechnungResponse" message="tns:ReadLeistungsabrechnungspositionenForLeistungsabrechnungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesLeistungsabrechnungsposition">
+            <wsdl:documentation>Liefert für einen technischen Leistungsabrechnungspositionsschlüssel die Bezeichnung der zugehörigen Leistungsabrechnungsposition zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesLeistungsabrechnungspositionRequest" message="tns:ReadL10nAttributesLeistungsabrechnungspositionRequestMessage"/>
+            <wsdl:output name="readL10nAttributesLeistungsabrechnungspositionResponse" message="tns:ReadL10nAttributesLeistungsabrechnungspositionResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LeistungsabrechnungspositionServiceBinding" type="tns:LeistungsabrechnungspositionServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getLeistungsabrechnungsposition">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getLeistungsabrechnungspositionRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getLeistungsabrechnungspositionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readLeistungsabrechnungspositionenForLeistungsabrechnung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readLeistungsabrechnungspositionenForLeistungsabrechnungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readLeistungsabrechnungspositionenForLeistungsabrechnungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesLeistungsabrechnungsposition">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesLeistungsabrechnungspositionRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesLeistungsabrechnungspositionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LeistungsabrechnungspositionService_v1">
+        <wsdl:port name="LeistungsabrechnungspositionService_v1" binding="tns:LeistungsabrechnungspositionServiceBinding">
+            <soap:address location="https://example.com/apibridge-schadenleistungsmgmt/LeistungsabrechnungspositionService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

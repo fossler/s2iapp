@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1" xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1" xmlns:search="urn:com:adcubum:syrius:api:common:searchTypes:v2"
+    xmlns:ugt="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:common:types:v1" xmlns:ucc="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" xmlns:uci="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1"
+    xmlns:uct="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1" xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:data:workflow:v2:schema" targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:data:workflow:v2:schema"
+    elementFormDefault="qualified" version="2.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v2" schemaLocation="../../../../../../common/searchTypes/v2/searchTypes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:syriusTypes:v1" schemaLocation="../../../../../../common/syriusTypes/v1/syriusTypes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd" />
+
+    <xsd:element name="getWorkflowRequest" type="tns:GetWorkflowRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem ein Workflow geladen wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getWorkflowResponse" type="tns:GetWorkflowResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem der geladene Workflow enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchWorkflowRequest" type="tns:SearchWorkflowRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem eine Liste von Workflows geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="searchWorkflowResponse" type="tns:SearchWorkflowResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die gefundenen Workflows enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="GetWorkflowRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Workflow geladen wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="workflowId" type="uci:WsWorkflowIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Workflows.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetWorkflowResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem der geladene Workflow enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="workflow" type="tns:WsWorkflowType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Ermittelter Workflow</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWorkflowType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ermittelter Workflow</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsWorkflowBaseType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="uci:WsWorkflowIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nr" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die Nummer des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betroffeneObjekte" type="ugt:WsWorkflowObjectReferenceType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Referenz zu betroffenen Fachobjekten. Wenn auf dem Workflow mehrfache betroffene Objekte möglich sind, kann die Liste der Fachobjekte auch
+                                Zusatzattribute beinhalten.
+                                Ansonsten ist nur ein Fachobjekt ohne Zusatzattribute gesetzt.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="uebergeordneterWorkflowId" type="uci:WsWorkflowIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Eltern-Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="abschlussDatum" type="st:DateTimeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Das Abschlussdatum des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="faelligkeitsDatum" type="st:DateTimeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Das Fälligkeitsdatum des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sichtbarkeitsDatum" type="st:DateTimeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Das Sichtbarkeitsdatum des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="activities" type="ugt:WsAufgabeType" minOccurs="1" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Liste mit allen Aufgaben des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="businessEventId" type="uci:WsBusinessEventIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die Objekt-ID des Geschäftsereignisses</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="customerContactId" type="uci:WsCustomerContactIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die Objekt-ID des Kundenkontaktes</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchWorkflowResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die gefundenen Workflows enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="workflow" type="tns:WsWorkflowSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefundenen Partnern.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchWorkflowRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Workflows gesucht werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="suchbedingungen" type="search:WsSearchConditionType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Suchbedingungen für den Suchrequest.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="workflowDefinitionId" type="uci:WsWorkflowDefIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel der Workflow-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="betroffenerPartnerId" type="uci:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Partners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="status" type="ucc:WsStatusCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Status Code.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="kategorie" type="ucc:WsWorkflowElementKategorieCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Kategorie Code.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="prioritaet" type="ucc:WsWorkflowElementPrioritaetCodeType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Priorität Code.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="betroffenesObjekt" type="uct:WsReferenzType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Referenz zum betroffenen Fachobjekt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWorkflowSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener Workflow (IDs).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="uci:WsWorkflowIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des Workflows.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWorkflowBaseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Basis-Typ fuer Workflow.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="workflowDefinitionId" type="uci:WsWorkflowDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Workflow-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betroffenerPartnerId" type="uci:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Partners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="status" type="ucc:WsStatusCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Status Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kategorie" type="ucc:WsWorkflowElementKategorieCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Kategorie Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="prioritaet" type="ucc:WsWorkflowElementPrioritaetCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Priorität Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sla" type="ucc:WsSLACodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>SLA Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="workflowZusatzAttribute" type="ugt:WsWorkflowZusatzAttributType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Liste mit allen zusätzlichen Attributes des Workflows.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="dokumentReferenzen" type="ugt:WsAbstrakteDokumentReferenzType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Liste mit allen Dokumentreferenzen der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kommentare" type="ugt:WsCommentType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Liste mit allen Kommentaren der Aufgabe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

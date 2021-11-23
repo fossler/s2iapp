@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:beziehungdef:v1:schema"
+            xmlns:syrtype="urn:com:adcubum:syrius:api:common:syriusTypes:v1"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:beziehungdef:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+	<xsd:import namespace="urn:com:adcubum:syrius:api:common:syriusTypes:v1" schemaLocation="../../../../../../common/syriusTypes/v1/syriusTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:element name="getBeziehungDefRequest" type="tns:GetBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Beziehung-Definition geladen wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getBeziehungDefResponse" type="tns:GetBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladene Beziehung-Definition enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getAllBeziehungDefRequest" type="tns:GetAllBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um alle Beziehung-Definition zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getAllBeziehungDefResponse" type="tns:GetAllBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen Beziehung-Definition enthält.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readAllL10nAttributesBeziehungDefRequest" type="tns:ReadAllL10nAttributesBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen aller Beziehung-Definition zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readAllL10nAttributesBeziehungDefResponse" type="tns:ReadAllL10nAttributesBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen aller Beziehung-Definition.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesBeziehungDefRequest" type="tns:ReadL10nAttributesBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer Beziehung-Definition zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesBeziehungDefResponse" type="tns:ReadL10nAttributesBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der Beziehung-Definition.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GetBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Beziehung-Definitionen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="beziehungDefId" type="pi:WsBeziehungDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Beziehung-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="syrtype:stichtagStrictOrNextBest">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen Beziehung-Definitionen enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="beziehungDef" type="tns:WsBeziehungDefType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den geladenen Beziehung-Definitionen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetAllBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request um alle Beziehung-Definition zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+        	<xsd:element ref="syrtype:stichtagStrictOrNextBest">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetAllBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, der die geladenen Beziehung-Definition enthält.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="beziehungDef" type="tns:WsBeziehungDefType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den geladenen Beziehung-Definitionen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadL10nAttributesBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen einer Beziehung-Definition zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="beziehungDefId" type="pi:WsBeziehungDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Beziehung-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="syrtype:stichtagStrictOrNextBest">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadL10nAttributesBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen der Beziehung-Definition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesBeziehungDefType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text einer Beziehung-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadAllL10nAttributesBeziehungDefRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen aller Beziehung-Definition zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element ref="syrtype:stichtagStrictOrNextBest">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadAllL10nAttributesBeziehungDefResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen aller Beziehung-Definition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesBeziehungDefType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text einer Beziehung-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsL10nAttributesBeziehungDefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Lokalisierte Informationen der Beziehung-Definition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="beziehungDefId" type="pi:WsBeziehungDefIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der Beziehung-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung der Beziehung-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsBeziehungDefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer Beziehung-Definition.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsBeziehungDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Beziehung-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="definitionsname" type="st:StringType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachlicher Schlüssel dieser Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerTypA" type="pc:WsPartnerTypCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code des Partnertyps des PartnerA.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerTypB" type="pc:WsPartnerTypCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code des Partnertyps des PartnerB.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nutzungszweck" type="pc:WsNutzungszweckCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code des Nutzungszwecks.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

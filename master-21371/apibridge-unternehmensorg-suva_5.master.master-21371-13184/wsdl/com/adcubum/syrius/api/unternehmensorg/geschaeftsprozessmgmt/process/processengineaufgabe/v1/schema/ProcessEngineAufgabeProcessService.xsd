@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1" 
+    xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+    xmlns:ugt="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:common:types:v1" 
+    xmlns:ucc="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1"
+    xmlns:uci="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" 
+    xmlns:uct="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1"	
+
+    xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:process:processengineaufgabe:v1:schema"
+    targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:process:processengineaufgabe:v1:schema"
+    elementFormDefault="qualified" version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd" />
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:geschaeftsprozessmgmt:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd"/>
+
+    <xsd:element name="createProcessEngineAufgabeRequest" type="tns:CreateProcessEngineAufgabeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem eine ProcessEngine-Aufgabe erfasst wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="createProcessEngineAufgabeResponse" type="tns:CreateProcessEngineAufgabeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in der die ID der erstellten ProcessEngine-Aufgabe enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="completeProcessEngineAufgabeRequest" type="tns:CompleteProcessEngineAufgabeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem eine bestehende ProcessEngine-Aufgabe komplettiert wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="completeProcessEngineAufgabeResponse" type="tns:CompleteProcessEngineAufgabeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, welche leer ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="abortProcessEngineAufgabeRequest" type="tns:AbortProcessEngineAufgabeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem eine bestehende ProcessEngine-Aufgabe abgebrochen wird.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="abortProcessEngineAufgabeResponse" type="tns:AbortProcessEngineAufgabeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, welche leer ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="CreateProcessEngineAufgabeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">ProcessEngine-Aufgabe-Datenstruktur, die bei der Erstellung verwendet wird. </xsd:documentation>
+        </xsd:annotation>
+
+        <xsd:sequence>
+            <xsd:element name="aufgabenDefinitionInternalName" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Der Internal-Name der Aufgabendefinition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="businessEventId" type="uci:WsBusinessEventIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des Geschäftsereignisses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="businessProcessTypeId" type="uci:WsBusinessProcessTypeIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des Geschäftsprozesstyps.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="userTaskId" type="uci:WsUserTaskIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des UserTasks.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="applicationId" type="uci:WsApplicationIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Die Objekt-ID der Applikation, welche diesen Request absetzt.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="partnerId" type="uci:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Die Objekt-ID des Partners, welche von der Aufgabe referenziert wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="externeReferenzId" type="uci:WsExterneReferenzIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Die Objekt-ID des Geschäftsobjekts, welches in einem externen System (ungleich Syrius) definiert wurde.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="objektReferenz" type="uct:WsReferenzType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Referenz zum Geschäftsobjekt, welches von der Aufgabe referenziert wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="url" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        URL des Webformulars, durch welches die Aufgabe ausgeführt wird.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="kommunikationssprache" type="st:StringType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Kommunikationssprache des betroffenen Partners</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="archiveDocId" type="st:StringType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Die Objekt-ID des Archivdokuments, welches an diese Aufgabe angehängt wird.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CreateProcessEngineAufgabeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in der die Objekt-ID der erstellten ProcessEngine-Aufgabe enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="aufgabeId" type="uci:WsAufgabeIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID der erstellten ProcessEngine-Aufgabe.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="CompleteProcessEngineAufgabeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request mit Daten für die ProcessEngine-Aufgabenkomplettierung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessEventId" type="uci:WsBusinessEventIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des Geschäftsereignisses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="userTaskId" type="uci:WsUserTaskIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des UserTasks.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CompleteProcessEngineAufgabeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, welche leer ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:complexType>
+
+    <xsd:complexType name="AbortProcessEngineAufgabeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request mit Daten für den Abbruch der ProcessEngine-Aufgabe.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="businessEventId" type="uci:WsBusinessEventIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des Geschäftsereignisses.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="userTaskId" type="uci:WsUserTaskIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die Objekt-ID des UserTasks.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AbortProcessEngineAufgabeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, welche leer ist.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:complexType>
+
+</xsd:schema>

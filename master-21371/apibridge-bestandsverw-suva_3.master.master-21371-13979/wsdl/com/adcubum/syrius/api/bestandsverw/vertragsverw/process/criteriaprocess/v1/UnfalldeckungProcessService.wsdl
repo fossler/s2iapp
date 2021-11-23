@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="UnfalldeckungProcessService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:criteriaprocess:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:criteriaprocess:v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:criteriaprocess:v1:schema">
+
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:criteriaprocess:v1:schema" 
+                        schemaLocation="schema/UnfalldeckungProcessService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="UnfalldeckungAenderungAnreicherungRequestMessage">
+        <wsdl:part name="Request" element="pa:unfalldeckungAenderungAnreicherungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UnfalldeckungAenderungAnreicherungResponseMessage">
+        <wsdl:part name="Response" element="pa:unfalldeckungAenderungAnreicherungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UnfalldeckungAenderungRequestMessage">
+   		<wsdl:part name="Request" element="pa:unfalldeckungAenderungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="UnfalldeckungAenderungResponseMessage">
+    	<wsdl:part name="Response" element="pa:unfalldeckungAenderungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="UnfalldeckungProcessServicePortType">
+        <wsdl:operation name="startUnfalldeckungAenderungAnreicherung">
+            <wsdl:documentation>Unfalldeckung ein,- ausschluss für einen Partner</wsdl:documentation>
+            <wsdl:input name="startUnfalldeckungAenderungAnreicherungRequest" message="tns:UnfalldeckungAenderungAnreicherungRequestMessage"/>
+            <wsdl:output name="startUnfalldeckungAenderungAnreicherungResponse" message="tns:UnfalldeckungAenderungAnreicherungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="startUnfalldeckungAenderung">
+            <wsdl:documentation>Ändert die Unfalldeckung eines einzelnen Vertragsproduktes.</wsdl:documentation>
+            <wsdl:input name="startUnfalldeckungAenderungRequest" message="tns:UnfalldeckungAenderungRequestMessage"/>
+            <wsdl:output name="startUnfalldeckungAenderungResponse" message="tns:UnfalldeckungAenderungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="UnfalldeckungProcessServiceBinding" type="tns:UnfalldeckungProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="startUnfalldeckungAenderungAnreicherung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="startUnfalldeckungAenderungAnreicherungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="startUnfalldeckungAenderungAnreicherungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="startUnfalldeckungAenderung">
+            	<soap:operation soapAction="" style="document"/>
+            <wsdl:input name="startUnfalldeckungAenderungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="startUnfalldeckungAenderungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="UnfalldeckungProcessService_v1">
+        <wsdl:port name="UnfalldeckungProcessService_v1" binding="tns:UnfalldeckungProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/UnfalldeckungProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

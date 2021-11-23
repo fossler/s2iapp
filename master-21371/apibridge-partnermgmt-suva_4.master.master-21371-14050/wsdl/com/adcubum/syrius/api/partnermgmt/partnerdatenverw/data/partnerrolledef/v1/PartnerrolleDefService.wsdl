@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PartnerrolleDefService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerrolledef:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerrolledef:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerrolledef:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partnerrolledef:v1:schema" schemaLocation="schema/PartnerrolleDefService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetPartnerrolleDefRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerrolleDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerrolleDefResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerrolleDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerrolleDefNatPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerrolleDefNatPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerrolleDefNatPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerrolleDefNatPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerrolleDefJurPersonRequestMessage">
+        <wsdl:part name="Request" element="pa:getPartnerrolleDefJurPersonRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerrolleDefJurPersonResponseMessage">
+        <wsdl:part name="Response" element="pa:getPartnerrolleDefJurPersonResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesPartnerrolleDefRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesPartnerrolleDefRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesPartnerrolleDefResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesPartnerrolleDefResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="PartnerrolleDefServicePortType">
+        <wsdl:operation name="getPartnerrolleDef">
+            <wsdl:documentation>Liefert für einen technischen Partnerrolledefschlüssel die Daten der zugehörigen Partnerrollen-Definition zurück. Dies enthält auch die Liste von parametrierbaren Partnerrollenattributen.</wsdl:documentation>
+            <wsdl:input name="getPartnerrolleDefRequest" message="tns:GetPartnerrolleDefRequestMessage"/>
+            <wsdl:output name="getPartnerrolleDefResponse" message="tns:GetPartnerrolleDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerrolleDefNatPerson">
+            <wsdl:documentation>Liefert für ein Datum alle Partnerrollen-Definitionen zurück, die für natürliche Personen möglich sind.</wsdl:documentation>
+            <wsdl:input name="getPartnerrolleDefNatPersonRequest" message="tns:GetPartnerrolleDefNatPersonRequestMessage"/>
+            <wsdl:output name="getPartnerrolleDefNatPersonResponse" message="tns:GetPartnerrolleDefNatPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerrolleDefJurPerson">
+            <wsdl:documentation>Liefert für ein Datum alle Partnerrollen-Definitionen zurück, die für juristische Personen möglich sind.</wsdl:documentation>
+            <wsdl:input name="getPartnerrolleDefJurPersonRequest" message="tns:GetPartnerrolleDefJurPersonRequestMessage"/>
+            <wsdl:output name="getPartnerrolleDefJurPersonResponse" message="tns:GetPartnerrolleDefJurPersonResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesPartnerrolleDef">
+            <wsdl:documentation>Liefert für einen technischen Partnerrolledefschlüssel die Bezeichnung der zugehörigen Partnerrollen-Definition zurück.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesPartnerrolleDefRequest" message="tns:ReadL10nAttributesPartnerrolleDefRequestMessage"/>
+            <wsdl:output name="readL10nAttributesPartnerrolleDefResponse" message="tns:ReadL10nAttributesPartnerrolleDefResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PartnerrolleDefServiceBinding" type="tns:PartnerrolleDefServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getPartnerrolleDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerrolleDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerrolleDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerrolleDefNatPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerrolleDefNatPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerrolleDefNatPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerrolleDefJurPerson">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerrolleDefJurPersonRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerrolleDefJurPersonResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readL10nAttributesPartnerrolleDef">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesPartnerrolleDefRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesPartnerrolleDefResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PartnerrolleDefService_v1">
+        <wsdl:port name="PartnerrolleDefService_v1" binding="tns:PartnerrolleDefServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/PartnerrolleDefService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

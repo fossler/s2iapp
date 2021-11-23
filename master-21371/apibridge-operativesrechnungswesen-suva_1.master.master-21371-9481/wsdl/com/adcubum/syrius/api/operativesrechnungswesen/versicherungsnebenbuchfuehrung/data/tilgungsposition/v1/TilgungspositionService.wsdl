@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TilgungspositionService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:tilgungsposition:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:tilgungsposition:v1"
+                  xmlns:ov="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:tilgungsposition:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:operativesrechnungswesen:versicherungsnebenbuchfuehrung:data:tilgungsposition:v1:schema" schemaLocation="schema/TilgungspositionService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetTilgungspositionRequestMessage">
+        <wsdl:part name="request" element="ov:getTilgungspositionRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetTilgungspositionResponseMessage">
+        <wsdl:part name="response" element="ov:getTilgungspositionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadTilgungspositionenForAbrechnungspositionRequestMessage">
+        <wsdl:part name="request" element="ov:readTilgungspositionenForAbrechnungspositionRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadTilgungspositionenForAbrechnungspositionResponseMessage">
+        <wsdl:part name="response" element="ov:readTilgungspositionenForAbrechnungspositionResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="TilgungspositionServicePortType">
+        <wsdl:operation name="getTilgungsposition">
+            <wsdl:documentation>Liefert für einen technischen Tilgungspositionsschlüssel die Daten der zugehörigen Tilgungsposition.</wsdl:documentation>
+            <wsdl:input name="getTilgungspositionRequest" message="tns:GetTilgungspositionRequestMessage"/>
+            <wsdl:output name="getTilgungspositionResponse" message="tns:GetTilgungspositionResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="readTilgungspositionenForAbrechnungsposition">
+            <wsdl:documentation>Liefert für einen technischen Abrechnungspositionenschlüssel die zugehörigen Tilgungspositionen.</wsdl:documentation>
+            <wsdl:input name="readTilgungspositionenForAbrechnungspositionRequest" message="tns:ReadTilgungspositionenForAbrechnungspositionRequestMessage"/>
+            <wsdl:output name="readTilgungspositionenForAbrechnungspositionResponse" message="tns:ReadTilgungspositionenForAbrechnungspositionResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TilgungspositionServiceBinding" type="tns:TilgungspositionServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getTilgungsposition">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getTilgungspositionRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getTilgungspositionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="readTilgungspositionenForAbrechnungsposition">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readTilgungspositionenForAbrechnungspositionRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readTilgungspositionenForAbrechnungspositionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TilgungspositionService_v1">
+        <wsdl:port name="TilgungspositionService_v1" binding="tns:TilgungspositionServiceBinding">
+            <soap:address location="https://example.com/apibridge-operativesrechnungswesen/TilgungspositionService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

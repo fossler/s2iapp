@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="KriteriumService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:kriterium:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:kriterium:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:kriterium:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+                  
+    <wsdl:documentation>
+    	Version: 1.1.0
+    </wsdl:documentation>
+                  
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:produktmgmt:produktpflege:produktkatalog:data:kriterium:v1:schema" schemaLocation="schema/KriteriumService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ReadL10nAttributesKriteriumdefinitionTypRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesKriteriumdefinitionTypRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesKriteriumdefinitionTypResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesKriteriumdefinitionTypResponse"/>
+    </wsdl:message>
+    <wsdl:message name="EvaluateAuswaehlbareKriterienZuProduktRequestMessage">
+        <wsdl:part name="Request" element="pa:evaluateAuswaehlbareKriterienZuProduktRequest"/>
+    </wsdl:message>
+    <wsdl:message name="EvaluateAuswaehlbareKriterienZuProduktResponseMessage">
+        <wsdl:part name="Response" element="pa:evaluateAuswaehlbareKriterienZuProduktResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesKriteriumRequestMessage">
+        <wsdl:part name="Request" element="pa:readL10nAttributesKriteriumRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReadL10nAttributesKriteriumResponseMessage">
+        <wsdl:part name="Response" element="pa:readL10nAttributesKriteriumResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="KriteriumServicePortType">
+
+        <wsdl:operation name="readL10nAttributesKriteriumdefinitionTyp">
+            <wsdl:documentation>Liefert zu den technischen Schlüsseln zu Kriteriumdefinition-Typen die sprachabhängige Bezeichnung und, sofern gegeben, weitere sprachabhängige Attribute.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesKriteriumdefinitionTypRequest" message="tns:ReadL10nAttributesKriteriumdefinitionTypRequestMessage"/>
+            <wsdl:output name="readL10nAttributesKriteriumdefinitionTypResponse" message="tns:ReadL10nAttributesKriteriumdefinitionTypResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="evaluateAuswaehlbareKriterienZuProdukt">
+            <wsdl:documentation>Liefert für mehrere technische Produktschlüssel jeweils eine Liste der auswählbaren Kriterien.</wsdl:documentation>
+            <wsdl:input name="evaluateAuswaehlbareKriterienZuProduktRequest" message="tns:EvaluateAuswaehlbareKriterienZuProduktRequestMessage"/>
+            <wsdl:output name="evaluateAuswaehlbareKriterienZuProduktResponse" message="tns:EvaluateAuswaehlbareKriterienZuProduktResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="readL10nAttributesKriterium">
+            <wsdl:documentation>Liefert zu den technischen Schlüsseln zu Kriterien die sprachabhängige Bezeichnung und, sofern gegeben, weitere sprachabhängige Attribute.</wsdl:documentation>
+            <wsdl:input name="readL10nAttributesKriteriumRequest" message="tns:ReadL10nAttributesKriteriumRequestMessage"/>
+            <wsdl:output name="readL10nAttributesKriteriumResponse" message="tns:ReadL10nAttributesKriteriumResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+
+    </wsdl:portType>
+    
+    <wsdl:binding name="KriteriumServiceBinding" type="tns:KriteriumServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="readL10nAttributesKriteriumdefinitionTyp">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesKriteriumdefinitionTypRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesKriteriumdefinitionTypResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="evaluateAuswaehlbareKriterienZuProdukt">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="evaluateAuswaehlbareKriterienZuProduktRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="evaluateAuswaehlbareKriterienZuProduktResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="readL10nAttributesKriterium">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="readL10nAttributesKriteriumRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="readL10nAttributesKriteriumResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+    </wsdl:binding>
+    
+    <wsdl:service name="KriteriumService_v1">
+        <wsdl:port name="KriteriumService_v1" binding="tns:KriteriumServiceBinding">
+            <soap:address location="https://example.com/apibridge-produktmgmt/KriteriumService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

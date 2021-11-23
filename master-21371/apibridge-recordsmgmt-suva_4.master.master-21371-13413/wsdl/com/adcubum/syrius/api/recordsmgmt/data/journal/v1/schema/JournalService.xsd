@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:recordsmgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:recordsmgmt:common:types:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:recordsmgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:recordsmgmt:data:journal:v1:schema" 
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:recordsmgmt:data:journal:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:recordsmgmt:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:recordsmgmt:common:identifier:v1" schemaLocation="../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:recordsmgmt:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:element name="getJournalRequest" type="tns:GetJournalRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Journale geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getJournalResponse" type="tns:GetJournalResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Journale enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element> 
+    <xsd:element name="getJournalsForPartnerRequest" type="tns:GetJournalsForPartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Journale von bestimmten Partnern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getJournalsForPartnerResponse" type="tns:GetJournalsForPartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Journale enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getJournalIdsForJournalNumbersRequest" type="tns:GetJournalIdsForJournalNumbersRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die Journale mit bestimmten Fachschlüsseln geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getJournalIdsForJournalNumbersResponse" type="tns:GetJournalIdsForJournalNumbersResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Journale von Fachschlüsseln enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="GetJournalRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem ein Journal geladen wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="journalId" type="pi:WsJournalIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Journals.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJournalResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Journale enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="journal" type="tns:WsJournalType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden Journalen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJournalsForPartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem eine Liste von Journalen geladen wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners, von welchem die Journale geladen werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="journalDefId" type="pi:WsJournalDefIdType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Journal-Definition.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="messageBO" type="pt:WsObjektRefType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Referenz auf ein beliebiges Fachobjekt (BO), das durch die geladenen Journale betroffen ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJournalsForPartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen Journale der angegebenen Partner enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerJournal" type="tns:WsPartnerJournalType" minOccurs="1" maxOccurs="unbounded">
+               <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die geladenen Journale eines Partners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJournalIdsForJournalNumbersRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem ein Journal geladen wird.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="journalNr" type="st:StringType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Schlüssel des Journals.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJournalIdsForJournalNumbersResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die JournalId enthalten ist.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="journalId" type="pi:WsJournalIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Id des Journals.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsPartnerJournalType">
+        <xsd:annotation>
+           <xsd:documentation xml:lang="de">Enthält die geladenen Journale eines Partners.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners, von welchem das Journal geladen wurden.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="journal" type="tns:WsJournalType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden Journalen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsJournalType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Journal das beim Lesen verwendet wird</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsJournalIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="erstellerId" type="pi:WsBenutzerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Erstellers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="internerBetreuerId" type="pi:WsBenutzerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des internen Betreuers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="journalDefId" type="pi:WsJournalDefIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der Journal-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kommunikationsPartnerId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Kommunikationspartners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Partners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zustaendigeOEId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel der zusgtändigen OE.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bemerkung" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Subjektiver Kommentar</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nr" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fachschlüssel des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sachverhalt" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objektiver Sachverhalt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                     <xsd:element name="geschuetzterSachverhalt" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Geschützter Sachverhalt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="messageBO" type="pt:WsObjektRefType" minOccurs="0" maxOccurs="1">
+	                    <xsd:annotation>
+	                        <xsd:documentation xml:lang="de">Referenz auf beliebiges Fachobjekt (BO) das durch das Journal betroffen ist.</xsd:documentation>
+	                    </xsd:annotation>
+                	</xsd:element>
+	                <xsd:element name="ursprung" type="pt:WsObjektRefType" minOccurs="0" maxOccurs="1">
+	                    <xsd:annotation>
+	                        <xsd:documentation xml:lang="de">Referenz auf das Business-Objekt, welches der Auslöser war, dass das Journal erstellt wurde.</xsd:documentation>
+	                    </xsd:annotation>
+	                </xsd:element>              	
+                    <xsd:element name="journalSchutz" type="pc:WsSchutzCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code der die Journal-Schutzgruppe bestimmt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kategorie" type="pc:WsKategorieCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code der die Kategorie des Journals beschreibt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kontaktDurch" type="pc:WsKontaktDurchCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code der bestimmt wer den Kontakt aufgenommen hat.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kontaktMedium" type="pc:WsKontaktMediumCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code der bestimmt wie der Kontakt stattgefunden hat.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>                       
+                    <xsd:element name="dokumentReferenzen" type="pt:WsDokumentReferenzType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Liste mit allen Dokumentreferenzen des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="journalParamAttribute" type="pt:WsJournalParamAttributType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Liste mit allen JournalParamAttributen des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

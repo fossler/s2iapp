@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:unternehmensorg:data:code:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:unternehmensorg:data:code:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+         	xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"        
+            version="1.0.0"
+            elementFormDefault="qualified">
+    
+    <xsd:import namespace="urn:com:adcubum:syrius:api:unternehmensorg:common:identifier:v1" schemaLocation="../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+   
+    
+    <xsd:element name="readL10nAttributesCodeRequest" type="tns:ReadL10nAttributesCodeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen eines Codes zu laden</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="readL10nAttributesCodeResponse" type="tns:ReadL10nAttributesCodeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen des Codes</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ReadL10nAttributesCodeRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen eines Codes zu laden</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="codeId" type="pi:WsCodeIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Codes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Locale zur Ermittlung der loaklisierten Informationen</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ReadL10nAttributesCodeResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen des Codes</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10NAttributesCodeType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text eines Codes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsL10NAttributesCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Lokalisierte Informationen des Codes</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="codeId" type="pi:WsCodeIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Id des Codes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung des Codes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="searchCodeForFachschluesselRequest" type="tns:SearchCodeForFachschluesselRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Eingabeelement für die Suche nach Codes über den Fachschlüssel</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchCodeForFachschluesselResponse" type="tns:SearchCodeForFachschluesselResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ausgabeelement für die Suche nach Codes über den Fachschlüssel</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="SearchCodeForFachschluesselRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem ein Code über den Fachschlüssel gesucht wird</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fachschluessel" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Der Fachschlüssel des Codes, der gefunden werden soll</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchCodeForFachschluesselResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Ausgabedatenstruktur für die Suche nach Codes über den Fachschlüssel</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="code" type="tns:WsCodeSearchType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Der gefundene Code</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCodeSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener Code</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fachschluessel" type="st:StringType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Der Fachschlüssel des Codes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="codeId" type="pi:WsCodeIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die technische ID des Codes</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

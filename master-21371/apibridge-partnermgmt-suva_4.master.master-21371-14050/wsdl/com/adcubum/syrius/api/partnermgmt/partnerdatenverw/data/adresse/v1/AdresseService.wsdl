@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="AdresseService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adresse:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adresse:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adresse:v1:schema"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+                  xmlns:wsdlsi="urn:com:adcubum:syrius:api:common:serviceinfo:v1"
+                  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adresse:v1:schema" schemaLocation="schema/AdresseService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAdresseRequestMessage">
+        <wsdl:part name="request" element="pa:getAdresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAdresseResponseMessage">
+        <wsdl:part name="response" element="pa:getAdresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetAdresseAbhaengigkeitRequestMessage">
+        <wsdl:part name="request" element="pa:getAdresseAbhaengigkeitRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetAdresseAbhaengigkeitResponseMessage">
+        <wsdl:part name="response" element="pa:getAdresseAbhaengigkeitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerDomiziladresseRequestMessage">
+        <wsdl:part name="request" element="pa:getPartnerDomiziladresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerDomiziladresseResponseMessage">
+        <wsdl:part name="response" element="pa:getPartnerDomiziladresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungserbringerDomiziladresseRequestMessage">
+        <wsdl:part name="request" element="pa:getLeistungserbringerDomiziladresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungserbringerDomiziladresseResponseMessage">
+        <wsdl:part name="response" element="pa:getLeistungserbringerDomiziladresseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerAdressenRequestMessage">
+        <wsdl:part name="request" element="pa:getPartnerAdressenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerAdressenResponseMessage">
+        <wsdl:part name="response" element="pa:getPartnerAdressenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerZusatzadressenRequestMessage">
+        <wsdl:part name="request" element="pa:getPartnerZusatzadressenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetPartnerZusatzadressenResponseMessage">
+        <wsdl:part name="response" element="pa:getPartnerZusatzadressenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungserbringerZusatzadressenRequestMessage">
+        <wsdl:part name="request" element="pa:getLeistungserbringerZusatzadressenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetLeistungserbringerZusatzadressenResponseMessage">
+        <wsdl:part name="response" element="pa:getLeistungserbringerZusatzadressenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetOrganisationseinheitZusatzadressenRequestMessage">
+        <wsdl:part name="request" element="pa:getOrganisationseinheitZusatzadressenRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetOrganisationseinheitZusatzadressenResponseMessage">
+        <wsdl:part name="response" element="pa:getOrganisationseinheitZusatzadressenResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:message name="GetOrganisationseinheitDomiziladresseRequestMessage">
+        <wsdl:part name="request" element="pa:getOrganisationseinheitDomiziladresseRequest"/>
+    </wsdl:message>
+    <wsdl:message name="GetOrganisationseinheitDomiziladresseResponseMessage">
+        <wsdl:part name="response" element="pa:getOrganisationseinheitDomiziladresseResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="AdresseServicePortType">
+        <wsdl:operation name="getAdresse">
+            <wsdl:documentation>Liefert für einen technischen Adresseschlüssel die Daten der zugehörigen Adresse (Domizialadresse oder Zusatzadresse).</wsdl:documentation>
+            <wsdl:input name="getAdresseRequest" message="tns:GetAdresseRequestMessage"/>
+            <wsdl:output name="getAdresseResponse" message="tns:GetAdresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getAdresseAbhaengigkeit">
+            <wsdl:documentation>Liefert für einen technischen Adresseschlüssel die Abhängigkeiten dieser Adresse (abhängige Adressen oder übergeordnete Adresse).</wsdl:documentation>
+            <wsdl:input name="getAdresseAbhaengigkeitRequest" message="tns:GetAdresseAbhaengigkeitRequestMessage"/>
+            <wsdl:output name="getAdresseAbhaengigkeitResponse" message="tns:GetAdresseAbhaengigkeitResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerDomiziladresse">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Daten der dazugehörenden Domiziladresse, sofern eine besteht.</wsdl:documentation>
+            <wsdl:input name="getPartnerDomiziladresseRequest" message="tns:GetPartnerDomiziladresseRequestMessage"/>
+            <wsdl:output name="getPartnerDomiziladresseResponse" message="tns:GetPartnerDomiziladresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getLeistungserbringerDomiziladresse">
+            <wsdl:documentation>Liefert für einen technischen Leistungserbringerschlüssel die Daten der dazugehörenden Domiziladresse, sofern eine besteht.</wsdl:documentation>
+            <wsdl:input name="getLeistungserbringerDomiziladresseRequest" message="tns:GetLeistungserbringerDomiziladresseRequestMessage"/>
+            <wsdl:output name="getLeistungserbringerDomiziladresseResponse" message="tns:GetLeistungserbringerDomiziladresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerAdressen">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Daten aller dazugehörenden Adressen.</wsdl:documentation>
+            <wsdl:input name="getPartnerAdressenRequest" message="tns:GetPartnerAdressenRequestMessage"/>
+            <wsdl:output name="getPartnerAdressenResponse" message="tns:GetPartnerAdressenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerZusatzadressen">
+            <wsdl:documentation>Liefert für einen technischen Partnerschlüssel die Daten aller dazugehörenden Zusatzadressen.</wsdl:documentation>
+            <wsdl:input name="getPartnerZusatzadressenRequest" message="tns:GetPartnerZusatzadressenRequestMessage"/>
+            <wsdl:output name="getPartnerZusatzadressenResponse" message="tns:GetPartnerZusatzadressenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOrganisationseinheitDomiziladresse">
+            <wsdl:documentation>Liefert für einen technischen Organisationseinheitschlüssel die Daten der dazugehörenden Domiziladresse, sofern eine besteht.</wsdl:documentation>
+            <wsdl:input name="getOrganisationseinheitDomiziladresseRequest" message="tns:GetOrganisationseinheitDomiziladresseRequestMessage"/>
+            <wsdl:output name="getOrganisationseinheitDomiziladresseResponse" message="tns:GetOrganisationseinheitDomiziladresseResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getLeistungserbringerZusatzadressen">
+            <wsdl:documentation>Liefert für einen technischen Leistungserbringerschlüssel die Daten aller dazugehörenden Zusatzadressen.</wsdl:documentation>
+            <wsdl:input name="getLeistungserbringerZusatzadressenRequest" message="tns:GetLeistungserbringerZusatzadressenRequestMessage"/>
+            <wsdl:output name="getLeistungserbringerZusatzadressenResponse" message="tns:GetLeistungserbringerZusatzadressenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOrganisationseinheitZusatzadressen">
+            <wsdl:documentation>Liefert für einen technischen Organisationseinheitschlüssel die Daten aller dazugehörenden Zusatzadressen.</wsdl:documentation>
+            <wsdl:input name="getOrganisationseinheitZusatzadressenRequest" message="tns:GetOrganisationseinheitZusatzadressenRequestMessage"/>
+            <wsdl:output name="getOrganisationseinheitZusatzadressenResponse" message="tns:GetOrganisationseinheitZusatzadressenResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="AdresseServiceBinding" type="tns:AdresseServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAdresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAdresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAdresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAdresseAbhaengigkeit">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getAdresseAbhaengigkeitRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAdresseAbhaengigkeitResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerDomiziladresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerDomiziladresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerDomiziladresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getLeistungserbringerDomiziladresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getLeistungserbringerDomiziladresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getLeistungserbringerDomiziladresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerAdressen">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerAdressenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerAdressenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getPartnerZusatzadressen">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getPartnerZusatzadressenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPartnerZusatzadressenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getOrganisationseinheitDomiziladresse">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getOrganisationseinheitDomiziladresseRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getOrganisationseinheitDomiziladresseResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getLeistungserbringerZusatzadressen">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getLeistungserbringerZusatzadressenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getLeistungserbringerZusatzadressenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getOrganisationseinheitZusatzadressen">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getOrganisationseinheitZusatzadressenRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getOrganisationseinheitZusatzadressenResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AdresseService_v1">
+        <wsdl:documentation>
+            <xhtml:ul>
+                <xhtml:li>Deprecation: Kanton des Typs 'WsKantonCodeType' und GemeindeKanton des Typs 'WsGemeindeKantonCodeType' wurden durch Provinz und GemeindeProvinz des Typs 'StringType' ersetzt.</xhtml:li>
+            </xhtml:ul>
+        </wsdl:documentation>
+        <wsdlsi:serviceInfo>
+            <wsdlsi:deprecation>
+                <wsdlsi:deprecationReason>Replaced</wsdlsi:deprecationReason>
+                <wsdlsi:replacedBy>
+                    <wsdlsi:serviceName>AdresseService_v2</wsdlsi:serviceName>
+                    <wsdlsi:targetNamespace>urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:adresse:v2</wsdlsi:targetNamespace>
+                </wsdlsi:replacedBy>
+                <wsdlsi:ticketReference>APAR-456</wsdlsi:ticketReference>
+            </wsdlsi:deprecation>
+        </wsdlsi:serviceInfo>   
+        <wsdl:port name="AdresseService_v1" binding="tns:AdresseServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/AdresseService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

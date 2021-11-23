@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertrag:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertrag:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1"
+            xmlns:bc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            version="1.0.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+
+    <xsd:element name="searchVertragForPartnerRequest" type="tns:SearchVertragForPartnerRequestType">
+    		<xsd:annotation>
+        		<xsd:documentation>Suche nach Verträgen zu einem Partner</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchVertragForPartnerResponse" type="tns:SearchVertragForPartnerResponseType">
+    		<xsd:annotation>
+        		<xsd:documentation>Suche nach Verträgen zu einem Partner</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="SearchVertragForPartnerRequestType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die Suchparameter der Anfrage.</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                   <xsd:annotation>
+                       <xsd:documentation>Technischer Schlüssel vom Partner.</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+               <xsd:element name="stichdatum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                   <xsd:annotation>
+                       <xsd:documentation>Datum zu dem die Verträge gültig sein müssen.</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchVertragForPartnerResponseType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die Suchparameter der Anfrage.</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="0" maxOccurs="unbounded">
+                   <xsd:annotation>
+                       <xsd:documentation>Technische Schlüssel der Verträge</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="searchVertragForVertragNrRequest" type="tns:SearchVertragForVertragNrRequestType">
+    		<xsd:annotation>
+        		<xsd:documentation>Suche nach Verträgen zu einer Vertragsnummer</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchVertragForVertragNrResponse" type="tns:SearchVertragForVertragNrResponseType">
+    		<xsd:annotation>
+        		<xsd:documentation>Suche nach Verträgen zu einer Vertragsnummer</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="SearchVertragForVertragNrRequestType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die Suchparameter der Anfrage.</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="vertragNr" type="st:StringType" minOccurs="1" maxOccurs="1">
+                   <xsd:annotation>
+                       <xsd:documentation>Fachlicher Schlüssel (Vertragsnummer) eines Vertrags</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchVertragForVertragNrResponseType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die Vertragsdaten als Ergebnis der Anfrage.</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="0" maxOccurs="unbounded">
+                   <xsd:annotation>
+                       <xsd:documentation>Technische Schlüssel der Verträge</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetVertragRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält eine Liste von Such-Konstellationen für die Anfrage.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Mehrere technische Schlüssel von Verträgen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Optionales Stichdatum, zu dem die Verträge geladen werden. Wird keines angegeben, gilt das aktuelle Tagesdatum. Es werden auch beendete oder zukünftig gültige Verträge geladen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getVertragRequest" type="tns:GetVertragRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält eine Liste von Such-Konstellationen für die Anfrage.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="GetVertragResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält eine Liste von Such-Attributen</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertrag" type="tns:WsVertragType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Vertragsdaten.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+         </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getVertragResponse" type="tns:GetVertragResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Vertragsdaten als Ergebnis der Anfrage.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="WsVertragType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Vertragsdaten.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel eines Vertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Vertragnehmers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertriebspartnerId" type="pi:WsVertriebspartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Vertriebspartners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemienzahlerId" type="pi:WsPraemienzahlerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Zahlers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rahmenvertragId" type="pi:WsRahmenvertragIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Rahmenvertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragNr" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Vertragsnummer</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragslaufzeitBeginn" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Vertragslaufzeitbeginn des Vertrages</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragslaufzeitEnde" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Vertragslaufzeitende des Vertrages</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktsparteId" type="pi:WsProduktsparteIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Produktsparte.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kollektivvertragNamentlichId" type="pi:WsKollektivvertragNamentlichIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des namentlichen Kollektivvertrags eines Vertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="personengruppeId" type="pi:WsKVNamentlichPersGrpIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel einer Personengruppe.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahlungsmodusTyp" type="bc:WsZahlungsmodusCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Zahlungsmodus des Vertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zahlungszeitpunktTyp" type="bc:WsZahlungszeitpunktCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Zahlungszeitpunkt des Vertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+    <xsd:element name="getVertragPraemientotalRequest" type="tns:GetVertragPraemientotalRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Kriterien für die Anfrage.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="getVertragPraemientotalResponse" type="tns:GetVertragPraemientotalResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält das Prämientotal des Vertrages als Ergebnis der Anfrage.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="GetVertragPraemientotalRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Kriterien für die Anfrage.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel eines Vertrages.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Optionales Stichdatum, zu dem der Vertrag gültig sein muss. Wird keines angegeben, gilt das aktuelle Tagesdatum.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetVertragPraemientotalResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält das Prämientotal des Vertrages</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="praemientotal" type="st:DecimalType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Prämientotal des Vertrages: die Summe der Prämien der Vertragsprodukte.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+         </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getKollektivvertragNamentlichRequest" type="tns:GetKollektivvertragNamentlichRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Daten zur Suche nach namentlichen Kollektivverträgen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="getKollektivvertragNamentlichResponse" type="tns:GetKollektivvertragNamentlichResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Daten der namentlichen Kollektivverträge als Ergebnis der Anfrage.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="GetKollektivvertragNamentlichRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die Daten zur Suche nach namentlichen Kollektivverträgen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kollektivvertragNamentlichId" type="pi:WsKollektivvertragNamentlichIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Mehrere technische Schlüssel von namentlichen Kollektivverträgen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Optionales Stichdatum, zu dem die namentlichen Kollektivverträge gültig sein müssen. Wird keines angegeben, gilt das aktuelle Tagesdatum.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetKollektivvertragNamentlichResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält Daten zu namentlichen Kollektivverträgen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kollektivvertragNamentlich" type="tns:WsKollektivvertragNamentlichType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Daten des namentlichen Kollektivvertrags.</xsd:documentation>
+                </xsd:annotation>
+             </xsd:element>
+         </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsKollektivvertragNamentlichType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält Daten zu namentlichen Kollektivverträgen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsKollektivvertragNamentlichIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel eines namentlichen Kollektivvertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="versicherungsnehmerId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Versicherungsnehmers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktsparteId" type="pi:WsProduktsparteIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Produktsparte.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rahmenvertragId" type="pi:WsRahmenvertragIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Rahmenvertrags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragNr" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Vertragsnummer</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zeichnungsdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Zeichnungsdatum des namentlichen Kollektivvertrages</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragsnehmerName" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Name des Vertragsnehmers</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="GetVertragStateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request zum Lesen von fachlichen Vertragszuständen.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Vertrages.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getVertragStateRequest" type="tns:GetVertragStateRequestType">
+        <xsd:annotation>
+            <xsd:documentation>Request zum Lesen von fachlichen Vertragszuständen.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="GetVertragStateResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die fachlichen Vertragszustände als Ergebnis der Anfrage.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertragState" type="pt:WsHistoryStateType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Fachlicher Vertragszustand.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="getVertragStateResponse" type="tns:GetVertragStateResponseType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die fachlichen Vertragszustände als Ergebnis der Anfrage.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="searchAllVertragForPartnerRequest" type="tns:SearchAllVertragForPartnerRequestType">
+    		<xsd:annotation>
+        		<xsd:documentation>Suche nach allen Verträgen zu einem Partner</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchAllVertragForPartnerResponse" type="tns:SearchAllVertragForPartnerResponseType">
+    		<xsd:annotation>
+        		<xsd:documentation>Suche nach allen Verträgen zu einem Partner</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="SearchAllVertragForPartnerRequestType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die Suchparameter der Anfrage.</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                   <xsd:annotation>
+                       <xsd:documentation>Technischer Schlüssel vom Partner.</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SearchAllVertragForPartnerResponseType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die technischen Schlüssel und die Gültigkeiten der Verträge als Ergebnis der Anfrage.</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="vertragLifecycle" type="tns:WsVertragLifecycleType" minOccurs="0" maxOccurs="unbounded">
+                   <xsd:annotation>
+                       <xsd:documentation>Technische Schlüssel der Verträge</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+    
+	<xsd:element name="getTarifGueltigkeitInfoRequest" type="tns:GetTarifGueltigkeitInfoRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Antwort, ob die Tarife vom Vertrag gültig sind</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+ 
+    <xsd:element name="getTarifGueltigkeitInfoResponse" type="tns:GetTarifGueltigkeitInfoResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Gibt an ob die Tarife vom Vertrag gültig sind</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+	<xsd:complexType name="GetTarifGueltigkeitInfoRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Suchparameter der Anfrage.</xsd:documentation>
+		</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Technischer Schlüssel vom Vertrag.</xsd:documentation>
+                   	</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="stichtag" type="st:DateType" minOccurs="1" maxOccurs="1">
+                	<xsd:annotation>
+						<xsd:documentation>Stichtag per wann ermittelt werden soll, ob die Tarife gültig sind.</xsd:documentation>
+               		</xsd:annotation>
+				</xsd:element>
+           </xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="GetTarifGueltigkeitInfoResponseType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält die Information ob die Tarife vom Vertrag gültig sind oder nicht</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="isTarifGueltig" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                   <xsd:annotation>
+                       <xsd:documentation>True oder false, je nach dem ob die Tarife gültig sind oder eben nicht</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+    
+	<xsd:element name="getVertragParamAttributesRequest" type="tns:GetVertragParamAttributesRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält Id des Vertrages, Stichtag sowie eine Id einer SysCollection um die parametrierbaren Attribute für einen Vertragskopf Stichtag bezogen zu ermitteln</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+ 
+    <xsd:element name="getVertragParamAttributesResponse" type="tns:GetVertragParamAttributesResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Liefert die parametrierbaren Attribute für einen Vertragskopf mit den Ausprägungen per Stichtag</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+	<xsd:complexType name="GetVertragParamAttributesRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Suchparameter der Anfrage.</xsd:documentation>
+		</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+					<xsd:annotation>
+						<xsd:documentation>Technischer Schlüssel vom Vertrag.</xsd:documentation>
+                   	</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="sysCollectionId" type="pi:WsSysCollectionIdType" minOccurs="0" maxOccurs="1">
+                	<xsd:annotation>
+						<xsd:documentation>Id einer Systemkollektion die definiert, welche Param-Attrs ermittelt werden.</xsd:documentation>
+               		</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="stichtag" type="st:DateType" minOccurs="1" maxOccurs="1">
+                	<xsd:annotation>
+						<xsd:documentation>Stichtag per wann die Param-Attrs geladen werden.</xsd:documentation>
+               		</xsd:annotation>
+				</xsd:element>
+           </xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="GetVertragParamAttributesResponseType">
+           <xsd:annotation>
+               <xsd:documentation>Enthält eine Liste von Param-Attrs vom Vertrag per Stichtag</xsd:documentation>
+           </xsd:annotation>
+           <xsd:sequence>
+               <xsd:element name="contractParamAttrs" type="pt:WsContractParamAttributType" minOccurs="0" maxOccurs="unbounded">
+                   <xsd:annotation>
+                       <xsd:documentation>Die Liste von Param-Attrs vom Vertrag per Stichtag</xsd:documentation>
+                   </xsd:annotation>
+               </xsd:element>
+           </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsVertragLifecycleType">
+        <xsd:annotation>
+            <xsd:documentation>Enthält die technischen Schlüssel und die Gültigkeiten der Verträge.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Vertrags.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltAb" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Beginn der Gültigkeit des Vertrags.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltBis" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Ende der Gültigkeit des Vertrags.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

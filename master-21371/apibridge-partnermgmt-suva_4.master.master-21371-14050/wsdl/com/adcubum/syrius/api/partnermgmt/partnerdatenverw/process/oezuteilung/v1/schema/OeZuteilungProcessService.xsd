@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:oezuteilung:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:oezuteilung:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    
+    <xsd:element name="changePartnerOeZuteilungRequest" type="tns:ChangePartnerOeZuteilungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request für das Ändern einer OE-Zuteilung eines Partners.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="changePartnerOeZuteilungResponse" type="tns:ChangePartnerOeZuteilungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Ändern einer OE-Zuteilung eines Partners.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    
+    <xsd:complexType name="ChangePartnerOeZuteilungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um eine OE-Zuteilung einer natürlichen oder juristischen Person zu übersteuern.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel der natürlichen oder juristischen Person, von welcher die OE-Zuteilung geändert wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="gueltigAb" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt ab wann die OE-Zuteilung geändert wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:element name="oeZuteilung" type="tns:WsOeZuteilungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die neue OE-Zuteilung für den angegebenen Partner.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            
+            <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel auf den Mutationsgrund.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="ChangePartnerOeZuteilungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response für das Ändern von OeZuteilungen einer natürlichen oder juristische Person.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="aenderungErfolgreich" type="st:BooleanType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Immer True, im Falle eines Fehlers wird eine Exception geworfen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsOeZuteilungType">
+        <xsd:annotation>
+			 <xsd:documentation xml:lang="de">Enthält die Daten einer OE-Zuteilung.</xsd:documentation>
+        </xsd:annotation>
+	         <xsd:sequence>
+	             <xsd:element name="gbereichId" type="pi:WsGbereichIdType" minOccurs="0" maxOccurs="1">
+	                 <xsd:annotation>
+	                     <xsd:documentation xml:lang="de">Technischer Schlüssel eines Geschäftsbereichs.</xsd:documentation>
+	                 </xsd:annotation>
+	             </xsd:element>
+	             <xsd:element name="organisationseinheitArt" type="pt:WsOrganisationseinheitArtType" minOccurs="1" maxOccurs="1">
+	                 <xsd:annotation>
+	                     <xsd:documentation xml:lang="de">Art der Organisationseinheit.</xsd:documentation>
+	                 </xsd:annotation>
+	             </xsd:element>
+	             <xsd:element name="organisationseinheitId" type="pi:WsOrganisationseinheitIdType" minOccurs="1" maxOccurs="1">
+	                 <xsd:annotation>
+	                     <xsd:documentation xml:lang="de">Technischer Schlüssel einer Organisationseinheit.</xsd:documentation>
+	                 </xsd:annotation>
+	             </xsd:element>
+	         </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

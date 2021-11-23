@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="TelefonBereichProcessService"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telefonbereich:v1"
+                  xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telefonbereich:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telefonbereich:v1:schema"
+                  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+    <wsdl:documentation>Version: 1.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:process:telefonbereich:v1:schema" schemaLocation="schema/TelefonBereichProcessService.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="CreateTelefonBereichForPartnerRequestMessage">
+        <wsdl:part name="Request" element="pa:createTelefonBereichForPartnerRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CreateTelefonBereichForPartnerResponseMessage">
+        <wsdl:part name="Response" element="pa:createTelefonBereichForPartnerResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:changeTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ChangeTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:changeTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateTelefonBereichRequestMessage">
+        <wsdl:part name="Request" element="pa:terminateTelefonBereichRequest"/>
+    </wsdl:message>
+    <wsdl:message name="TerminateTelefonBereichResponseMessage">
+        <wsdl:part name="Response" element="pa:terminateTelefonBereichResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+    <wsdl:portType name="TelefonBereichProcessServicePortType">
+        <wsdl:operation name="createTelefonBereichForPartner">
+            <wsdl:documentation>Erstellt einen neuen Telefonnummerbereich zu einem Partner.</wsdl:documentation>
+            <wsdl:input name="createTelefonBereichForPartnerRequest" message="tns:CreateTelefonBereichForPartnerRequestMessage"/>
+            <wsdl:output name="createTelefonBereichForPartnerResponse" message="tns:CreateTelefonBereichForPartnerResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="changeTelefonBereich">
+            <wsdl:documentation>Ändert einen Telefonnummerbereich.</wsdl:documentation>
+            <wsdl:input name="changeTelefonBereichRequest" message="tns:ChangeTelefonBereichRequestMessage"/>
+            <wsdl:output name="changeTelefonBereichResponse" message="tns:ChangeTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="terminateTelefonBereich">
+            <wsdl:documentation>Terminiert einen bestehende Telefonnummerbereich.
+            Setzt die Gültigkeit des Telefonnummerbereichs auf bis gestern.
+            Falls der Telefonnummerbereich dadurch eine negative Gültigkeit bekommt, wird er gelöscht.</wsdl:documentation>
+            <wsdl:input name="terminateTelefonBereichRequest" message="tns:TerminateTelefonBereichRequestMessage"/>
+            <wsdl:output name="terminateTelefonBereichResponse" message="tns:TerminateTelefonBereichResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TelefonBereichProcessServiceBinding" type="tns:TelefonBereichProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createTelefonBereichForPartner">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="createTelefonBereichForPartnerRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createTelefonBereichForPartnerResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="changeTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="changeTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="changeTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="terminateTelefonBereich">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="terminateTelefonBereichRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="terminateTelefonBereichResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TelefonBereichProcessService_v1">
+        <wsdl:port name="TelefonBereichProcessService_v1" binding="tns:TelefonBereichProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-partnermgmt/TelefonBereichProcessService_v1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

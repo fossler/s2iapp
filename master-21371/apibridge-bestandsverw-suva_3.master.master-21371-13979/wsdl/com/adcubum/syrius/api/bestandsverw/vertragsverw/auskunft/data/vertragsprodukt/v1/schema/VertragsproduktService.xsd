@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertragsprodukt:v1:schema"
+            xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:auskunft:data:vertragsprodukt:v1:schema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1"
+            xmlns:pi="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:bestandsverw:types:v1"
+            version="1.2.0"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:codes:v1" schemaLocation="../../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:common:identifier:v1" schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+
+	<xsd:element name="getVertragsproduktRequest" type="tns:GetVertragsproduktRequestType">
+		<xsd:annotation>
+			<xsd:documentation>Request zur Ermittlung des Vertragsproduktes.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+    <xsd:element name="getVertragsproduktResponse" type="tns:GetVertragsproduktResponseType">
+		<xsd:annotation>
+			<xsd:documentation>Response zur Ermittlung des Vertragsproduktes.</xsd:documentation>
+		</xsd:annotation>
+    </xsd:element>
+
+	<xsd:complexType name="GetVertragsproduktRequestType">
+		<xsd:annotation>
+    		<xsd:documentation>Request zum Lesen des vertragsprodukts</xsd:documentation>
+    	</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="vertragsproduktId" type="pi:WsVertragsproduktIdType"	minOccurs="1" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Technischer Schlüssel eines Vertragsproduktes. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="stichdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Stichdatum, zu dem das Vertragsprodukt ermittelt werden soll. Wird kein Datum übergeben, wird das Tagesdatum herangezogen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="GetVertragsproduktResponseType">
+		<xsd:annotation>
+    		<xsd:documentation>Response zum Lesen des vertragsprodukts</xsd:documentation>
+    	</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="vertragsprodukt" type="tns:WsVertragsproduktType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+    		<xsd:documentation>Vertragsprodukt</xsd:documentation>
+    	</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="evaluatePossibleCodes4CodekriteriumRequest" type="tns:EvaluatePossibleCodes4CodekriteriumRequestType">
+    		<xsd:annotation>
+        		<xsd:documentation>Request zur Ermittlung der auswählbaren Codes zu einem gegebenen Codekriterium</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+    
+    <xsd:element name="evaluatePossibleCodes4CodekriteriumResponse" type="tns:EvaluatePossibleCodes4CodekriteriumResponseType">
+    		<xsd:annotation>
+        		<xsd:documentation>Response zur Ermittlung der auswählbaren Codes zu einem gegebenen Codekriterium</xsd:documentation>
+        	</xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="EvaluatePossibleCodes4CodekriteriumRequestType">
+    	<xsd:annotation>
+    		<xsd:documentation>Request zum Evaluieren von möglichen Codes zu einem Codekriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                     <xsd:documentation>Technischer Schlüssel des Vertrages.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="vertragsproduktId" type="pi:WsVertragsproduktIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Vertragsproduktes.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="kriteriumId" type="pi:WsKriteriumIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Technischer Schlüssel des Kriteriums.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichdatum" type="st:DateType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Stichdatum, zu dem die möglichen CodeIds zu ermitteln sind.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="EvaluatePossibleCodes4CodekriteriumResponseType">
+    	<xsd:annotation>
+    		<xsd:documentation>Response zum Evaluieren von möglichen Codes zu einem Codekriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="kriteriumCodeId" type="pi:WsCodeIdType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>Auswählbare Codes zu dem Codekriterium.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsVertragsproduktType">
+    	<xsd:annotation>
+    		<xsd:documentation>Vertragsprodukt</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsVertragsproduktIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel eines Vertragsproduktes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragId" type="pi:WsVertragIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Vertrages.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktId" type="pi:WsProduktIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Produktes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemienzahlerId" type="pi:WsPraemienzahlerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Zahlers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistungsforderungEmpfaengerId" type="pi:WsLeistungsforderungEmpfaengerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Empfängers der Leistungsforderung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistungszahlungEmpfaengerId" type="pi:WsLeistungszahlungEmpfaengerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Empfängers der Leistungszahlung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistungserbringerId" type="pi:WsPartnerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Leistungserbringers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemientotal" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Prämientotal des Vertragsprodukts</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vpLaufzeitBeginn" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Vertragsprodukt Laufzeitbeginn.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="mindVPLaufzeitEnde" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Vertragsprodukt Laufzeitende.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="basisProduktbaustein" type="tns:WsBasisProduktbausteinType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Der Basis-Produktbaustein.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktbausteine" type="tns:WsProduktbausteinType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Eine Liste von Produktbausteinen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rabatt" type="tns:WsRabattType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Rabatt des Vertragsprodukts</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zuschlag" type="tns:WsZuschlagType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Zuschlag des Vertragsprodukts</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="reduktion" type="tns:WsReduktionType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Reduktion des Vertragsprodukts</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sistierung" type="tns:WsSistierungType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Sistierung des Vertragsprodukts</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="grundpreis" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Grundpreis des Vertragsprodukts (ab SYRIUS rel3_08_01)</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="verkaufsproduktId" type="pi:WsVerkaufsproduktIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Verkaufsproduktes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="WsKriteriumType" abstract="true">
+    	<xsd:annotation>
+    		<xsd:documentation>Kriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsKriteriumIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumTyp" type="pc:WsKriteriumTypCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Kriterium Typ Code.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumdefinitionTyp" type="pc:WsKriteriumdefinitionTypCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Typ der Kriteriumdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="isUebersteuert" type="st:BooleanType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Gibt an ob Kriterum uebersteuert ist.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumKey" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fachlicher Schlüssel des Kriteriums</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumdefinitionKey" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fachlicher Schlüssel der Definitionskomponente</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsCodekriteriumType">
+    	<xsd:annotation>
+    		<xsd:documentation>Codekriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsKriteriumType">
+                <xsd:sequence>
+                    <xsd:element name="kriteriumCode" type="pi:WsCodeIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Code des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriteriumCodeKey" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Fachlicher Schlüssel des Codekriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsWertkriteriumType">
+    	<xsd:annotation>
+    		<xsd:documentation>Wertkriterium</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsKriteriumType">
+                <xsd:sequence>
+                    <xsd:element name="kriteriumWert" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Wert des Kriteriums.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsProduktbausteinType">
+    	<xsd:annotation>
+    		<xsd:documentation>Produktbaustein</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsProduktbausteinIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Vertragsprodukt Risiko.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vertragsproduktId" type="pi:WsVertragsproduktIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Vertragsproduktes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kriterien" type="tns:WsKriteriumType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Die Kriterien des Bausteins</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktbausteinEndpreis" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Endpreis des Bausteins</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sistierungen" type="tns:WsSistierungType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Die Sistierungen des Bausteins</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="produktRisikoDefId" type="pi:WsProduktRisikoDefIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Produkt-Risiko Definition</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rabatte" type="tns:WsRabattType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Rabatte des Bausteins</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zuschlaege" type="tns:WsZuschlagType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Zuschlaege des Bausteins</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="reduktionen" type="tns:WsReduktionType" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation>Reduktionen des Bausteins</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsBasisProduktbausteinType">
+    	<xsd:annotation>
+    		<xsd:documentation>Basis-Produktbaustein</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsProduktbausteinType">
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+
+    <xsd:complexType name="WsRabattType">
+    	<xsd:annotation>
+    		<xsd:documentation>Rabatt</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsPraemienreduktionIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Rabatts.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemienreduktionDefId" type="pi:WsPraemienreduktionDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Prämienreduktionsdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="reduktionsartTyp" type="pc:WsReduktionsartCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Reduktionsart (Betrag oder Prozent).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betrag" type="st:DecimalType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die betragliche Komponente des Rabatts</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsZuschlagType">
+    	<xsd:annotation>
+    		<xsd:documentation>Zuschlag</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsPraemienreduktionIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel des Zuschlags.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemienreduktionDefId" type="pi:WsPraemienreduktionDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Prämienreduktionsdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="reduktionsartTyp" type="pc:WsReduktionsartCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Reduktionsart (Betrag oder Prozent).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betrag" type="st:DecimalType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die betragliche Komponente des Zuschlags</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsReduktionType">
+    	<xsd:annotation>
+    		<xsd:documentation>Reduktion</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsPraemienreduktionIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Reduktion.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemienreduktionDefId" type="pi:WsPraemienreduktionDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Prämienreduktionsdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="reduktionsartTyp" type="pc:WsReduktionsartCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Reduktionsart (Betrag oder Prozent).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betrag" type="st:DecimalType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die betragliche Komponente der Reduktion</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsSistierungType">
+    	<xsd:annotation>
+    		<xsd:documentation>Sistierung</xsd:documentation>
+    	</xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="id" type="pi:WsPraemienreduktionIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Sistierung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="praemienreduktionDefId" type="pi:WsPraemienreduktionDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Prämienreduktionsdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="reduktionsartTyp" type="pc:WsReduktionsartCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Technischer Schlüssel der Reduktionsart (Betrag oder Prozent).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betrag" type="st:DecimalType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation>Die betragliche Komponente der Sistierung</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+</xsd:schema>

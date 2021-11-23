@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:pi="urn:com:adcubum:syrius:api:recordsmgmt:common:identifier:v1"
+			xmlns:pc="urn:com:adcubum:syrius:api:recordsmgmt:common:codes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:recordsmgmt:common:types:v1"
+            xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1" 
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:recordsmgmt:common:types:v1"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:recordsmgmt:common:codes:v1" schemaLocation="../../codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:recordsmgmt:common:identifier:v1" schemaLocation="../../identifier/v1/identifier.xsd"/>
+
+	<xsd:complexType name="WsJournalParamAttributType">
+	    <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert ein parametrierbares Attribut, das zu einem Journal gehört.</xsd:documentation>
+        </xsd:annotation>
+    	<xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+        		<xsd:sequence>
+        			<xsd:element name="paramAttrId" type="pi:WsParamAttrIdType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Param-Attributes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="paramAttrDefId" type="pi:WsParamAttrDefIdType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel die Param-Attribute-Definition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="bigText" type="st:StringType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Big-Text des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="bo" type="tns:WsObjektRefType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf Objekt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="code" type="cc:WsCodeType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Code-Wert des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="date" type="st:DateType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Datum-Wert des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="decimal" type="st:DecimalType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Decimal-Wert des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="integer" type="st:IntegerType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Integer-Wert des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="text" type="st:StringType" minOccurs="0" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Text-Wert des Journals.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        		</xsd:sequence>
+        	</xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsObjektRefType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert eine allgemeine Referenz auf ein beliebiges Objekt im Syrius (technischer Schlüssel).</xsd:documentation>
+        </xsd:annotation>    
+		<xsd:sequence>
+			<xsd:element name="objektId" type="st:StringType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Objektes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+			<xsd:element name="objektTypCode" type="pc:WsObjektTypCodeType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Bestimmt den Typ der Objektreferenz.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+		</xsd:sequence>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsDokumentReferenzType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert eine Referenz auf ein Dokument im Archiv.</xsd:documentation>
+        </xsd:annotation>    
+    	<xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+        		<xsd:sequence>
+        			<xsd:element name="archivSystemId" type="pi:WsArchivSystemIdType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Archiv-Systems.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="docId" type="pi:WsDocIdType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Dokumentes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+            		<xsd:element name="url" type="st:StringType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">URL des Dokumentes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+            		<xsd:element name="docCreated" type="st:DateType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Erstellungszeitpunkt des Dokumentes.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        		</xsd:sequence>
+        	</xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsKommentarType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Definiert einen Kommentar, der an ein Journal angehängt werden kann.</xsd:documentation>
+        </xsd:annotation>    
+    	<xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+        		<xsd:sequence>
+        			<xsd:element name="id" type="pi:WsKommentarIdType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Kommentars.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        			<xsd:element name="erstellerId" type="pi:WsBenutzerIdType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des Benutzers.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+            		<xsd:element name="text" type="st:StringType" minOccurs="1" maxOccurs="1">
+        				<xsd:annotation>
+                            <xsd:documentation xml:lang="de">Kommentarfeld.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+        		</xsd:sequence>
+        	</xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

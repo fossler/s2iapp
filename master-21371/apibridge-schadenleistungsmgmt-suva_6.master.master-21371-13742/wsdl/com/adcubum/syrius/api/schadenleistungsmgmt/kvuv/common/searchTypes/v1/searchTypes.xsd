@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:searchTypes:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:searchTypes:v1"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:cs="urn:com:adcubum:syrius:api:common:searchTypes:v2"
+        elementFormDefault="qualified"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v2"
+                schemaLocation="../../../../../common/searchTypes/v2/searchTypes.xsd"/>
+
+
+    <xsd:complexType name="WsStringSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält den Text für eine Suche auf einem Textfeld.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="string" type="tns:WsSearchStringType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Der Suchtext.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="operator" type="cs:StringOperatorStringType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Operator der Suchbedingung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsSearchStringType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Typ der einen String-Wert für Suchen abbildet.
+                Der Typ kann den Spezialwert "VEMPTY" enthalten, um einen nicht vorhandenen, bzw. null-Wert zu repräsentieren.
+                Dies ermöglicht das Suchen von Objekten, welche in einem bestimmten String-Attribut keinen Wert gesetzt haben.
+                Information: Der Spezialwert ist case sensitive.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+
+    <xsd:complexType name="WsLocalDateSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält das Datum für eine Suche auf einem Datumsfeld.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="date" type="tns:WsSearchLocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Das Suchdatum.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="operator" type="cs:DateOperatorStringType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Operator der Suchbedingung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="WsSearchLocalDateType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Typ der ein Datumswert ohne Zeit- oder Zoneninformation abbildet.
+                Der Typ kann den Spezialwert "0001-01-01" enthalten, um einen nicht vorhandenen, bzw. null-Wert zu repräsentieren.
+                Dies ermöglicht das Suchen von Objekten, welche in einem bestimmten Datums-Attribut keinen Wert gesetzt haben.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:date">
+            <xsd:maxInclusive value="3000-01-01"/>
+            <xsd:minInclusive value="1000-01-01"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

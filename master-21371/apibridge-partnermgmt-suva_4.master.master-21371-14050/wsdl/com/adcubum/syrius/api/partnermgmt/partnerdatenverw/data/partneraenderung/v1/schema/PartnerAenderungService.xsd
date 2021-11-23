@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pi="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1"
+            xmlns:pt="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+            xmlns:pc="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1"
+            xmlns:xt="urn:com:adcubum:syrius:api:common:externalTypes:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partneraenderung:v1:schema" 
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:partnermgmt:partnerdatenverw:data:partneraenderung:v1:schema"
+            version="1.2.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:codes:v1" schemaLocation="../../../../../common/codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:partnermgmt:common:types:v1" schemaLocation="../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1" schemaLocation="../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:externalTypes:v1" schemaLocation="../../../../../../common/externalTypes/v1/externalTypes.xsd"/>
+    <xsd:element name="getNatPersonAenderungRequest" type="tns:GetNatPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die NatPersonänderungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getNatPersonAenderungResponse" type="tns:GetNatPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen NatPersonänderungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getPartnerNatPersonAenderungRequest" type="tns:GetPartnerNatPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die offenen NatPersonänderungen von bestimmten Partnern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getPartnerNatPersonAenderungResponse" type="tns:GetPartnerNatPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen offenen NatPersonänderungen der angegebenen Partnern enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getNatPersonAenderungDifferenzRequest" type="tns:GetNatPersonAenderungDifferenzRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die NatPersonänderungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getNatPersonAenderungDifferenzResponse" type="tns:GetNatPersonAenderungDifferenzResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen NatPersonänderungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getJurPersonAenderungRequest" type="tns:GetJurPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die JurPersonänderungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getJurPersonAenderungResponse" type="tns:GetJurPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen JurPersonänderungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getPartnerJurPersonAenderungRequest" type="tns:GetPartnerJurPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die offenen JurPersonänderungen von bestimmten Partnern geladen werden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="getPartnerJurPersonAenderungResponse" type="tns:GetPartnerJurPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen offenen JurPersonänderungen der angegebenen Partnern enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="GetNatPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die NatPersonänderungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerAenderungId" type="pi:WsPartnerAenderungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Partneränderung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetNatPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen NatPersonänderungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="natPersonAenderung" type="tns:WsNatPersonAenderungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden NatPersonänderungen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetPartnerNatPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die NatPersonänderungen von bestimmten Partner geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners, von welchem die offenen NatPersonänderungen geladen werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetPartnerNatPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen NatPersonänderungen der angegebenen Partnern enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerNatPersonAenderung" type="tns:WsPartnerNatPersonAenderungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die geladenen NatPersonänderungen eines Partners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetNatPersonAenderungDifferenzRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die NatPersonänderungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerAenderungId" type="pi:WsPartnerAenderungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Partneränderung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetNatPersonAenderungDifferenzResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen NatPersonänderungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="natPersonAenderung" type="tns:WsNatPersonAenderungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden NatPersonänderungen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJurPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die JurPersonänderungen geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerAenderungId" type="pi:WsPartnerAenderungIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel einer Partneränderung.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetJurPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen JurPersonänderungen enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="jurPersonAenderung" type="tns:WsJurPersonAenderungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden JurPersonänderungen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetPartnerJurPersonAenderungRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem die JurPersonänderungen von bestimmten Partner geladen werden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners, von welchem die offenen JurPersonänderungen geladen werden sollen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GetPartnerJurPersonAenderungResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in dem die geladenen JurPersonänderungen der angegebenen Partnern enthalten sind.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerJurPersonAenderung" type="tns:WsPartnerJurPersonAenderungType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die geladenen JurPersonänderungen eines Partners.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsPartnerNatPersonAenderungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die geladenen Partneränderungen eines Partners.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners, von welchem die NatPersonänderungen geladen wurden.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="natPersonAenderung" type="tns:WsNatPersonAenderungType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden NatPersonänderungen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsPartnerJurPersonAenderungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die geladenen Partneränderungen eines Partners.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines Partners, von welchem die JurPersonänderungen geladen wurden.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="jurPersonAenderung" type="tns:WsJurPersonAenderungType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält eine Liste mit den gefunden JurPersonänderungen.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsPartnerAenderungType" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die allgemeinen Daten zu einer Person (natürlich oder juristisch).</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsDataObjectType">
+                <xsd:sequence>
+                	<xsd:element name="id" type="pi:WsPartnerAenderungIdType" minOccurs="1" maxOccurs="1">
+                       <xsd:annotation>
+                           <xsd:documentation xml:lang="de">Technischer Schlüssel einer Partneränderung.</xsd:documentation>
+                       </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aenderungAb" type="st:DateType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Bestimmt ab wann die Partneränderung gültig ist.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerId" type="pi:WsPartnerIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel einer natürlichen oder juristischen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="intBetreuerId" type="pi:WsBenutzerIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel des betreuenden Sachbearbeiters.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="mitarbeiterBenutzerId" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Falls der Partner ein Mitarbeiter des Versicherers ist, ist dies eine fachliche Referenz auf den Benutzernamen des Mitarbeiters.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="mutationsgrundId" type="pi:WsMutationsgrundIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel auf den Mutationsgrund.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="name" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Name des Partners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="partnerschutzDefId" type="pi:WsPartnerschutzDefIdType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel auf die gesetzte Partnerschutzdefinition.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="korrespondenzsprache" type="xt:LanguageTagType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Korrespondenzsprache des Partners als IETF BCP 47 language tag (z.B. de-CH).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vip" type="pc:WsVipCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">VIP Code des Partners.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsNatPersonAenderungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer NatPersonänderung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsPartnerAenderungType">
+	            <xsd:sequence>
+                    <xsd:element name="arbeitslos" type="pc:WsArbeitslosCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ist die natürliche Person arbeitslos oder nicht.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aufenthaltsbew" type="pc:WsAufenthaltsbewCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Aufenthaltsbewilligung der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="aufenthaltsbewBis" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Bis zu welchem Datum gilt die Aufenthaltsbewilligung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="auslaenderstatus" type="pi:WsAuslaenderstatusIdType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Technischer Schlüssel zum Ausländerstatus der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bemerkung" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Freie Bemerkung zur natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="berufsgruppe" type="pc:WsBerufsgruppeCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Berufsgruppe der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="geburtsdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Geburtsdatum der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="geschlecht" type="pc:WsGeschlechtCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Geschlecht der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="heimatort" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Heimatort der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="inAusbildung" type="pc:WsInAusbildungCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ist die natürliche Person in Ausbildung oder nicht.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ledigname" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ledigname bzw. Geburtsname der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="namePraefix" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Freier Namenspräfix der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nameZusatz" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zusatz zum Namen (nachgestellt) der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nationalitaet" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Nationalität der natürlichen Person (2-stelliger Ländercode: ISO-3166).</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sozialhilfe" type="pc:WsSozialhilfeCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ist die natürlichen Person Sozialhilfeempfänger oder nicht.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="titel" type="pc:WsTitelCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Titel der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="todesdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Todesdatum der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="unterstPflicht" type="pc:WsUnterstPflichtCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ist die natürlichen Person unterstützungspflichtig oder nicht.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="vorname" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Vorname der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="weitereVornamen" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Weitere Vornamen der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zivilstand" type="pc:WsZivilstandCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zivilstand der natürlichen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="status" type="pc:WsPartAendStatusCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Status der Partneränderung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="begruendung" type="pc:WsPartAendBegruendungCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Begründung für die Ablehnung/Bearbeitung einer Partneränderung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="branche" type="pc:WsBrancheCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Branche in der die natürliche Person tätig ist.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="WsJurPersonAenderungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Daten einer JurPersonänderung.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:WsPartnerAenderungType">
+               <xsd:sequence>
+                    <xsd:element name="aufloesungsdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Aufloesungsdatum der juristischen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="branche" type="pc:WsBrancheCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Branche in der die juristischen Person tätig ist.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="gruendungsdatum" type="st:DateType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Gruendungsdatum der juristischen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="konzernpartner" type="pc:WsKonzernpartnerCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ist die juristische Person ein Konzernpartner oder nicht.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rechtsform" type="pc:WsRechtsformCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Rechtsform der juristischen Person.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zusatz1" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zusatzbezeichnung zum Namen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="zusatz2" type="st:StringType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Zusatzbezeichnung zum Namen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="status" type="pc:WsPartAendStatusCodeType" minOccurs="1" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Status der Partneränderung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="begruendung" type="pc:WsPartAendBegruendungCodeType" minOccurs="0" maxOccurs="1">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Begründung für die Ablehnung/Bearbeitung einer Partneränderung.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="HausarztProcessService"
+                  targetNamespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:hausarztaenderung:v0"
+                  xmlns:tns="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:hausarztaenderung:v0"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:flt="urn:com:adcubum:syrius:api:common:faults:v1"
+                  xmlns:pa="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:hausarztaenderung:v0:schema">
+
+    <wsdl:documentation>Version: 0.0.0</wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:com:adcubum:syrius:api:common:faults:v1" schemaLocation="../../../../../common/faults/v1/faults.xsd"/>
+            <xsd:import namespace="urn:com:adcubum:syrius:api:bestandsverw:vertragsverw:process:hausarztaenderung:v0:schema" 
+                        schemaLocation="schema/HausarztProcessService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="HausarztAenderungAnreicherungRequestMessage">
+        <wsdl:part name="Request" element="pa:hausarztAenderungAnreicherungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="HausarztAenderungAnreicherungResponseMessage">
+        <wsdl:part name="Response" element="pa:hausarztAenderungAnreicherungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="HausarztAenderungRequestMessage">
+	<wsdl:part name="Request" element="pa:hausarztAenderungRequest"/>
+	</wsdl:message>
+    <wsdl:message name="HausarztAenderungResponseMessage">
+        <wsdl:part name="Response" element="pa:hausarztAenderungResponse"/>
+    </wsdl:message>	
+    <wsdl:message name="ApiFaultMessage">
+        <wsdl:part name="fault" element="flt:apiFaultInfo"/>
+    </wsdl:message>
+
+    <wsdl:portType name="HausarztProcessServicePortType">
+        <wsdl:operation name="startHausarztAenderungAnreicherung">
+            <wsdl:documentation>Hausarztändern-Anreicherung für einen Partner</wsdl:documentation>
+            <wsdl:input name="startHausarztAenderungAnreicherungRequest" message="tns:HausarztAenderungAnreicherungRequestMessage"/>
+            <wsdl:output name="startHausarztAenderungAnreicherungResponse" message="tns:HausarztAenderungAnreicherungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+        </wsdl:operation>
+		<wsdl:operation name="startHausarztAenderung">
+		 <wsdl:documentation>Hausarztändern (Experten-Modus)</wsdl:documentation>
+            <wsdl:input name="startHausarztAenderungRequest" message="tns:HausarztAenderungRequestMessage"/>
+            <wsdl:output name="startHausarztAenderungResponse" message="tns:HausarztAenderungResponseMessage"/>
+            <wsdl:fault name="ApiFault" message="tns:ApiFaultMessage"/>
+		</wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="HausarztProcessServiceBinding" type="tns:HausarztProcessServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="startHausarztAenderungAnreicherung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="startHausarztAenderungAnreicherungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="startHausarztAenderungAnreicherungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+		        <wsdl:operation name="startHausarztAenderung">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="startHausarztAenderungRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="startHausarztAenderungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="ApiFault">
+                <soap:fault name="ApiFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="HausarztProcessService_v0">
+        <wsdl:port name="HausarztProcessService_v0" binding="tns:HausarztProcessServiceBinding">
+            <soap:address location="https://example.com/apibridge-bestandsverw/HausarztProcessService_v0"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

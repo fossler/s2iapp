@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+            xmlns:fi="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1"
+            xmlns:tns="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:rechtlichesinkasso:v1:schema"
+            elementFormDefault="qualified"
+            targetNamespace="urn:com:adcubum:syrius:api:finanzwesen:fakturamgmt:data:rechtlichesinkasso:v1:schema"
+            version="1.0.0">
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1" schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:finanzwesen:common:identifier:v1" schemaLocation="../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:element name="readAllL10nAttributesRechtlichesInkassoRequest" type="tns:ReadAllL10nAttributesRechtlichesInkassoRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen aller rechtlichen Inkasso zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readAllL10nAttributesRechtlichesInkassoResponse" type="tns:ReadAllL10nAttributesRechtlichesInkassoResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen aller rechtlichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesRechtlichesInkassoRequest" type="tns:ReadL10nAttributesRechtlichesInkassoRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen eines rechtlichen Inkasso zu laden.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="readL10nAttributesRechtlichesInkassoResponse" type="tns:ReadL10nAttributesRechtlichesInkassoResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen des rechtlichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ReadL10nAttributesRechtlichesInkassoRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen eines rechtlichen Inkasso zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="rechtlichesInkassoId" type="fi:WsRechtlichesInkassoIdType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel eines rechtlichen Inkasso.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadL10nAttributesRechtlichesInkassoResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen des rechtlichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesRechtlichesInkassoType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text eines rechtlichen Inkasso.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadAllL10nAttributesRechtlichesInkassoRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, um die lokalisierten Informationen aller rechtlichen Inkasso zu laden.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="locale" type="xsd:language" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Local mit welcher die korrekte Sprache ermittelt wird.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Zeitpunkt. Der Parameter ist optional, wird er nicht gesetzt wird der aktuelle Zeitpunkt verwendet.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReadAllL10nAttributesRechtlichesInkassoResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response mit den lokalisierten Informationen aller rechtichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="localizedAttrs" type="tns:WsL10nAttributesRechtlichesInkassoType" minOccurs="1" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Übersetzter Text eines rechtlichen Inkasso.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="WsL10nAttributesRechtlichesInkassoType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Lokalisierte Informationen des rechtlichen Inkasso.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="rechtlichesInkassoId" type="fi:WsRechtlichesInkassoIdType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technischer Schlüssel des rechtlichen Inkasso.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="bezeichnung" type="ct:WsLocalizedTextType" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Lokalisierte Bezeichnung des rechtlichen Inkasso.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

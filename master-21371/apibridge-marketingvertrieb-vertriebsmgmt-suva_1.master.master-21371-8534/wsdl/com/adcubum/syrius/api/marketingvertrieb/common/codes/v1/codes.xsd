@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:cc="urn:com:adcubum:syrius:api:common:codes:v1"
+        xmlns:tns="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+        elementFormDefault="qualified"
+        targetNamespace="urn:com:adcubum:syrius:api:marketingvertrieb:common:codes:v1"
+        version="1.0.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:codes:v1" schemaLocation="../../../../common/codes/v1/codes.xsd"/>
+
+    <xsd:complexType name="WsVermittlertypCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Couverts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsVermittlerstatusCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Couverts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSammelversandCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Couverts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsHasAnonymDistributionEmployeesCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">Technical code of a BooleanCode.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSozialabgabepflichtigCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Couverts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsQuellsteuerpflichtigCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Couverts.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsOriginalKopieCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel eines Original/Kopie Codes.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:complexType name="WsFunctionCodeType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Technischer Schlüssel einer Funktion.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="cc:WsCodeType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

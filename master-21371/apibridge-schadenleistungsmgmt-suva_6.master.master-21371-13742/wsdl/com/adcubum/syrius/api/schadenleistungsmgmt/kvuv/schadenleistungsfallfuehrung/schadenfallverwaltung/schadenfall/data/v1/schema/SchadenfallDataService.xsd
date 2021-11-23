@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+        targetNamespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:schadenfall:data:v1:schema"
+        xmlns:tns="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:schadenfall:data:v1:schema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:ct="urn:com:adcubum:syrius:api:common:types:v1"
+        xmlns:lt="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:types:v1"
+        xmlns:lcot="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:codes:v1"
+        xmlns:li="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+        xmlns:lct="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:types:v1"
+        xmlns:pi="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+        xmlns:st="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+        xmlns:csearch="urn:com:adcubum:syrius:api:common:searchTypes:v2"
+        xmlns:search="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:searchTypes:v1"
+        elementFormDefault="qualified"
+        version="1.1.0">
+
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:types:v1"
+                schemaLocation="../../../../types/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:schadenleistungsfallfuehrung:schadenfallverwaltung:codes:v1"
+                schemaLocation="../../../../codes/v1/codes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:identifier:v1"
+                schemaLocation="../../../../../../common/identifier/v1/identifier.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:types:v1"
+                schemaLocation="../../../../../../common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:searchTypes:v2"
+                schemaLocation="../../../../../../../../common/searchTypes/v2/searchTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:common:searchTypes:v1"
+                schemaLocation="../../../../../../common/searchTypes/v1/searchTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:simpleTypes:v1"
+                schemaLocation="../../../../../../../../common/simpleTypes/v1/simpleTypes.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:common:types:v1"
+                schemaLocation="../../../../../../../../../../../../com/adcubum/syrius/api/common/types/v1/types.xsd"/>
+    <xsd:import namespace="urn:com:adcubum:syrius:api:schadenleistungsmgmt:kvuv:extern:partner:identifier:v1"
+                schemaLocation="../../../../../../extern/partner/identifier/v1/identifier.xsd"/>
+
+    <!-- READ -->
+    <xsd:complexType name="WsReadSchadenfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Informationen zu Schadenfällen gelesen werden
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id des Schadenfalls</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsReadSchadenfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, mit der die Informationen zu einem Schadenfall geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenfall" type="tns:WsSchadenfallType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Informationen zum Schadenfall</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenfallType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Informationen zu einem Schadenfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-Id eines Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schadennummer" type="lt:WsSchadennummerType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Die Schadennummer des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="versicherterId" type="pi:WsPartnerIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Der Versicherte des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="beruf" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Berufsbezeichnung aus dem Freitextfeld</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="unfallbeschreibung" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Unfallbeschreibung des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="unfallort" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Unfallort</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ereignisdatum" type="st:LocalDateType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Ereignisdatum</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schadenfalltypId" type="li:WsSchadenfalltypIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Schadenfalltyp</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schadenartId" type="li:WsSchadenartIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Schadenart des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="fallart" type="lcot:WsFallartCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Fallart des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="status" type="lcot:WsSchadenfallStatusCodeType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Status des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="erledigungsdatum" type="st:LocalDateType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Erledigungsdatum des Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="letzterArbeitstag" type="st:LocalDateType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Letzter Arbeitstag des Versicherten</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rentenNrIV" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Rentennummer IV</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="rentenNrHR" type="st:StringType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Rentennummer HR</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="taggeldanspruch" type="lcot:WsTaggeldanspruchCodeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Anspruch auf Taggeld</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schadenereignisId" type="li:WsSchadenereignisIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">
+                                Bestimmt das Ereignis, welches zum Schaden geführt hat. Wird beispielsweise bei Gross- oder Kumulschäden verwendet.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="isTodesfall" type="st:BooleanType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Bestimmt, ob es sich um einen Unfall mit Todesfolge handelt.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminierung" type="tns:WsSchadenfallTerminierungType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Bestimmt, ob der Schadenfall aufgrund fehlender natürlicher Kausalität terminiert wurde.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenfallTerminierungType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Ein Schadenfall kann aufgrund von fehlender natürlicher Kausalität terminiert werden. Fehlende natürliche Kausalität liegt vor,
+                wenn ein neu entstandener Schaden aufgrund fortgeschrittener Zeit nicht mehr eindeutig mit dem vorherigen Schaden in Verbindung
+                gebracht werden kann.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="grundDerTerminierung" type="lcot:WsGrundDerTerminierungCodeType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt den Grund für die Terminierung des Schadenfalls.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="terminierungPer" type="st:LocalDateType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Bestimmt das Datum ab welchem der Schadenfall terminiert ist.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="readSchadenfallRequest" type="tns:WsReadSchadenfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Schadenfälle gelesen werden</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="readSchadenfallResponse" type="tns:WsReadSchadenfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Response, mit der die Informationen zu einem Schadenfall geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="readLeistungsfallRequest" type="tns:WsReadLeistungsfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Leistungsfälle gelesen werden</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="readLeistungsfallResponse" type="tns:WsReadLeistungsfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Response, mit der die Informationen zu einem Leistungsfall geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="readSchadenpartnerRequest" type="tns:WsReadSchadenpartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Request, mit dem die direkt referenzierten Schadenpartner zu einem Schadenfall gelesen werden
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="readSchadenpartnerResponse" type="tns:WsReadSchadenpartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Response, mit dem die direkt referenzierten Schadenpartner zu einem Schadenfall geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:complexType name="WsReadLeistungsfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Informationen zu Leistungsfällen gelesen werden</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsfallId" type="li:WsLeistungsfallRueckfallIdType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id des Leistungsfalls</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Fachlicher Zeitpunkt. Der Parameter ist optional. Wird er nicht gesetzt, wird der aktuelle Zeitpunkt verwendet.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsReadLeistungsfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, mit der die Informationen zu einem Leistungsfall geliefert werden</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="leistungsfall" type="tns:WsLeistungsfallType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Informationen zum Leistungsfall</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsfallType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Informationen zu einem Leistungsfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsHistObjectType">
+                <xsd:sequence>
+                    <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-Id eines Schadenfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="leistungsfallId" type="li:WsLeistungsfallRueckfallIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-Id eines Leistungsfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="lifeCycleStatus" type="lct:WsLifeCycleStatusType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Gibt an in welchem Lebenszyklus-Zustand sich der Leistungsfall befindet
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="arbeitgeberId" type="st:StringType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf den Arbeitgeber des Leistungsfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="risikobetriebId" type="st:StringType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf den Risikobetrieb des Leistungsfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="stellungnahmeCodeId" type="st:StringType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf die Stellungnahme zum Leistungsfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="arbeitsverhaeltnisCodeId" type="st:StringType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf das Arbeitsverhältnis des Leistungsfalls</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="kvAnonymPersonenGruppeId" type="st:StringType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Referenz auf die Personengruppe des anonymen Kollektivvertrags des Leistungsfalls
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="anstellungsgrad" type="st:IntegerType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Anstellungsgrad des Geschädigten beim Betrieb (0-100)
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="wochenarbeitszeit" type="st:DecimalType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Anzahl Arbeitsstunden pro Woche des Geschädigten beim Betrieb
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="betriebsueblicheWochenarbeitszeit" type="st:DecimalType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Betriebsübliche Wochenarbeitszeit in Stunden
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsReadSchadenpartnerRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Request, mit dem die direkt referenzierten Schadenpartner zu einem Schadenfall gelesen werden
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id eines Schadenfalls</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="stichtag" type="xsd:date" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Fachlicher Zeitpunkt. Der Parameter ist optional. Wird er nicht gesetzt, wird der aktuelle Zeitpunkt verwendet.
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsReadSchadenpartnerResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">
+                Response, mit dem die direkt referenzierten Schadenpartner zu einem Schadenfall geliefert werden
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenpartner" type="tns:WsSchadenpartnerType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Enthält die Informationen zum Schadenpartner</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenpartnerType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Enthält die Informationen zum Schadenpartner</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="ct:WsLifecycleObjectType">
+                <xsd:sequence>
+                    <xsd:element name="partnerRolleId" type="li:WsPartnerRolleIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-Id einer PartnerRolle</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="schadenfallId" type="li:WsSchadenfallIdType">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-Id eines Schadenfalls aus dem Request</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="adresseId" type="li:WsAdresseIdType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="de">Objekt-Id der Adresse des Schadenpartners</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- SEARCH -->
+    <xsd:complexType name="WsSearchSchadenfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Schadenfälle gesucht werden</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="technischeSuchbedingungen" type="csearch:WsSearchConditionType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Suchbedingungen</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="schadenfallSuchbedingungen" type="tns:WsSchadenfallSuchbedingungenType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachliche Suchbedingungen</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSearchSchadenfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in der die gefundenen Schadenfälle enthalten sind</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadenfall" type="tns:WsSchadenfallSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die gefundenen Schadenfälle</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSearchLeistungsfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Leistungsfälle gesucht werden</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="technischeSuchbedingungen" type="csearch:WsSearchConditionType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Technische Suchbedingungen</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="schadenfallSuchbedingungen" type="tns:WsSchadenfallSuchbedingungenType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachliche Suchbedingungen zum Schadenfall</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="leistungsfallSuchbedingungen" type="tns:WsLeistungsfallSuchbedingungenType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachliche Suchbedingungen zum Leistungsfall</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenfallSuchbedingungenType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Suchkriterien spezifisch zum Schadenfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="schadennummer" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Schadennummer des Schadenfalles</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="versichertePerson" type="pi:WsPartnerIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id der natürlichen Person, für welche sich der Schadenfall ereignet hat
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ereignisdatum" type="search:WsLocalDateSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Datum, an welchem das Schadenereignis eingetreten ist</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsfallSuchbedingungenType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Suchkriterien spezifisch zum Leistungsfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="arbeitgeber" type="pi:WsPartnerIdType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id des Betriebes, bei dem die Versicherte Person angestellt ist</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="personalnummer" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Personalnummer der Versicherten Person im Betrieb</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ereignismeldungId" type="search:WsStringSearchType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Eindeutige Identifikation der Kommunikation zwischen Betrieb und Versicherung über den Leistungsfall
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsSchadenfallSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener Schadenfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="li:WsSchadenfallIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id des Schadenfalls</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="lifeCycleStatus" type="lct:WsLifeCycleStatusType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Gibt an in welchem Lebenszyklus-Zustand sich der Schadenfall befindet</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="schadennummer" type="lt:WsSchadennummerType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Fachlicher Schlüssel des Schadenfalls</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="leistungsfall" type="tns:WsLeistungsfallSearchType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Die gefundenen Leistungsfälle</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="WsLeistungsfallSearchType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Ein gefundener Leistungsfall</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="li:WsLeistungsfallRueckfallIdType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Objekt-Id des Leistungsfalls</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="lifeCycleStatus" type="lct:WsLifeCycleStatusType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">Gibt an in welchem Lebenszyklus-Zustand sich der Schadenfall befindet</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ereignismeldungId" type="st:StringType">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="de">
+                        Eindeutige Identifikation der Kommunikation zwischen Betrieb und Versicherung über den Leistungsfall
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:element name="searchSchadenfallRequest" type="tns:WsSearchSchadenfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Schadenfälle gesucht werden</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchSchadenfallResponse" type="tns:WsSearchSchadenfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in der die gefundenen Schadenfälle enthalten sind</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchLeistungsfallRequest" type="tns:WsSearchLeistungsfallRequestType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Request, mit dem Leistungsfälle gesucht werden</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="searchLeistungsfallResponse" type="tns:WsSearchSchadenfallResponseType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="de">Response, in der die gefundenen Leistungsfälle enthalten sind</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+</xsd:schema>
